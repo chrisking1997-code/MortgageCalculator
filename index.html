@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">房貸利息試算器</title>
+    <meta name="description" id="page-description" content="專業的房貸利息試算工具，幫助您快速了解每月還款金額與總利息支出。">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" id="og-title" content="房貸利息試算器">
+    <meta property="og:description" id="og-description" content="專業的房貸利息試算工具，幫助您快速了解每月還款金額與總利息支出。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', /* Dark Blue */
+                        secondary: '#10b981', /* Emerald Green */
+                        background: '#ffffff',
+                        surface: '#f3f4f6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-gray-800 font-sans antialiased min-h-screen">
+    <header class="bg-primary text-white py-6 shadow-md">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h1 id="main-heading" class="text-3xl font-bold">房貸利息試算器</h1>
+            <p id="sub-heading" class="mt-2 text-sm text-blue-100">專業、快速、精準的房貸試算工具</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Calculator Form -->
+            <section class="md:col-span-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
+                <h2 class="text-xl font-semibold mb-4 text-primary">輸入貸款資訊</h2>
+                <form id="calculator-form" class="space-y-4">
+                    <div>
+                        <label for="loan-amount" class="block text-sm font-medium text-gray-700">貸款總額 (新台幣)</label>
+                        <input type="number" id="loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10000000" min="0" step="10000">
+                    </div>
+                    <div>
+                        <label for="interest-rate" class="block text-sm font-medium text-gray-700">年利率 (%)</label>
+                        <input type="number" id="interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2.06" min="0" step="0.01">
+                    </div>
+                    <div>
+                        <label for="loan-term" class="block text-sm font-medium text-gray-700">貸款年限 (年)</label>
+                        <input type="number" id="loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
+                    </div>
+                </form>
+            </section>
+
+            <!-- Results Summary -->
+            <section class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-primary">試算結果</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                        <h3 class="text-sm font-medium text-blue-800">每月還款額 (本息攤還)</h3>
+                        <p class="text-2xl font-bold text-primary mt-1" id="monthly-payment">NT$ 0</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg border border-green-100">
+                        <h3 class="text-sm font-medium text-green-800">總利息支出</h3>
+                        <p class="text-2xl font-bold text-secondary mt-1" id="total-interest">NT$ 0</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3 text-gray-700">還款計畫表摘要 (前12期)</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-gray-200 bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3">期數</th>
+                                <th class="px-4 py-3">本期應繳</th>
+                                <th class="px-4 py-3">本金</th>
+                                <th class="px-4 py-3">利息</th>
+                                <th class="px-4 py-3">剩餘本金</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amortization-schedule" class="divide-y divide-gray-200">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>&copy; 2023 房貸利息試算工具. All rights reserved.</p>
+            <p class="mt-2 text-gray-400">本試算結果僅供參考，實際貸款條件以各銀行提供為準。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Programmatic SEO (pSEO) Configuration
+        const pageConfig = [
+            {
+                id: 'default',
+                title: '房貸利息試算器',
+                description: '專業的房貸利息試算工具，幫助您快速了解每月還款金額與總利息支出。',
+                h1: '房貸利息試算器',
+                subHeading: '專業、快速、精準的房貸試算工具'
+            },
+            {
+                id: 'youth',
+                title: '台灣青年安居貸款試算 | 房貸試算',
+                description: '專為台灣青年設計的安居貸款試算工具，輕鬆計算每月還款額與利息。',
+                h1: '台灣青年安居貸款試算',
+                subHeading: '掌握青年首購優惠，輕鬆規劃買房夢'
+            },
+            {
+                id: 'second-mortgage',
+                title: '二胎房貸試算 | 房貸試算',
+                description: '二胎房貸專屬試算器，幫助您精準計算二胎貸款的每月應繳金額與總利息。',
+                h1: '二胎房貸試算',
+                subHeading: '活化房屋價值，資金周轉更靈活'
+            }
+        ];
+
+        // Apply SEO and Content based on URL parameter
+        function applyPageConfig() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type') || 'default';
+
+            const config = pageConfig.find(c => c.id === typeParam) || pageConfig[0];
+
+            // Update Meta Tags
+            document.getElementById('page-title').textContent = config.title;
+            document.getElementById('page-description').setAttribute('content', config.description);
+            document.getElementById('og-title').setAttribute('content', config.title);
+            document.getElementById('og-description').setAttribute('content', config.description);
+
+            // Update Page Content
+            document.getElementById('main-heading').textContent = config.h1;
+            document.getElementById('sub-heading').textContent = config.subHeading;
+        }
+
+        // 2. Calculator Logic
+        function calculateMortgage() {
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value) || 0;
+            const annualInterestRate = parseFloat(document.getElementById('interest-rate').value) || 0;
+            const loanTermYears = parseInt(document.getElementById('loan-term').value) || 0;
+
+            const monthlyInterestRate = (annualInterestRate / 100) / 12;
+            const totalPayments = loanTermYears * 12;
+
+            let monthlyPayment = 0;
+            let totalInterest = 0;
+
+            if (annualInterestRate === 0) {
+                monthlyPayment = loanAmount / totalPayments;
+            } else {
+                monthlyPayment = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalPayments)) / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
+            }
+
+            if(!isFinite(monthlyPayment) || isNaN(monthlyPayment)) monthlyPayment = 0;
+
+            totalInterest = (monthlyPayment * totalPayments) - loanAmount;
+            if(totalInterest < 0) totalInterest = 0;
+
+            // Update UI Summary
+            const formatter = new Intl.NumberFormat('zh-TW', { style: 'currency', currency: 'TWD', maximumFractionDigits: 0 });
+            document.getElementById('monthly-payment').textContent = formatter.format(monthlyPayment);
+            document.getElementById('total-interest').textContent = formatter.format(totalInterest);
+
+            generateAmortizationSchedule(loanAmount, monthlyInterestRate, monthlyPayment, totalPayments, formatter);
+        }
+
+        function generateAmortizationSchedule(principal, monthlyInterestRate, monthlyPayment, totalPayments, formatter) {
+            const tbody = document.getElementById('amortization-schedule');
+            tbody.innerHTML = '';
+
+            if(principal <= 0 || totalPayments <= 0) return;
+
+            let balance = principal;
+            const rowsToShow = Math.min(12, totalPayments);
+
+            for (let i = 1; i <= rowsToShow; i++) {
+                let interestPayment = balance * monthlyInterestRate;
+                let principalPayment = monthlyPayment - interestPayment;
+
+                // Last payment adjustment
+                if (i === totalPayments) {
+                    principalPayment = balance;
+                    monthlyPayment = principalPayment + interestPayment;
+                }
+
+                balance -= principalPayment;
+                if(balance < 0) balance = 0;
+
+                const row = document.createElement('tr');
+                row.className = i % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+
+                row.innerHTML = `
+                    <td class="px-4 py-2 border-t">${i}</td>
+                    <td class="px-4 py-2 border-t text-primary font-medium">${formatter.format(monthlyPayment)}</td>
+                    <td class="px-4 py-2 border-t">${formatter.format(principalPayment)}</td>
+                    <td class="px-4 py-2 border-t">${formatter.format(interestPayment)}</td>
+                    <td class="px-4 py-2 border-t text-gray-600">${formatter.format(balance)}</td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            applyPageConfig();
+            calculateMortgage(); // Initial calculation
+
+            // Add event listeners for real-time calculation
+            const inputs = ['loan-amount', 'interest-rate', 'loan-term'];
+            inputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', calculateMortgage);
+            });
+        });
+    </script>
+</body>
+</html>
