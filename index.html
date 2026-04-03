@@ -29,10 +29,16 @@
     <header class="bg-primary text-white py-6 shadow-md">
         <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
             <div>
-                <h1 class="text-3xl font-bold">多國房貸利息試算中心</h1>
-                <p class="mt-2 text-sm text-blue-100">支援台灣、美國、英國專屬房貸邏輯的專業試算工具</p>
+                <h1 class="text-3xl font-bold" data-i18n="title">多國房貸利息試算中心</h1>
+                <p class="mt-2 text-sm text-blue-100" data-i18n="subtitle">支援台灣、美國、英國專屬房貸邏輯的專業試算工具</p>
             </div>
-            <a href="article-mortgage-guide.html" class="text-white hover:text-secondary underline font-medium">房貸指南</a>
+            <div class="flex items-center space-x-4">
+                <a href="blog.html" class="text-white hover:text-secondary underline font-medium" data-i18n="nav-guide">理財專欄</a>
+                <select id="language-selector" class="bg-white text-primary text-sm rounded px-2 py-1 border-none focus:ring focus:ring-secondary">
+                    <option value="zh-tw">中文</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
         </div>
     </header>
 
@@ -41,32 +47,32 @@
             <!-- Calculator Form -->
             <section class="md:col-span-4 bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
                 <div class="mb-6">
-                    <label for="country-selector" class="block text-base font-semibold text-primary mb-2">請選擇國家 / 試算模式</label>
+                    <label for="country-selector" class="block text-base font-semibold text-primary mb-2" data-i18n="select-mode">請選擇國家 / 試算模式</label>
                     <select id="country-selector" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 text-gray-800 font-medium">
-                        <option value="tw">【台灣 (寬限期模式)】</option>
-                        <option value="us">【美國 (固定利率+提前還款)】</option>
-                        <option value="uk">【英國 (蜜月期轉浮動利率)】</option>
+                        <option value="tw" data-i18n="opt-tw">【台灣 (寬限期模式)】</option>
+                        <option value="us" data-i18n="opt-us">【美國 (固定利率+提前還款)】</option>
+                        <option value="uk" data-i18n="opt-uk">【英國 (蜜月期轉浮動利率)】</option>
                     </select>
                 </div>
 
-                <h2 class="text-xl font-semibold mb-4 text-primary">輸入貸款資訊</h2>
+                <h2 class="text-xl font-semibold mb-4 text-primary" data-i18n="input-info">輸入貸款資訊</h2>
 
                 <!-- Taiwan Inputs -->
                 <form id="inputs-tw" class="mode-inputs space-y-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">貸款總額 (NT$)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="tw-loan">貸款總額 (NT$)</label>
                         <input type="number" id="tw-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10000000" min="0" step="10000">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">年利率 (%)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="tw-rate">年利率 (%)</label>
                         <input type="number" id="tw-interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2.06" min="0" step="0.01">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">貸款年限 (年)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="tw-term">貸款年限 (年)</label>
                         <input type="number" id="tw-loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">寬限期 (年)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="tw-grace">寬限期 (年)</label>
                         <input type="number" id="tw-grace-period" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="0" min="0" max="5">
                     </div>
                 </form>
@@ -74,19 +80,19 @@
                 <!-- US Inputs -->
                 <form id="inputs-us" class="mode-inputs space-y-4 hidden">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">貸款總額 (US$)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="us-loan">貸款總額 (US$)</label>
                         <input type="number" id="us-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="400000" min="0" step="1000">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">年利率 (%)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="us-rate">年利率 (%)</label>
                         <input type="number" id="us-interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="6.5" min="0" step="0.01">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">貸款年限 (年)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="us-term">貸款年限 (年)</label>
                         <input type="number" id="us-loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">每月額外還款金額 (US$)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="us-extra">每月額外還款金額 (US$)</label>
                         <input type="number" id="us-extra-payment" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="0" min="0" step="100">
                     </div>
                 </form>
@@ -94,23 +100,23 @@
                 <!-- UK Inputs -->
                 <form id="inputs-uk" class="mode-inputs space-y-4 hidden">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">貸款總額 (£)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="uk-loan">貸款總額 (£)</label>
                         <input type="number" id="uk-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="300000" min="0" step="1000">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">總貸款年限 (年)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="uk-term">總貸款年限 (年)</label>
                         <input type="number" id="uk-loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="25" min="1" max="50">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">蜜月期年限 (年)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="uk-intro-term">蜜月期年限 (年)</label>
                         <input type="number" id="uk-intro-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2" min="1" max="10">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">蜜月期利率 (Intro Rate %)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="uk-intro-rate">蜜月期利率 (Intro Rate %)</label>
                         <input type="number" id="uk-intro-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="4.5" min="0" step="0.01">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">標準浮動利率 (SVR %)</label>
+                        <label class="block text-sm font-medium text-gray-700" data-i18n="uk-svr-rate">標準浮動利率 (SVR %)</label>
                         <input type="number" id="uk-svr-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="7.5" min="0" step="0.01">
                     </div>
                 </form>
@@ -118,23 +124,23 @@
 
             <!-- Results Summary -->
             <section class="md:col-span-8 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-4 text-primary">試算結果</h2>
+                <h2 class="text-xl font-semibold mb-4 text-primary" data-i18n="results-title">試算結果</h2>
 
                 <!-- Dynamic Result Cards Area -->
                 <div id="results-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                     <!-- Cards will be populated by JS -->
                 </div>
 
-                <h3 class="text-lg font-semibold mb-3 text-gray-700">還款計畫表明細 (前 12 期)</h3>
+                <h3 class="text-lg font-semibold mb-3 text-gray-700" data-i18n="schedule-title">還款計畫表明細 (前 12 期)</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left text-sm whitespace-nowrap">
                         <thead class="uppercase tracking-wider border-b-2 border-gray-200 bg-gray-50">
                             <tr>
-                                <th class="px-4 py-3 text-gray-600 font-semibold">期數</th>
-                                <th class="px-4 py-3 text-gray-600 font-semibold">月付總額</th>
-                                <th class="px-4 py-3 text-gray-600 font-semibold">償還本金</th>
-                                <th class="px-4 py-3 text-gray-600 font-semibold">支付利息</th>
-                                <th class="px-4 py-3 text-gray-600 font-semibold">剩餘本金</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold" data-i18n="th-period">期數</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold" data-i18n="th-payment">月付總額</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold" data-i18n="th-principal">償還本金</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold" data-i18n="th-interest">支付利息</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold" data-i18n="th-balance">剩餘本金</th>
                             </tr>
                         </thead>
                         <tbody id="amortization-schedule" class="divide-y divide-gray-200">
@@ -150,17 +156,119 @@
         <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
             <div class="text-center sm:text-left mb-4 sm:mb-0">
                 <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
-                <p class="mt-2 text-gray-400">試算結果僅供參考，實際貸款條件以各銀行提供為準。</p>
+                <p class="mt-2 text-gray-400" data-i18n="footer-disclaimer">試算結果僅供參考，實際貸款條件以各銀行提供為準。</p>
             </div>
             <div class="space-x-4">
-                <a href="privacy.html" class="hover:text-gray-300 underline">隱私權政策</a>
-                <a href="article-mortgage-guide.html" class="hover:text-gray-300 underline">房貸試算指南</a>
+                <a href="privacy.html" class="hover:text-gray-300 underline" data-i18n="footer-privacy">隱私權政策</a>
+                <a href="blog.html" class="hover:text-gray-300 underline" data-i18n="footer-guide">理財專欄</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // i18n Translations
+        const i18n = {
+            'zh-tw': {
+                'title': '多國房貸利息試算中心',
+                'subtitle': '支援台灣、美國、英國專屬房貸邏輯的專業試算工具',
+                'nav-guide': '理財專欄',
+                'select-mode': '請選擇國家 / 試算模式',
+                'opt-tw': '【台灣 (寬限期模式)】',
+                'opt-us': '【美國 (固定利率+提前還款)】',
+                'opt-uk': '【英國 (蜜月期轉浮動利率)】',
+                'input-info': '輸入貸款資訊',
+                'tw-loan': '貸款總額 (NT$)',
+                'tw-rate': '年利率 (%)',
+                'tw-term': '貸款年限 (年)',
+                'tw-grace': '寬限期 (年)',
+                'us-loan': '貸款總額 (US$)',
+                'us-rate': '年利率 (%)',
+                'us-term': '貸款年限 (年)',
+                'us-extra': '每月額外還款金額 (US$)',
+                'uk-loan': '貸款總額 (£)',
+                'uk-term': '總貸款年限 (年)',
+                'uk-intro-term': '蜜月期年限 (年)',
+                'uk-intro-rate': '蜜月期利率 (Intro Rate %)',
+                'uk-svr-rate': '標準浮動利率 (SVR %)',
+                'results-title': '試算結果',
+                'schedule-title': '還款計畫表明細 (前 12 期)',
+                'th-period': '期數',
+                'th-payment': '月付總額',
+                'th-principal': '償還本金',
+                'th-interest': '支付利息',
+                'th-balance': '剩餘本金',
+                'footer-disclaimer': '試算結果僅供參考，實際貸款條件以各銀行提供為準。',
+                'footer-privacy': '隱私權政策',
+                'footer-guide': '理財專欄',
+                // Calculator specific
+                'calc-tw-grace-payment': '寬限期內每月還款',
+                'calc-tw-after-payment': '寬限期後每月還款',
+                'calc-tw-monthly': '每月還款金額',
+                'calc-total-interest': '總支付利息',
+                'calc-us-actual-monthly': '實際每月還款',
+                'calc-us-original-interest': '原本總利息',
+                'calc-us-saved-interest': '省下總利息',
+                'calc-us-early-payoff': '提早還清',
+                'calc-us-months': '個月',
+                'calc-uk-intro-payment': '蜜月期每月還款',
+                'calc-uk-svr-payment': 'SVR 階段每月還款'
+            },
+            'en': {
+                'title': 'Multi-Country Mortgage Calculator',
+                'subtitle': 'Professional tool supporting Taiwan, US, and UK mortgage logic',
+                'nav-guide': 'Financial Blog',
+                'select-mode': 'Select Country / Mode',
+                'opt-tw': '[Taiwan (Grace Period Mode)]',
+                'opt-us': '[US (Fixed Rate + Extra Payment)]',
+                'opt-uk': '[UK (Intro Rate to SVR)]',
+                'input-info': 'Enter Loan Details',
+                'tw-loan': 'Total Loan (NT$)',
+                'tw-rate': 'Annual Rate (%)',
+                'tw-term': 'Loan Term (Years)',
+                'tw-grace': 'Grace Period (Years)',
+                'us-loan': 'Total Loan (US$)',
+                'us-rate': 'Annual Rate (%)',
+                'us-term': 'Loan Term (Years)',
+                'us-extra': 'Monthly Extra Payment (US$)',
+                'uk-loan': 'Total Loan (£)',
+                'uk-term': 'Total Loan Term (Years)',
+                'uk-intro-term': 'Introductory Term (Years)',
+                'uk-intro-rate': 'Intro Rate (%)',
+                'uk-svr-rate': 'Standard Variable Rate (SVR %)',
+                'results-title': 'Calculation Results',
+                'schedule-title': 'Amortization Schedule (First 12 Periods)',
+                'th-period': 'Period',
+                'th-payment': 'Total Payment',
+                'th-principal': 'Principal',
+                'th-interest': 'Interest',
+                'th-balance': 'Balance',
+                'footer-disclaimer': 'Results are for reference only. Actual terms depend on the bank.',
+                'footer-privacy': 'Privacy Policy',
+                'footer-guide': 'Financial Blog',
+                // Calculator specific
+                'calc-tw-grace-payment': 'Payment During Grace Period',
+                'calc-tw-after-payment': 'Payment After Grace Period',
+                'calc-tw-monthly': 'Monthly Payment',
+                'calc-total-interest': 'Total Interest Paid',
+                'calc-us-actual-monthly': 'Actual Monthly Payment',
+                'calc-us-original-interest': 'Original Total Interest',
+                'calc-us-saved-interest': 'Total Interest Saved',
+                'calc-us-early-payoff': 'Early Payoff',
+                'calc-us-months': 'months',
+                'calc-uk-intro-payment': 'Intro Period Payment',
+                'calc-uk-svr-payment': 'SVR Period Payment'
+            }
+        };
+
         // Utilities
+        function getLang() {
+            return document.getElementById('language-selector').value;
+        }
+
+        function t(key) {
+            return i18n[getLang()][key] || key;
+        }
+
         function formatCurrency(amount, locale, currency) {
             return new Intl.NumberFormat(locale, { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(amount);
         }
@@ -262,12 +370,12 @@
 
                 let resultsHtml = '';
                 if (gracePayments > 0) {
-                    resultsHtml += createResultCard('寬限期內每月還款', formatCurrency(gracePayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
-                    resultsHtml += createResultCard('寬限期後每月還款', formatCurrency(standardPayment, locale, currency), 'bg-indigo-50 border-indigo-100 text-indigo-900');
+                    resultsHtml += createResultCard(t('calc-tw-grace-payment'), formatCurrency(gracePayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                    resultsHtml += createResultCard(t('calc-tw-after-payment'), formatCurrency(standardPayment, locale, currency), 'bg-indigo-50 border-indigo-100 text-indigo-900');
                 } else {
-                    resultsHtml += createResultCard('每月還款金額', formatCurrency(standardPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                    resultsHtml += createResultCard(t('calc-tw-monthly'), formatCurrency(standardPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
                 }
-                resultsHtml += createResultCard('總支付利息', formatCurrency(totalInterest, locale, currency), 'bg-green-50 border-green-100 text-green-900');
+                resultsHtml += createResultCard(t('calc-total-interest'), formatCurrency(totalInterest, locale, currency), 'bg-green-50 border-green-100 text-green-900');
 
                 document.getElementById('results-container').innerHTML = resultsHtml;
                 renderAmortization(schedule, locale, currency);
@@ -328,12 +436,12 @@
                 const locale = 'en-US';
                 const currency = 'USD';
 
-                let resultsHtml = createResultCard('實際每月還款', formatCurrency(standardPayment + extraPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
-                resultsHtml += createResultCard('原本總利息', formatCurrency(originalTotalInterest, locale, currency), 'bg-gray-50 border-gray-200 text-gray-800');
+                let resultsHtml = createResultCard(t('calc-us-actual-monthly'), formatCurrency(standardPayment + extraPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                resultsHtml += createResultCard(t('calc-us-original-interest'), formatCurrency(originalTotalInterest, locale, currency), 'bg-gray-50 border-gray-200 text-gray-800');
 
                 if (extraPayment > 0) {
-                    resultsHtml += createResultCard('省下總利息', formatCurrency(interestSaved > 0 ? interestSaved : 0, locale, currency), 'bg-green-50 border-green-100 text-green-900');
-                    resultsHtml += createResultCard('提早還清', `${monthsSaved} 個月`, 'bg-yellow-50 border-yellow-100 text-yellow-900');
+                    resultsHtml += createResultCard(t('calc-us-saved-interest'), formatCurrency(interestSaved > 0 ? interestSaved : 0, locale, currency), 'bg-green-50 border-green-100 text-green-900');
+                    resultsHtml += createResultCard(t('calc-us-early-payoff'), `${monthsSaved} ${t('calc-us-months')}`, 'bg-yellow-50 border-yellow-100 text-yellow-900');
                 }
 
                 document.getElementById('results-container').innerHTML = resultsHtml;
@@ -423,11 +531,11 @@
                 const locale = 'en-GB';
                 const currency = 'GBP';
 
-                let resultsHtml = createResultCard('蜜月期每月還款', formatCurrency(introPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                let resultsHtml = createResultCard(t('calc-uk-intro-payment'), formatCurrency(introPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
                 if (svrPayments > 0) {
-                    resultsHtml += createResultCard('SVR 階段每月還款', formatCurrency(svrPayment, locale, currency), 'bg-indigo-50 border-indigo-100 text-indigo-900');
+                    resultsHtml += createResultCard(t('calc-uk-svr-payment'), formatCurrency(svrPayment, locale, currency), 'bg-indigo-50 border-indigo-100 text-indigo-900');
                 }
-                resultsHtml += createResultCard('總支付利息', formatCurrency(totalInterest, locale, currency), 'bg-green-50 border-green-100 text-green-900');
+                resultsHtml += createResultCard(t('calc-total-interest'), formatCurrency(totalInterest, locale, currency), 'bg-green-50 border-green-100 text-green-900');
 
                 document.getElementById('results-container').innerHTML = resultsHtml;
                 renderAmortization(schedule, locale, currency);
@@ -435,6 +543,15 @@
         };
 
         // State Management & Event Listeners
+        function updateTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[getLang()][key]) {
+                    el.textContent = i18n[getLang()][key];
+                }
+            });
+        }
+
         function updateUI() {
             const mode = document.getElementById('country-selector').value;
 
@@ -457,6 +574,22 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Setup language selector
+            const langSelector = document.getElementById('language-selector');
+            if (langSelector) {
+                // Check local storage for preference
+                const savedLang = localStorage.getItem('calc-lang');
+                if (savedLang && (savedLang === 'zh-tw' || savedLang === 'en')) {
+                    langSelector.value = savedLang;
+                }
+
+                langSelector.addEventListener('change', (e) => {
+                    localStorage.setItem('calc-lang', e.target.value);
+                    updateTranslations();
+                    updateUI(); // Re-trigger calculation to update result cards
+                });
+            }
+
             // Setup selector change event
             const selector = document.getElementById('country-selector');
             if (selector) {
@@ -472,6 +605,7 @@
             });
 
             // Initial render
+            updateTranslations();
             updateUI();
         });
     </script>
