@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>複利滾存計算器 | SmartUtilBox</title>
+    <meta name="description" content="專業的複利滾存計算器，支援單筆投入與定期定額，幫助您輕鬆試算投資報酬與財富成長軌跡。">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', /* Dark Blue */
+                        secondary: '#10b981', /* Emerald Green */
+                        background: '#ffffff',
+                        surface: '#f3f4f6'
+                    }
+                }
+            }
+        }
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6136031692984392"
+     crossorigin="anonymous"></script>
+</head>
+<body class="bg-surface text-gray-800 font-sans antialiased min-h-screen">
+    <header class="bg-primary text-white py-6 shadow-md">
+        <div class="container mx-auto px-4 max-w-4xl flex flex-wrap justify-between items-center gap-4">
+            <div>
+                <h1 class="text-3xl font-bold">複利滾存計算器</h1>
+                <p class="mt-2 text-sm text-blue-100">輕鬆規劃您的財富成長軌跡</p>
+            </div>
+            <div class="flex items-center space-x-6 text-sm font-medium">
+                <a href="index.html" class="text-white hover:text-secondary underline transition-colors">← 返回房貸試算</a>
+                <a href="blog.html" class="text-white hover:text-secondary transition-colors">理財專欄</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-5xl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <!-- Calculator Form -->
+            <section class="md:col-span-4 bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
+                <h2 class="text-xl font-semibold mb-6 text-primary border-b pb-2">輸入投資資訊</h2>
+
+                <form id="compound-form" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">單筆投入本金 (Initial Principal)</label>
+                        <input type="text" inputmode="numeric" data-type="currency" id="initial-principal" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 transition-colors" value="100,000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">定期定額投入 (Regular Addition)</label>
+                        <input type="text" inputmode="numeric" data-type="currency" id="regular-addition" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 transition-colors" value="10,000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">年化報酬率 (%)</label>
+                        <input type="number" id="annual-rate" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 transition-colors" value="5" min="0" step="0.1">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">投資年限 (年)</label>
+                        <input type="number" id="years" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 transition-colors" value="10" min="1" max="100">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">複利頻率</label>
+                        <select id="compound-frequency" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 transition-colors font-medium">
+                            <option value="1">每年 (Annually)</option>
+                            <option value="12">每月 (Monthly)</option>
+                        </select>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Results Summary -->
+            <section class="md:col-span-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-6 text-primary border-b pb-2">試算結果</h2>
+
+                <!-- Dynamic Result Cards Area -->
+                <div id="results-container" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    <!-- Cards will be populated by JS -->
+                </div>
+
+                <h3 class="text-lg font-semibold mb-4 text-gray-700">年度成長明細表</h3>
+                <div class="overflow-x-auto rounded-lg border border-gray-200">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-3 text-gray-600 font-semibold tracking-wider">年度</th>
+                                <th class="px-6 py-3 text-gray-600 font-semibold tracking-wider">累積投入本金</th>
+                                <th class="px-6 py-3 text-gray-600 font-semibold tracking-wider">當年利息</th>
+                                <th class="px-6 py-3 text-gray-600 font-semibold tracking-wider">累積總報酬</th>
+                                <th class="px-6 py-3 text-gray-600 font-semibold tracking-wider">期末總金額</th>
+                            </tr>
+                        </thead>
+                        <tbody id="growth-schedule" class="divide-y divide-gray-100 bg-white">
+                            <!-- Rows will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
+            <div class="text-center sm:text-left mb-4 sm:mb-0">
+                <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
+                <p class="mt-2 text-gray-400">試算結果僅供參考，實際投資報酬可能因市場波動而有所不同。</p>
+            </div>
+            <div class="space-x-4">
+                <a href="privacy.html" class="hover:text-gray-300 underline transition-colors">隱私權政策</a>
+                <a href="blog.html" class="hover:text-gray-300 underline transition-colors">理財專欄</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Utilities
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('zh-TW', { style: 'currency', currency: 'TWD', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function formatNumberWithCommas(value) {
+            const num = value.replace(/\D/g, "");
+            return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function getNumericValue(elementId) {
+            const val = document.getElementById(elementId).value.replace(/\D/g, "");
+            return parseFloat(val) || 0;
+        }
+
+        function createResultCard(title, value, colorClass) {
+            return `
+                <div class="p-5 ${colorClass} rounded-xl border shadow-sm transition-all hover:shadow-md">
+                    <h3 class="text-sm font-medium opacity-80 mb-1">${title}</h3>
+                    <p class="text-2xl font-bold break-words">${value}</p>
+                </div>
+            `;
+        }
+
+        function calculateCompoundInterest() {
+            const initialPrincipal = getNumericValue('initial-principal');
+            const regularAddition = getNumericValue('regular-addition');
+            const annualRate = parseFloat(document.getElementById('annual-rate').value) || 0;
+            const years = parseInt(document.getElementById('years').value) || 0;
+            const frequency = parseInt(document.getElementById('compound-frequency').value) || 1; // 1 = Annually, 12 = Monthly
+
+            // Calculation logic
+            let totalAmount = initialPrincipal;
+            let totalPrincipal = initialPrincipal;
+            let schedule = [];
+
+            const ratePerPeriod = (annualRate / 100) / frequency;
+            const periodsPerYear = frequency;
+            const totalPeriods = years * frequency;
+
+            let currentYearPrincipal = initialPrincipal;
+            let currentYearInterest = 0;
+            let totalInterest = 0;
+
+            for (let period = 1; period <= totalPeriods; period++) {
+                // Add regular contribution at the start/end of period (assuming end of period for simplicity, or start? Let's assume end of period like typical calculators, or maybe start. Usually "monthly addition" implies adding every month, then it compounds. Let's add it at the start of the period for compounding, or end. Common convention is end of period. Let's do end of period.)
+                // Actually, often it's done at the beginning or end. Let's assume end-of-period contributions.
+                let interestForPeriod = totalAmount * ratePerPeriod;
+                totalAmount += interestForPeriod;
+                totalAmount += regularAddition;
+                totalPrincipal += regularAddition;
+
+                currentYearInterest += interestForPeriod;
+                totalInterest += interestForPeriod;
+
+                if (period % periodsPerYear === 0) {
+                    const year = period / periodsPerYear;
+                    schedule.push({
+                        year: year,
+                        principal: totalPrincipal,
+                        yearlyInterest: currentYearInterest,
+                        totalInterest: totalInterest,
+                        balance: totalAmount
+                    });
+                    // Reset yearly interest tracker
+                    currentYearInterest = 0;
+                }
+            }
+
+            // Render Cards
+            const resultsHtml =
+                createResultCard('期末總金額', formatCurrency(totalAmount), 'bg-blue-50 border-blue-100 text-blue-900') +
+                createResultCard('總投入本金', formatCurrency(totalPrincipal), 'bg-gray-50 border-gray-200 text-gray-800') +
+                createResultCard('總賺取報酬', formatCurrency(totalInterest), 'bg-green-50 border-green-100 text-green-900');
+
+            document.getElementById('results-container').innerHTML = resultsHtml;
+
+            // Render Schedule Table
+            const tbody = document.getElementById('growth-schedule');
+            tbody.innerHTML = '';
+
+            schedule.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.className = index % 2 === 0 ? 'bg-white hover:bg-gray-50' : 'bg-gray-50 hover:bg-gray-100';
+                row.innerHTML = `
+                    <td class="px-6 py-4 font-medium text-gray-900">第 ${item.year} 年</td>
+                    <td class="px-6 py-4 text-gray-600">${formatCurrency(item.principal)}</td>
+                    <td class="px-6 py-4 text-green-600">+${formatCurrency(item.yearlyInterest)}</td>
+                    <td class="px-6 py-4 text-green-600 font-medium">${formatCurrency(item.totalInterest)}</td>
+                    <td class="px-6 py-4 text-primary font-bold">${formatCurrency(item.balance)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup input event listeners for formatting and calculation
+            const inputs = document.querySelectorAll('#compound-form input, #compound-form select');
+
+            inputs.forEach(input => {
+                if (input.getAttribute('data-type') === 'currency') {
+                    input.addEventListener('input', (e) => {
+                        let cursorPosition = e.target.selectionStart;
+                        let originalLength = e.target.value.length;
+
+                        e.target.value = formatNumberWithCommas(e.target.value);
+
+                        let newLength = e.target.value.length;
+                        cursorPosition = cursorPosition + (newLength - originalLength);
+                        e.target.setSelectionRange(cursorPosition, cursorPosition);
+                    });
+                }
+
+                input.addEventListener('input', calculateCompoundInterest);
+            });
+
+            // Initial render
+            calculateCompoundInterest();
+        });
+    </script>
+</body>
+</html>
