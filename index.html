@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Mortgage Interest Calculator</title>
-    <meta name="description" id="page-description" content="Professional mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.">
-
-    <!-- Open Graph Tags -->
-    <meta property="og:title" id="og-title" content="Mortgage Interest Calculator">
-    <meta property="og:description" id="og-description" content="Professional mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
+    <title>多國房貸利息試算中心</title>
+    <meta name="description" content="專業的跨國房貸利息試算工具，支援台灣寬限期、美國提前還款、英國蜜月期等專屬房貸邏輯。">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,66 +27,112 @@
     <header class="bg-primary text-white py-6 shadow-md">
         <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
             <div>
-                <h1 id="main-heading" class="text-3xl font-bold">Mortgage Interest Calculator</h1>
-                <p id="sub-heading" class="mt-2 text-sm text-blue-100">Professional, fast, and accurate mortgage calculation tool</p>
+                <h1 class="text-3xl font-bold">多國房貸利息試算中心</h1>
+                <p class="mt-2 text-sm text-blue-100">支援台灣、美國、英國專屬房貸邏輯的專業試算工具</p>
             </div>
-            <a href="article-mortgage-guide.html" class="text-white hover:text-secondary underline font-medium">Blog</a>
+            <a href="article-mortgage-guide.html" class="text-white hover:text-secondary underline font-medium">房貸指南</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 max-w-4xl">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <main class="container mx-auto px-4 py-8 max-w-5xl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             <!-- Calculator Form -->
-            <section class="md:col-span-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
-                <h2 class="text-xl font-semibold mb-4 text-primary">Enter Loan Information</h2>
-                <form id="calculator-form" class="space-y-4">
+            <section class="md:col-span-4 bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
+                <div class="mb-6">
+                    <label for="country-selector" class="block text-base font-semibold text-primary mb-2">請選擇國家 / 試算模式</label>
+                    <select id="country-selector" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-gray-50 text-gray-800 font-medium">
+                        <option value="tw">【台灣 (寬限期模式)】</option>
+                        <option value="us">【美國 (固定利率+提前還款)】</option>
+                        <option value="uk">【英國 (蜜月期轉浮動利率)】</option>
+                    </select>
+                </div>
+
+                <h2 class="text-xl font-semibold mb-4 text-primary">輸入貸款資訊</h2>
+
+                <!-- Taiwan Inputs -->
+                <form id="inputs-tw" class="mode-inputs space-y-4">
                     <div>
-                        <label for="mortgage-type" class="block text-sm font-medium text-gray-700">Mortgage Type</label>
-                        <select id="mortgage-type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-white">
-                            <option value="default">Local Mortgage</option>
-                            <option value="uk">UK Mortgage</option>
-                            <option value="us">US Mortgage</option>
-                        </select>
+                        <label class="block text-sm font-medium text-gray-700">貸款總額 (NT$)</label>
+                        <input type="number" id="tw-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10000000" min="0" step="10000">
                     </div>
                     <div>
-                        <label for="loan-amount" id="loan-amount-label" class="block text-sm font-medium text-gray-700">Loan Amount</label>
-                        <input type="number" id="loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10000000" min="0" step="10000">
+                        <label class="block text-sm font-medium text-gray-700">年利率 (%)</label>
+                        <input type="number" id="tw-interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2.06" min="0" step="0.01">
                     </div>
                     <div>
-                        <label for="interest-rate" class="block text-sm font-medium text-gray-700">Annual Interest Rate (%)</label>
-                        <input type="number" id="interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2.06" min="0" step="0.01">
+                        <label class="block text-sm font-medium text-gray-700">貸款年限 (年)</label>
+                        <input type="number" id="tw-loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
                     </div>
                     <div>
-                        <label for="loan-term" class="block text-sm font-medium text-gray-700">Loan Term (Years)</label>
-                        <input type="number" id="loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
+                        <label class="block text-sm font-medium text-gray-700">寬限期 (年)</label>
+                        <input type="number" id="tw-grace-period" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="0" min="0" max="5">
+                    </div>
+                </form>
+
+                <!-- US Inputs -->
+                <form id="inputs-us" class="mode-inputs space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">貸款總額 (US$)</label>
+                        <input type="number" id="us-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="400000" min="0" step="1000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">年利率 (%)</label>
+                        <input type="number" id="us-interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="6.5" min="0" step="0.01">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">貸款年限 (年)</label>
+                        <input type="number" id="us-loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">每月額外還款金額 (US$)</label>
+                        <input type="number" id="us-extra-payment" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="0" min="0" step="100">
+                    </div>
+                </form>
+
+                <!-- UK Inputs -->
+                <form id="inputs-uk" class="mode-inputs space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">貸款總額 (£)</label>
+                        <input type="number" id="uk-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="300000" min="0" step="1000">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">總貸款年限 (年)</label>
+                        <input type="number" id="uk-loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="25" min="1" max="50">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">蜜月期年限 (年)</label>
+                        <input type="number" id="uk-intro-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2" min="1" max="10">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">蜜月期利率 (Intro Rate %)</label>
+                        <input type="number" id="uk-intro-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="4.5" min="0" step="0.01">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">標準浮動利率 (SVR %)</label>
+                        <input type="number" id="uk-svr-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="7.5" min="0" step="0.01">
                     </div>
                 </form>
             </section>
 
             <!-- Results Summary -->
-            <section class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-4 text-primary">Calculation Results</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
-                        <h3 class="text-sm font-medium text-blue-800">Monthly Payment (Principal + Interest)</h3>
-                        <p class="text-2xl font-bold text-primary mt-1" id="monthly-payment">NT$ 0</p>
-                    </div>
-                    <div class="p-4 bg-green-50 rounded-lg border border-green-100">
-                        <h3 class="text-sm font-medium text-green-800">Total Interest Paid</h3>
-                        <p class="text-2xl font-bold text-secondary mt-1" id="total-interest">NT$ 0</p>
-                    </div>
+            <section class="md:col-span-8 bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4 text-primary">試算結果</h2>
+
+                <!-- Dynamic Result Cards Area -->
+                <div id="results-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <!-- Cards will be populated by JS -->
                 </div>
 
-                <h3 class="text-lg font-semibold mb-3 text-gray-700">Amortization Schedule Summary (First 12 Payments)</h3>
+                <h3 class="text-lg font-semibold mb-3 text-gray-700">還款計畫表明細 (前 12 期)</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left text-sm whitespace-nowrap">
                         <thead class="uppercase tracking-wider border-b-2 border-gray-200 bg-gray-50">
                             <tr>
-                                <th class="px-4 py-3">Period</th>
-                                <th class="px-4 py-3">Payment</th>
-                                <th class="px-4 py-3">Principal</th>
-                                <th class="px-4 py-3">Interest</th>
-                                <th class="px-4 py-3">Remaining Balance</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold">期數</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold">月付總額</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold">償還本金</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold">支付利息</th>
+                                <th class="px-4 py-3 text-gray-600 font-semibold">剩餘本金</th>
                             </tr>
                         </thead>
                         <tbody id="amortization-schedule" class="divide-y divide-gray-200">
@@ -108,188 +148,329 @@
         <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
             <div class="text-center sm:text-left mb-4 sm:mb-0">
                 <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
-                <p class="mt-2 text-gray-400">The calculation results are for reference only. Actual loan conditions are subject to the respective banks.</p>
+                <p class="mt-2 text-gray-400">試算結果僅供參考，實際貸款條件以各銀行提供為準。</p>
             </div>
             <div class="space-x-4">
-                <a href="privacy.html" class="hover:text-gray-300 underline">Privacy Policy</a>
-                <a href="article-mortgage-guide.html" class="hover:text-gray-300 underline">Mortgage Guide</a>
+                <a href="privacy.html" class="hover:text-gray-300 underline">隱私權政策</a>
+                <a href="article-mortgage-guide.html" class="hover:text-gray-300 underline">房貸試算指南</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // 1. Programmatic SEO (pSEO) Configuration
-        const pageConfig = [
-            {
-                id: 'default',
-                title: 'Local Mortgage Interest Calculator',
-                description: 'Professional local mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.',
-                h1: 'Local Mortgage Interest Calculator',
-                subHeading: 'Professional, fast, and accurate mortgage calculation tool for local mortgages',
-                locale: 'en-US', // Defaulting to en-US formatting for English display
-                currency: 'TWD',
-                defaultAmount: 10000000,
-                amountLabel: 'Loan Amount (TWD)'
-            },
-            {
-                id: 'uk',
-                title: 'UK Mortgage Interest Calculator',
-                description: 'Professional UK mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.',
-                h1: 'UK Mortgage Interest Calculator',
-                subHeading: 'Calculate your UK mortgage monthly payments and total interest',
-                locale: 'en-GB',
-                currency: 'GBP',
-                defaultAmount: 300000,
-                amountLabel: 'Loan Amount (GBP)'
-            },
-            {
-                id: 'us',
-                title: 'US Mortgage Interest Calculator',
-                description: 'Professional US mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.',
-                h1: 'US Mortgage Interest Calculator',
-                subHeading: 'Calculate your US mortgage monthly payments and total interest',
-                locale: 'en-US',
-                currency: 'USD',
-                defaultAmount: 400000,
-                amountLabel: 'Loan Amount (USD)'
-            }
-        ];
-
-        // Apply SEO and Content based on URL parameter
-        function applyPageConfig() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const typeParam = urlParams.get('type') || 'default';
-
-            const config = pageConfig.find(c => c.id === typeParam) || pageConfig[0];
-
-            // Update Meta Tags
-            document.getElementById('page-title').textContent = config.title;
-            document.getElementById('page-description').setAttribute('content', config.description);
-            document.getElementById('og-title').setAttribute('content', config.title);
-            document.getElementById('og-description').setAttribute('content', config.description);
-
-            // Update Page Content
-            document.getElementById('main-heading').textContent = config.h1;
-            document.getElementById('sub-heading').textContent = config.subHeading;
-
-            // Update UI Elements
-            const mortgageTypeSelect = document.getElementById('mortgage-type');
-            if (mortgageTypeSelect) {
-                mortgageTypeSelect.value = config.id;
-            }
-            const loanAmountLabel = document.getElementById('loan-amount-label');
-            if (loanAmountLabel) {
-                loanAmountLabel.textContent = config.amountLabel;
-            }
+        // Utilities
+        function formatCurrency(amount, locale, currency) {
+            return new Intl.NumberFormat(locale, { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(amount);
         }
 
-        // 2. Calculator Logic
-        function calculateMortgage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const typeParam = urlParams.get('type') || 'default';
-            const config = pageConfig.find(c => c.id === typeParam) || pageConfig[0];
-
-            const loanAmount = parseFloat(document.getElementById('loan-amount').value) || 0;
-            const annualInterestRate = parseFloat(document.getElementById('interest-rate').value) || 0;
-            const loanTermYears = parseInt(document.getElementById('loan-term').value) || 0;
-
-            const monthlyInterestRate = (annualInterestRate / 100) / 12;
-            const totalPayments = loanTermYears * 12;
-
-            let monthlyPayment = 0;
-            let totalInterest = 0;
-
-            if (annualInterestRate === 0) {
-                monthlyPayment = loanAmount / totalPayments;
-            } else {
-                monthlyPayment = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalPayments)) / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
-            }
-
-            if(!isFinite(monthlyPayment) || isNaN(monthlyPayment)) monthlyPayment = 0;
-
-            totalInterest = (monthlyPayment * totalPayments) - loanAmount;
-            if(totalInterest < 0) totalInterest = 0;
-
-            // Update UI Summary
-            const actualFormatter = new Intl.NumberFormat(config.locale, { style: 'currency', currency: config.currency, maximumFractionDigits: 0 });
-
-            document.getElementById('monthly-payment').textContent = actualFormatter.format(monthlyPayment);
-            document.getElementById('total-interest').textContent = actualFormatter.format(totalInterest);
-
-            generateAmortizationSchedule(loanAmount, monthlyInterestRate, monthlyPayment, totalPayments, actualFormatter);
+        function createResultCard(title, value, colorClass) {
+            return `
+                <div class="p-4 ${colorClass} rounded-lg border">
+                    <h3 class="text-sm font-medium opacity-80">${title}</h3>
+                    <p class="text-xl lg:text-2xl font-bold mt-1">${value}</p>
+                </div>
+            `;
         }
 
-        function generateAmortizationSchedule(principal, monthlyInterestRate, monthlyPayment, totalPayments, formatter) {
+        function renderAmortization(schedule, locale, currency) {
             const tbody = document.getElementById('amortization-schedule');
             tbody.innerHTML = '';
 
-            if(principal <= 0 || totalPayments <= 0) return;
-
-            let balance = principal;
-            const rowsToShow = Math.min(12, totalPayments);
-
-            for (let i = 1; i <= rowsToShow; i++) {
-                let interestPayment = balance * monthlyInterestRate;
-                let principalPayment = monthlyPayment - interestPayment;
-
-                // Last payment adjustment
-                if (i === totalPayments) {
-                    principalPayment = balance;
-                    monthlyPayment = principalPayment + interestPayment;
-                }
-
-                balance -= principalPayment;
-                if(balance < 0) balance = 0;
-
+            const rowsToShow = Math.min(12, schedule.length);
+            for (let i = 0; i < rowsToShow; i++) {
+                const item = schedule[i];
                 const row = document.createElement('tr');
                 row.className = i % 2 === 0 ? 'bg-gray-50' : 'bg-white';
-
                 row.innerHTML = `
-                    <td class="px-4 py-2 border-t">${i}</td>
-                    <td class="px-4 py-2 border-t text-primary font-medium">${formatter.format(monthlyPayment)}</td>
-                    <td class="px-4 py-2 border-t">${formatter.format(principalPayment)}</td>
-                    <td class="px-4 py-2 border-t">${formatter.format(interestPayment)}</td>
-                    <td class="px-4 py-2 border-t text-gray-600">${formatter.format(balance)}</td>
+                    <td class="px-4 py-2 border-t">${item.period}</td>
+                    <td class="px-4 py-2 border-t text-primary font-medium">${formatCurrency(item.payment, locale, currency)}</td>
+                    <td class="px-4 py-2 border-t">${formatCurrency(item.principal, locale, currency)}</td>
+                    <td class="px-4 py-2 border-t">${formatCurrency(item.interest, locale, currency)}</td>
+                    <td class="px-4 py-2 border-t text-gray-600">${formatCurrency(item.balance, locale, currency)}</td>
                 `;
                 tbody.appendChild(row);
             }
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            applyPageConfig();
-            calculateMortgage(); // Initial calculation
+        // Calculation Modules
+        const Calculators = {
+            tw: function() {
+                const loanAmount = parseFloat(document.getElementById('tw-loan-amount').value) || 0;
+                const annualInterestRate = parseFloat(document.getElementById('tw-interest-rate').value) || 0;
+                const loanTermYears = parseInt(document.getElementById('tw-loan-term').value) || 0;
+                const gracePeriodYears = parseInt(document.getElementById('tw-grace-period').value) || 0;
 
-            // Add event listeners for real-time calculation
-            const inputs = ['loan-amount', 'interest-rate', 'loan-term'];
-            inputs.forEach(id => {
-                document.getElementById(id).addEventListener('input', calculateMortgage);
-            });
+                const monthlyInterestRate = (annualInterestRate / 100) / 12;
+                const totalPayments = loanTermYears * 12;
+                const gracePayments = gracePeriodYears * 12;
+                const amortizedPayments = totalPayments - gracePayments;
 
-            // Add event listener for mortgage type dropdown
-            const mortgageTypeSelect = document.getElementById('mortgage-type');
-            if (mortgageTypeSelect) {
-                mortgageTypeSelect.addEventListener('change', (e) => {
-                    const newType = e.target.value;
+                let schedule = [];
+                let balance = loanAmount;
+                let totalInterest = 0;
 
-                    // Update URL without reloading the page
-                    const newUrl = new URL(window.location);
-                    newUrl.searchParams.set('type', newType);
-                    window.history.pushState({}, '', newUrl);
+                let gracePayment = 0;
+                if (gracePayments > 0) {
+                    gracePayment = balance * monthlyInterestRate;
+                }
 
-                    // Update UI configs and values
-                    applyPageConfig();
+                let standardPayment = 0;
+                if (amortizedPayments > 0) {
+                    if (monthlyInterestRate === 0) {
+                        standardPayment = balance / amortizedPayments;
+                    } else {
+                        standardPayment = balance * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, amortizedPayments)) / (Math.pow(1 + monthlyInterestRate, amortizedPayments) - 1);
+                    }
+                }
 
-                    const config = pageConfig.find(c => c.id === newType) || pageConfig[0];
-                    const loanAmountInput = document.getElementById('loan-amount');
-                    if (loanAmountInput) {
-                        loanAmountInput.value = config.defaultAmount;
+                for (let i = 1; i <= totalPayments; i++) {
+                    let interestPayment = balance * monthlyInterestRate;
+                    let principalPayment = 0;
+                    let payment = 0;
+
+                    if (i <= gracePayments) {
+                        payment = interestPayment;
+                    } else {
+                        payment = standardPayment;
+                        principalPayment = payment - interestPayment;
                     }
 
-                    // Recalculate
-                    calculateMortgage();
-                });
+                    // Adjust last payment
+                    if (i === totalPayments) {
+                        principalPayment = balance;
+                        payment = principalPayment + interestPayment;
+                    }
+
+                    balance -= principalPayment;
+                    if (balance < 0) balance = 0;
+
+                    totalInterest += interestPayment;
+
+                    schedule.push({
+                        period: i,
+                        payment: payment,
+                        principal: principalPayment,
+                        interest: interestPayment,
+                        balance: balance
+                    });
+                }
+
+                const locale = 'zh-TW';
+                const currency = 'TWD';
+
+                let resultsHtml = '';
+                if (gracePayments > 0) {
+                    resultsHtml += createResultCard('寬限期內每月還款', formatCurrency(gracePayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                    resultsHtml += createResultCard('寬限期後每月還款', formatCurrency(standardPayment, locale, currency), 'bg-indigo-50 border-indigo-100 text-indigo-900');
+                } else {
+                    resultsHtml += createResultCard('每月還款金額', formatCurrency(standardPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                }
+                resultsHtml += createResultCard('總支付利息', formatCurrency(totalInterest, locale, currency), 'bg-green-50 border-green-100 text-green-900');
+
+                document.getElementById('results-container').innerHTML = resultsHtml;
+                renderAmortization(schedule, locale, currency);
+            },
+
+            us: function() {
+                const loanAmount = parseFloat(document.getElementById('us-loan-amount').value) || 0;
+                const annualInterestRate = parseFloat(document.getElementById('us-interest-rate').value) || 0;
+                const loanTermYears = parseInt(document.getElementById('us-loan-term').value) || 0;
+                const extraPayment = parseFloat(document.getElementById('us-extra-payment').value) || 0;
+
+                const monthlyInterestRate = (annualInterestRate / 100) / 12;
+                const totalPayments = loanTermYears * 12;
+
+                let standardPayment = 0;
+                if (monthlyInterestRate === 0) {
+                    standardPayment = loanAmount / totalPayments;
+                } else {
+                    standardPayment = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, totalPayments)) / (Math.pow(1 + monthlyInterestRate, totalPayments) - 1);
+                }
+
+                // Calculate original totals without extra payment
+                const originalTotalInterest = (standardPayment * totalPayments) - loanAmount;
+
+                // Calculate with extra payments
+                let schedule = [];
+                let balance = loanAmount;
+                let actualTotalInterest = 0;
+                let actualPaymentsCount = 0;
+
+                while (balance > 0.01 && actualPaymentsCount < totalPayments * 2) { // safety limit
+                    actualPaymentsCount++;
+                    let interestPayment = balance * monthlyInterestRate;
+                    let principalPayment = standardPayment - interestPayment + extraPayment;
+                    let payment = standardPayment + extraPayment;
+
+                    if (balance < principalPayment) {
+                        principalPayment = balance;
+                        payment = principalPayment + interestPayment;
+                    }
+
+                    balance -= principalPayment;
+                    if (balance < 0) balance = 0;
+                    actualTotalInterest += interestPayment;
+
+                    schedule.push({
+                        period: actualPaymentsCount,
+                        payment: payment,
+                        principal: principalPayment,
+                        interest: interestPayment,
+                        balance: balance
+                    });
+                }
+
+                const interestSaved = originalTotalInterest - actualTotalInterest;
+                const monthsSaved = totalPayments - actualPaymentsCount;
+
+                const locale = 'en-US';
+                const currency = 'USD';
+
+                let resultsHtml = createResultCard('實際每月還款', formatCurrency(standardPayment + extraPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                resultsHtml += createResultCard('原本總利息', formatCurrency(originalTotalInterest, locale, currency), 'bg-gray-50 border-gray-200 text-gray-800');
+
+                if (extraPayment > 0) {
+                    resultsHtml += createResultCard('省下總利息', formatCurrency(interestSaved > 0 ? interestSaved : 0, locale, currency), 'bg-green-50 border-green-100 text-green-900');
+                    resultsHtml += createResultCard('提早還清', \`\${monthsSaved} 個月\`, 'bg-yellow-50 border-yellow-100 text-yellow-900');
+                }
+
+                document.getElementById('results-container').innerHTML = resultsHtml;
+                renderAmortization(schedule, locale, currency);
+            },
+
+            uk: function() {
+                const loanAmount = parseFloat(document.getElementById('uk-loan-amount').value) || 0;
+                const loanTermYears = parseInt(document.getElementById('uk-loan-term').value) || 0;
+                const introTermYears = parseInt(document.getElementById('uk-intro-term').value) || 0;
+                const introRate = parseFloat(document.getElementById('uk-intro-rate').value) || 0;
+                const svrRate = parseFloat(document.getElementById('uk-svr-rate').value) || 0;
+
+                const totalPayments = loanTermYears * 12;
+                const introPayments = Math.min(introTermYears * 12, totalPayments);
+                const svrPayments = totalPayments - introPayments;
+
+                const introMonthlyRate = (introRate / 100) / 12;
+                const svrMonthlyRate = (svrRate / 100) / 12;
+
+                let schedule = [];
+                let balance = loanAmount;
+                let totalInterest = 0;
+
+                // Phase 1: Intro Rate Calculation
+                let introPayment = 0;
+                if (introMonthlyRate === 0) {
+                    introPayment = loanAmount / totalPayments;
+                } else {
+                    introPayment = loanAmount * (introMonthlyRate * Math.pow(1 + introMonthlyRate, totalPayments)) / (Math.pow(1 + introMonthlyRate, totalPayments) - 1);
+                }
+
+                for (let i = 1; i <= introPayments; i++) {
+                    let interestPayment = balance * introMonthlyRate;
+                    let principalPayment = introPayment - interestPayment;
+
+                    if (i === totalPayments) { // If intro term covers entire loan
+                         principalPayment = balance;
+                         introPayment = principalPayment + interestPayment;
+                    }
+
+                    balance -= principalPayment;
+                    if (balance < 0) balance = 0;
+                    totalInterest += interestPayment;
+
+                    schedule.push({
+                        period: i,
+                        payment: introPayment,
+                        principal: principalPayment,
+                        interest: interestPayment,
+                        balance: balance
+                    });
+                }
+
+                // Phase 2: SVR Rate Calculation
+                let svrPayment = 0;
+                if (svrPayments > 0 && balance > 0) {
+                    if (svrMonthlyRate === 0) {
+                        svrPayment = balance / svrPayments;
+                    } else {
+                        svrPayment = balance * (svrMonthlyRate * Math.pow(1 + svrMonthlyRate, svrPayments)) / (Math.pow(1 + svrMonthlyRate, svrPayments) - 1);
+                    }
+
+                    for (let i = 1; i <= svrPayments; i++) {
+                        let interestPayment = balance * svrMonthlyRate;
+                        let principalPayment = svrPayment - interestPayment;
+
+                        if (i === svrPayments) {
+                            principalPayment = balance;
+                            svrPayment = principalPayment + interestPayment;
+                        }
+
+                        balance -= principalPayment;
+                        if (balance < 0) balance = 0;
+                        totalInterest += interestPayment;
+
+                        schedule.push({
+                            period: introPayments + i,
+                            payment: svrPayment,
+                            principal: principalPayment,
+                            interest: interestPayment,
+                            balance: balance
+                        });
+                    }
+                }
+
+                const locale = 'en-GB';
+                const currency = 'GBP';
+
+                let resultsHtml = createResultCard('蜜月期每月還款', formatCurrency(introPayment, locale, currency), 'bg-blue-50 border-blue-100 text-blue-900');
+                if (svrPayments > 0) {
+                    resultsHtml += createResultCard('SVR 階段每月還款', formatCurrency(svrPayment, locale, currency), 'bg-indigo-50 border-indigo-100 text-indigo-900');
+                }
+                resultsHtml += createResultCard('總支付利息', formatCurrency(totalInterest, locale, currency), 'bg-green-50 border-green-100 text-green-900');
+
+                document.getElementById('results-container').innerHTML = resultsHtml;
+                renderAmortization(schedule, locale, currency);
             }
+        };
+
+        // State Management & Event Listeners
+        function updateUI() {
+            const mode = document.getElementById('country-selector').value;
+
+            // Toggle form visibility using a more robust method for Tailwind
+            document.querySelectorAll('.mode-inputs').forEach(el => {
+                el.style.display = 'none';
+                el.classList.add('hidden');
+            });
+
+            const activeForm = document.getElementById(`inputs-${mode}`);
+            if (activeForm) {
+                activeForm.style.display = ''; // Reset inline style so Tailwind can manage it
+                activeForm.classList.remove('hidden');
+            }
+
+            // Trigger calculation for selected mode
+            if (Calculators[mode]) {
+                Calculators[mode]();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup selector change event
+            const selector = document.getElementById('country-selector');
+            if (selector) {
+                selector.addEventListener('change', updateUI);
+            }
+
+            // Setup input event listeners for all forms
+            document.querySelectorAll('.mode-inputs input').forEach(input => {
+                input.addEventListener('input', () => {
+                    const currentMode = document.getElementById('country-selector').value;
+                    Calculators[currentMode]();
+                });
+            });
+
+            // Initial render
+            updateUI();
         });
     </script>
 </body>
