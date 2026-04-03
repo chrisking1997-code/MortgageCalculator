@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">房貸利息試算器</title>
-    <meta name="description" id="page-description" content="專業的房貸利息試算工具，幫助您快速了解每月還款金額與總利息支出。">
+    <title id="page-title">Mortgage Interest Calculator</title>
+    <meta name="description" id="page-description" content="Professional mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.">
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" id="og-title" content="房貸利息試算器">
-    <meta property="og:description" id="og-description" content="專業的房貸利息試算工具，幫助您快速了解每月還款金額與總利息支出。">
+    <meta property="og:title" id="og-title" content="Mortgage Interest Calculator">
+    <meta property="og:description" id="og-description" content="Professional mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
 
@@ -31,9 +31,12 @@
 </head>
 <body class="bg-surface text-gray-800 font-sans antialiased min-h-screen">
     <header class="bg-primary text-white py-6 shadow-md">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <h1 id="main-heading" class="text-3xl font-bold">房貸利息試算器</h1>
-            <p id="sub-heading" class="mt-2 text-sm text-blue-100">專業、快速、精準的房貸試算工具</p>
+        <div class="container mx-auto px-4 max-w-4xl flex justify-between items-center">
+            <div>
+                <h1 id="main-heading" class="text-3xl font-bold">Mortgage Interest Calculator</h1>
+                <p id="sub-heading" class="mt-2 text-sm text-blue-100">Professional, fast, and accurate mortgage calculation tool</p>
+            </div>
+            <a href="article-mortgage-guide.html" class="text-white hover:text-secondary underline font-medium">Blog</a>
         </div>
     </header>
 
@@ -41,18 +44,26 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Calculator Form -->
             <section class="md:col-span-1 bg-white p-6 rounded-lg shadow-md border-t-4 border-secondary">
-                <h2 class="text-xl font-semibold mb-4 text-primary">輸入貸款資訊</h2>
+                <h2 class="text-xl font-semibold mb-4 text-primary">Enter Loan Information</h2>
                 <form id="calculator-form" class="space-y-4">
                     <div>
-                        <label for="loan-amount" class="block text-sm font-medium text-gray-700">貸款總額 (新台幣)</label>
+                        <label for="mortgage-type" class="block text-sm font-medium text-gray-700">Mortgage Type</label>
+                        <select id="mortgage-type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border bg-white">
+                            <option value="default">Local Mortgage</option>
+                            <option value="uk">UK Mortgage</option>
+                            <option value="us">US Mortgage</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="loan-amount" id="loan-amount-label" class="block text-sm font-medium text-gray-700">Loan Amount</label>
                         <input type="number" id="loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10000000" min="0" step="10000">
                     </div>
                     <div>
-                        <label for="interest-rate" class="block text-sm font-medium text-gray-700">年利率 (%)</label>
+                        <label for="interest-rate" class="block text-sm font-medium text-gray-700">Annual Interest Rate (%)</label>
                         <input type="number" id="interest-rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="2.06" min="0" step="0.01">
                     </div>
                     <div>
-                        <label for="loan-term" class="block text-sm font-medium text-gray-700">貸款年限 (年)</label>
+                        <label for="loan-term" class="block text-sm font-medium text-gray-700">Loan Term (Years)</label>
                         <input type="number" id="loan-term" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="30" min="1" max="50">
                     </div>
                 </form>
@@ -60,28 +71,28 @@
 
             <!-- Results Summary -->
             <section class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-xl font-semibold mb-4 text-primary">試算結果</h2>
+                <h2 class="text-xl font-semibold mb-4 text-primary">Calculation Results</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                     <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
-                        <h3 class="text-sm font-medium text-blue-800">每月還款額 (本息攤還)</h3>
+                        <h3 class="text-sm font-medium text-blue-800">Monthly Payment (Principal + Interest)</h3>
                         <p class="text-2xl font-bold text-primary mt-1" id="monthly-payment">NT$ 0</p>
                     </div>
                     <div class="p-4 bg-green-50 rounded-lg border border-green-100">
-                        <h3 class="text-sm font-medium text-green-800">總利息支出</h3>
+                        <h3 class="text-sm font-medium text-green-800">Total Interest Paid</h3>
                         <p class="text-2xl font-bold text-secondary mt-1" id="total-interest">NT$ 0</p>
                     </div>
                 </div>
 
-                <h3 class="text-lg font-semibold mb-3 text-gray-700">還款計畫表摘要 (前12期)</h3>
+                <h3 class="text-lg font-semibold mb-3 text-gray-700">Amortization Schedule Summary (First 12 Payments)</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-left text-sm whitespace-nowrap">
                         <thead class="uppercase tracking-wider border-b-2 border-gray-200 bg-gray-50">
                             <tr>
-                                <th class="px-4 py-3">期數</th>
-                                <th class="px-4 py-3">本期應繳</th>
-                                <th class="px-4 py-3">本金</th>
-                                <th class="px-4 py-3">利息</th>
-                                <th class="px-4 py-3">剩餘本金</th>
+                                <th class="px-4 py-3">Period</th>
+                                <th class="px-4 py-3">Payment</th>
+                                <th class="px-4 py-3">Principal</th>
+                                <th class="px-4 py-3">Interest</th>
+                                <th class="px-4 py-3">Remaining Balance</th>
                             </tr>
                         </thead>
                         <tbody id="amortization-schedule" class="divide-y divide-gray-200">
@@ -94,9 +105,15 @@
     </main>
 
     <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="container mx-auto px-4 text-center text-sm">
-            <p>&copy; 2023 房貸利息試算工具. All rights reserved.</p>
-            <p class="mt-2 text-gray-400">本試算結果僅供參考，實際貸款條件以各銀行提供為準。</p>
+        <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
+            <div class="text-center sm:text-left mb-4 sm:mb-0">
+                <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
+                <p class="mt-2 text-gray-400">The calculation results are for reference only. Actual loan conditions are subject to the respective banks.</p>
+            </div>
+            <div class="space-x-4">
+                <a href="privacy.html" class="hover:text-gray-300 underline">Privacy Policy</a>
+                <a href="article-mortgage-guide.html" class="hover:text-gray-300 underline">Mortgage Guide</a>
+            </div>
         </div>
     </footer>
 
@@ -105,24 +122,36 @@
         const pageConfig = [
             {
                 id: 'default',
-                title: '房貸利息試算器',
-                description: '專業的房貸利息試算工具，幫助您快速了解每月還款金額與總利息支出。',
-                h1: '房貸利息試算器',
-                subHeading: '專業、快速、精準的房貸試算工具'
+                title: 'Local Mortgage Interest Calculator',
+                description: 'Professional local mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.',
+                h1: 'Local Mortgage Interest Calculator',
+                subHeading: 'Professional, fast, and accurate mortgage calculation tool for local mortgages',
+                locale: 'en-US', // Defaulting to en-US formatting for English display
+                currency: 'TWD',
+                defaultAmount: 10000000,
+                amountLabel: 'Loan Amount (TWD)'
             },
             {
-                id: 'youth',
-                title: '台灣青年安居貸款試算 | 房貸試算',
-                description: '專為台灣青年設計的安居貸款試算工具，輕鬆計算每月還款額與利息。',
-                h1: '台灣青年安居貸款試算',
-                subHeading: '掌握青年首購優惠，輕鬆規劃買房夢'
+                id: 'uk',
+                title: 'UK Mortgage Interest Calculator',
+                description: 'Professional UK mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.',
+                h1: 'UK Mortgage Interest Calculator',
+                subHeading: 'Calculate your UK mortgage monthly payments and total interest',
+                locale: 'en-GB',
+                currency: 'GBP',
+                defaultAmount: 300000,
+                amountLabel: 'Loan Amount (GBP)'
             },
             {
-                id: 'second-mortgage',
-                title: '二胎房貸試算 | 房貸試算',
-                description: '二胎房貸專屬試算器，幫助您精準計算二胎貸款的每月應繳金額與總利息。',
-                h1: '二胎房貸試算',
-                subHeading: '活化房屋價值，資金周轉更靈活'
+                id: 'us',
+                title: 'US Mortgage Interest Calculator',
+                description: 'Professional US mortgage interest calculation tool to help you quickly understand monthly payments and total interest paid.',
+                h1: 'US Mortgage Interest Calculator',
+                subHeading: 'Calculate your US mortgage monthly payments and total interest',
+                locale: 'en-US',
+                currency: 'USD',
+                defaultAmount: 400000,
+                amountLabel: 'Loan Amount (USD)'
             }
         ];
 
@@ -142,10 +171,24 @@
             // Update Page Content
             document.getElementById('main-heading').textContent = config.h1;
             document.getElementById('sub-heading').textContent = config.subHeading;
+
+            // Update UI Elements
+            const mortgageTypeSelect = document.getElementById('mortgage-type');
+            if (mortgageTypeSelect) {
+                mortgageTypeSelect.value = config.id;
+            }
+            const loanAmountLabel = document.getElementById('loan-amount-label');
+            if (loanAmountLabel) {
+                loanAmountLabel.textContent = config.amountLabel;
+            }
         }
 
         // 2. Calculator Logic
         function calculateMortgage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeParam = urlParams.get('type') || 'default';
+            const config = pageConfig.find(c => c.id === typeParam) || pageConfig[0];
+
             const loanAmount = parseFloat(document.getElementById('loan-amount').value) || 0;
             const annualInterestRate = parseFloat(document.getElementById('interest-rate').value) || 0;
             const loanTermYears = parseInt(document.getElementById('loan-term').value) || 0;
@@ -168,11 +211,12 @@
             if(totalInterest < 0) totalInterest = 0;
 
             // Update UI Summary
-            const formatter = new Intl.NumberFormat('zh-TW', { style: 'currency', currency: 'TWD', maximumFractionDigits: 0 });
-            document.getElementById('monthly-payment').textContent = formatter.format(monthlyPayment);
-            document.getElementById('total-interest').textContent = formatter.format(totalInterest);
+            const actualFormatter = new Intl.NumberFormat(config.locale, { style: 'currency', currency: config.currency, maximumFractionDigits: 0 });
 
-            generateAmortizationSchedule(loanAmount, monthlyInterestRate, monthlyPayment, totalPayments, formatter);
+            document.getElementById('monthly-payment').textContent = actualFormatter.format(monthlyPayment);
+            document.getElementById('total-interest').textContent = actualFormatter.format(totalInterest);
+
+            generateAmortizationSchedule(loanAmount, monthlyInterestRate, monthlyPayment, totalPayments, actualFormatter);
         }
 
         function generateAmortizationSchedule(principal, monthlyInterestRate, monthlyPayment, totalPayments, formatter) {
@@ -221,6 +265,31 @@
             inputs.forEach(id => {
                 document.getElementById(id).addEventListener('input', calculateMortgage);
             });
+
+            // Add event listener for mortgage type dropdown
+            const mortgageTypeSelect = document.getElementById('mortgage-type');
+            if (mortgageTypeSelect) {
+                mortgageTypeSelect.addEventListener('change', (e) => {
+                    const newType = e.target.value;
+
+                    // Update URL without reloading the page
+                    const newUrl = new URL(window.location);
+                    newUrl.searchParams.set('type', newType);
+                    window.history.pushState({}, '', newUrl);
+
+                    // Update UI configs and values
+                    applyPageConfig();
+
+                    const config = pageConfig.find(c => c.id === newType) || pageConfig[0];
+                    const loanAmountInput = document.getElementById('loan-amount');
+                    if (loanAmountInput) {
+                        loanAmountInput.value = config.defaultAmount;
+                    }
+
+                    // Recalculate
+                    calculateMortgage();
+                });
+            }
         });
     </script>
 </body>
