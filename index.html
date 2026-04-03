@@ -61,7 +61,7 @@
                 <form id="inputs-tw" class="mode-inputs space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="tw-loan">貸款總額 (NT$)</label>
-                        <input type="number" id="tw-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10000000" min="0" step="10000">
+                        <input type="text" inputmode="numeric" data-type="currency" id="tw-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="10,000,000">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="tw-rate">年利率 (%)</label>
@@ -81,7 +81,7 @@
                 <form id="inputs-us" class="mode-inputs space-y-4 hidden">
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="us-loan">貸款總額 (US$)</label>
-                        <input type="number" id="us-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="400000" min="0" step="1000">
+                        <input type="text" inputmode="numeric" data-type="currency" id="us-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="400,000">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="us-rate">年利率 (%)</label>
@@ -93,7 +93,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="us-extra">每月額外還款金額 (US$)</label>
-                        <input type="number" id="us-extra-payment" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="0" min="0" step="100">
+                        <input type="text" inputmode="numeric" data-type="currency" id="us-extra-payment" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="0">
                     </div>
                 </form>
 
@@ -101,7 +101,7 @@
                 <form id="inputs-uk" class="mode-inputs space-y-4 hidden">
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="uk-loan">貸款總額 (£)</label>
-                        <input type="number" id="uk-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="300000" min="0" step="1000">
+                        <input type="text" inputmode="numeric" data-type="currency" id="uk-loan-amount" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-secondary focus:ring focus:ring-secondary focus:ring-opacity-50 p-2 border" value="300,000">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700" data-i18n="uk-term">總貸款年限 (年)</label>
@@ -273,6 +273,18 @@
             return new Intl.NumberFormat(locale, { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(amount);
         }
 
+        function formatNumberWithCommas(value) {
+            // Remove non-digit characters
+            const num = value.replace(/\D/g, "");
+            // Format with commas
+            return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function getNumericValue(elementId) {
+            const val = document.getElementById(elementId).value.replace(/\D/g, "");
+            return parseFloat(val) || 0;
+        }
+
         function createResultCard(title, value, colorClass) {
             return `
                 <div class="p-4 ${colorClass} rounded-lg border">
@@ -305,7 +317,7 @@
         // Calculation Modules
         const Calculators = {
             tw: function() {
-                const loanAmount = parseFloat(document.getElementById('tw-loan-amount').value) || 0;
+                const loanAmount = getNumericValue('tw-loan-amount');
                 const annualInterestRate = parseFloat(document.getElementById('tw-interest-rate').value) || 0;
                 const loanTermYears = parseInt(document.getElementById('tw-loan-term').value) || 0;
                 const gracePeriodYears = parseInt(document.getElementById('tw-grace-period').value) || 0;
@@ -382,10 +394,10 @@
             },
 
             us: function() {
-                const loanAmount = parseFloat(document.getElementById('us-loan-amount').value) || 0;
+                const loanAmount = getNumericValue('us-loan-amount');
                 const annualInterestRate = parseFloat(document.getElementById('us-interest-rate').value) || 0;
                 const loanTermYears = parseInt(document.getElementById('us-loan-term').value) || 0;
-                const extraPayment = parseFloat(document.getElementById('us-extra-payment').value) || 0;
+                const extraPayment = getNumericValue('us-extra-payment');
 
                 const monthlyInterestRate = (annualInterestRate / 100) / 12;
                 const totalPayments = loanTermYears * 12;
@@ -449,7 +461,7 @@
             },
 
             uk: function() {
-                const loanAmount = parseFloat(document.getElementById('uk-loan-amount').value) || 0;
+                const loanAmount = getNumericValue('uk-loan-amount');
                 const loanTermYears = parseInt(document.getElementById('uk-loan-term').value) || 0;
                 const introTermYears = parseInt(document.getElementById('uk-intro-term').value) || 0;
                 const introRate = parseFloat(document.getElementById('uk-intro-rate').value) || 0;
@@ -598,6 +610,22 @@
 
             // Setup input event listeners for all forms
             document.querySelectorAll('.mode-inputs input').forEach(input => {
+                if (input.getAttribute('data-type') === 'currency') {
+                    input.addEventListener('input', (e) => {
+                        // Preserve cursor position
+                        let cursorPosition = e.target.selectionStart;
+                        let originalLength = e.target.value.length;
+
+                        // Format value
+                        e.target.value = formatNumberWithCommas(e.target.value);
+
+                        // Adjust cursor position based on added/removed commas
+                        let newLength = e.target.value.length;
+                        cursorPosition = cursorPosition + (newLength - originalLength);
+                        e.target.setSelectionRange(cursorPosition, cursorPosition);
+                    });
+                }
+
                 input.addEventListener('input', () => {
                     const currentMode = document.getElementById('country-selector').value;
                     Calculators[currentMode]();
