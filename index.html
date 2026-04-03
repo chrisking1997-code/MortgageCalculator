@@ -22,6 +22,8 @@
             }
         }
     </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6136031692984392"
+     crossorigin="anonymous"></script>
 </head>
 <body class="bg-surface text-gray-800 font-sans antialiased min-h-screen">
     <header class="bg-primary text-white py-6 shadow-md">
@@ -331,7 +333,7 @@
 
                 if (extraPayment > 0) {
                     resultsHtml += createResultCard('省下總利息', formatCurrency(interestSaved > 0 ? interestSaved : 0, locale, currency), 'bg-green-50 border-green-100 text-green-900');
-                    resultsHtml += createResultCard('提早還清', \`\${monthsSaved} 個月\`, 'bg-yellow-50 border-yellow-100 text-yellow-900');
+                    resultsHtml += createResultCard('提早還清', `${monthsSaved} 個月`, 'bg-yellow-50 border-yellow-100 text-yellow-900');
                 }
 
                 document.getElementById('results-container').innerHTML = resultsHtml;
