@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">投資組合 X-Ray | 資產配置與加權報酬率計算</title>
+    <meta id="page-desc" name="description" content="輕鬆檢視您的投資組合健康度。計算現金、股票、債券等各項資產的佔比與整體加權預期報酬率，並提供資產配置優化建議。">
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a', /* Dark Blue */
+                        secondary: '#10b981', /* Emerald Green */
+                        background: '#ffffff',
+                        surface: '#f3f4f6',
+                        accent: '#f59e0b' /* Amber for highlights */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-gray-800 font-sans antialiased flex h-screen overflow-hidden">
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-20 hidden lg:hidden"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-gray-200 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-full">
+        <div class="p-6 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-primary">SmartUtilBox</h2>
+            <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="p-4 overflow-y-auto flex-grow">
+            <div class="mb-6">
+                <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3" data-i18n="nav-cat-finance">投資與金融</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="/" class="block px-4 py-2 rounded-md hover:bg-gray-50 text-gray-600 transition-colors" data-i18n="nav-mortgage">多國房貸試算中心</a>
+                    </li>
+                    <li>
+                        <a href="/compound" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors" data-i18n="nav-compound">複利滾存計算器</a>
+                    </li>
+                    <li>
+                        <a href="/exchange" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors" data-i18n="nav-exchange">匯率換算</a>
+                    </li>
+                    <li>
+                        <a href="/fire" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors" data-i18n="nav-fire">FIRE 提早退休試算</a>
+                    </li>
+                    <li>
+                        <a href="/portfolio-roi" class="block px-4 py-2 rounded-md bg-green-50 text-secondary font-medium" data-i18n="nav-portfolio">投資組合 X-Ray</a>
+                    </li>
+                    <li>
+                        <a href="/coaching" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors" data-i18n="nav-coaching">一對一教練服務</a>
+                    </li>
+                    <li>
+                        <a href="/contact" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors" data-i18n="nav-contact">聯繫顧問</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col h-full overflow-hidden relative">
+
+        <!-- Top Header -->
+        <header class="bg-primary text-white py-4 px-6 shadow-sm flex justify-between items-center z-10 flex-shrink-0">
+            <div class="flex items-center">
+                <button id="open-sidebar" class="mr-4 lg:hidden text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="hidden lg:block">
+                    <h1 class="text-xl font-bold" id="header-title" data-i18n="title-portfolio">投資組合 X-Ray 試算器</h1>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="/blog" class="text-white hover:text-secondary font-medium text-sm lg:text-base" data-i18n="nav-guide">理財專欄</a>
+                <div class="flex items-center space-x-2">
+                    <span class="text-white text-sm font-medium">Language:</span>
+                    <select id="language-selector" class="bg-white text-primary text-sm rounded px-2 py-1 border-none focus:ring focus:ring-secondary">
+                        <option value="zh-tw">中文</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Scrollable Main Content -->
+        <main class="flex-1 overflow-y-auto bg-surface">
+            <section class="py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-5xl mx-auto">
+
+                    <div class="mb-8 text-center">
+                        <h2 class="text-3xl font-bold text-primary mb-4" data-i18n="port-h1">投資組合 X-Ray 分析</h2>
+                        <p class="text-gray-600 max-w-2xl mx-auto" data-i18n="port-desc">快速計算各類資產的佔比與加權報酬率，揪出現金拖累 (Cash Drag) 等隱形財務破口。</p>
+                    </div>
+
+                    <!-- Calculator Layout -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+                        <!-- Inputs Column -->
+                        <div class="lg:col-span-8 space-y-6">
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                                <div class="flex justify-between items-center border-b pb-4 mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800" data-i18n="port-input-title">資產清單</h3>
+                                    <button id="addAssetBtn" class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-1 px-3 rounded flex items-center transition-colors">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                        <span data-i18n="port-btn-add">新增資產</span>
+                                    </button>
+                                </div>
+
+                                <!-- Desktop Table Header -->
+                                <div class="hidden sm:grid grid-cols-12 gap-4 mb-2 text-sm font-medium text-gray-500 px-2">
+                                    <div class="col-span-4" data-i18n="port-col-name">資產類別</div>
+                                    <div class="col-span-4" data-i18n="port-col-amount">總金額</div>
+                                    <div class="col-span-3" data-i18n="port-col-roi">預期年化報酬率 (%)</div>
+                                    <div class="col-span-1 text-center"></div>
+                                </div>
+
+                                <!-- Dynamic Rows Container -->
+                                <div id="assetRows" class="space-y-4 sm:space-y-2">
+                                    <!-- Rows will be injected via JS -->
+                                </div>
+
+                                <div class="mt-6 flex justify-end pt-4 border-t border-gray-100">
+                                    <button id="calculateBtn" class="w-full sm:w-auto bg-primary hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg transition-colors shadow-md" data-i18n="port-btn-calc">
+                                        分析投資組合
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Results Column -->
+                        <div class="lg:col-span-4 space-y-6">
+                            <!-- Overall Stats Card -->
+                            <div class="bg-white rounded-2xl shadow-sm border border-secondary border-t-4 p-6">
+                                <h3 class="text-lg font-bold text-gray-800 mb-6 text-center" data-i18n="port-result-title">分析結果</h3>
+
+                                <div class="mb-6 text-center">
+                                    <p class="text-sm text-gray-500 mb-1" data-i18n="port-total-assets">總資產規模</p>
+                                    <p class="text-3xl font-bold text-gray-800" id="totalAssetsDisplay">NT$ 0</p>
+                                </div>
+
+                                <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200">
+                                    <p class="text-sm text-gray-500 mb-1" data-i18n="port-weighted-roi">加權平均年化報酬率</p>
+                                    <p class="text-4xl font-bold text-secondary" id="weightedRoiDisplay">0.00%</p>
+                                </div>
+                            </div>
+
+                            <!-- Alerts Container -->
+                            <div id="alertsContainer" class="space-y-4">
+                                <!-- Cash Drag Alert -->
+                                <div id="cashDragAlert" class="hidden bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-red-700 font-bold" data-i18n="port-alert-cash-title">現金拖累 (Cash Drag)</p>
+                                            <p class="text-xs text-red-600 mt-1" data-i18n="port-alert-cash-desc">您持有超過 30% 的現金類資產。這在通膨環境下會嚴重稀釋您的購買力與整體長期報酬。</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Low ROI Alert -->
+                                <div id="lowRoiAlert" class="hidden bg-amber-50 border-l-4 border-accent p-4 rounded-r-lg">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-accent" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-amber-800 font-bold" data-i18n="port-alert-roi-title">整體報酬率偏低</p>
+                                            <p class="text-xs text-amber-700 mt-1" data-i18n="port-alert-roi-desc">整體加權報酬率低於 5%，這可能無法有效對抗通膨或達成您的提早退休目標。建議優化資產配置。</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Success Message -->
+                                <div id="successAlert" class="hidden bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-green-800 font-bold" data-i18n="port-alert-ok-title">配置良好</p>
+                                            <p class="text-xs text-green-700 mt-1" data-i18n="port-alert-ok-desc">目前的預期報酬率與資金運用效率表現不俗！保持紀律，讓時間成為您的朋友。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Allocation Table Card (Result Breakdown) -->
+                    <div class="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hidden" id="breakdownContainer">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4" data-i18n="port-breakdown-title">資產佔比明細</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-3 text-left font-medium text-gray-500 uppercase tracking-wider" data-i18n="port-col-name">資產類別</th>
+                                        <th class="px-4 py-3 text-right font-medium text-gray-500 uppercase tracking-wider" data-i18n="port-col-amount">總金額</th>
+                                        <th class="px-4 py-3 text-right font-medium text-gray-500 uppercase tracking-wider" data-i18n="port-col-allocation">佔比 (%)</th>
+                                        <th class="px-4 py-3 text-right font-medium text-gray-500 uppercase tracking-wider" data-i18n="port-col-roi">預期報酬率 (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="breakdownTbody" class="divide-y divide-gray-100 bg-white">
+                                    <!-- Dynamically filled -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Business Logic Banner (Lead Generation) -->
+                    <div class="mt-12 bg-gradient-to-r from-gray-900 to-primary rounded-2xl p-8 sm:p-12 shadow-xl text-center text-white relative overflow-hidden">
+                        <!-- Decorative bg -->
+                        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-5 blur-3xl"></div>
+
+                        <h3 class="text-2xl sm:text-3xl font-bold mb-4 relative z-10" data-i18n="port-cta-title">找出財務破口，優化配置策略</h3>
+                        <p class="text-gray-300 mb-8 text-lg max-w-2xl mx-auto relative z-10" data-i18n="port-cta-desc">您的現金是否佔比過高？報酬率是否被低效資產拖累？讓專業顧問為您進行深度的資產體檢，打造抗通膨且具穩健成長力的專屬配置藍圖。</p>
+                        <a href="/coaching" class="relative z-10 inline-block bg-accent hover:bg-yellow-500 text-gray-900 font-bold py-4 px-10 rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
+                            <span data-i18n="port-cta-btn">預約免費 15 分鐘投資組合健檢</span>
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Quick Needs Submission Block -->
+            <section class="bg-white py-10 border-t border-b border-gray-200 flex-shrink-0 mt-8">
+                <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+                    <h2 class="text-2xl font-bold mb-4 text-primary" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>
+                    <form action="/contact" method="GET" class="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto">
+                        <input type="email" name="email" placeholder="您的 Email" class="px-4 py-3 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-secondary w-full sm:w-auto flex-1" required>
+                        <button type="submit" class="bg-secondary hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md transition duration-300 w-full sm:w-auto shadow-md" data-i18n="footer-cta-btn">
+                            開始諮詢
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Footer inside main content -->
+            <footer class="bg-gray-800 text-white py-6 mt-auto flex-shrink-0">
+                <div class="container mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm max-w-5xl">
+                    <div class="text-center sm:text-left mb-4 sm:mb-0">
+                        <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
+                        <p class="mt-2 text-gray-400" data-i18n="footer-disclaimer">試算結果僅供參考，實際投資具備風險，請謹慎評估。</p>
+                    </div>
+                    <div class="space-x-4">
+                        <a href="/privacy" class="hover:text-gray-300 underline" data-i18n="footer-privacy">隱私權政策</a>
+                        <a href="/blog" class="hover:text-gray-300 underline" data-i18n="footer-guide">理財專欄</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Sidebar Toggle Logic
+        const sidebar = document.getElementById('sidebar');
+        const openSidebarBtn = document.getElementById('open-sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function openSidebar() {
+            sidebar.classList.remove('-translate-x-full');
+            sidebarOverlay.classList.remove('hidden');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+
+        openSidebarBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // i18n Translations
+        const i18n = {
+            'zh-tw': {
+                'title-portfolio': '投資組合 X-Ray | 資產配置與加權報酬率計算',
+                'nav-cat-finance': '投資與金融',
+                'nav-mortgage': '多國房貸試算中心',
+                'nav-compound': '複利滾存計算器',
+                'nav-exchange': '匯率換算',
+                'nav-fire': 'FIRE 提早退休試算',
+                'nav-portfolio': '投資組合 X-Ray',
+                'nav-coaching': '一對一教練服務',
+                'nav-contact': '聯繫顧問',
+                'nav-guide': '理財專欄',
+
+                'port-h1': '投資組合 X-Ray 分析',
+                'port-desc': '快速計算各類資產的佔比與加權報酬率，揪出現金拖累 (Cash Drag) 等隱形財務破口。',
+                'port-input-title': '資產清單',
+                'port-btn-add': '新增資產',
+                'port-btn-calc': '分析投資組合',
+
+                'port-col-name': '資產類別',
+                'port-col-amount': '總金額',
+                'port-col-roi': '預期年化報酬率 (%)',
+                'port-col-allocation': '佔比 (%)',
+
+                'port-result-title': '分析結果',
+                'port-total-assets': '總資產規模',
+                'port-weighted-roi': '加權平均年化報酬率',
+
+                'port-alert-cash-title': '現金拖累 (Cash Drag)',
+                'port-alert-cash-desc': '您持有超過 30% 的現金類資產。這在通膨環境下會嚴重稀釋您的購買力與整體長期報酬。',
+                'port-alert-roi-title': '整體報酬率偏低',
+                'port-alert-roi-desc': '整體加權報酬率低於 5%，這可能無法有效對抗通膨或達成您的提早退休目標。建議優化資產配置。',
+                'port-alert-ok-title': '配置良好',
+                'port-alert-ok-desc': '目前的預期報酬率與資金運用效率表現不俗！保持紀律，讓時間成為您的朋友。',
+
+                'port-breakdown-title': '資產佔比明細',
+
+                'port-cta-title': '找出財務破口，優化配置策略',
+                'port-cta-desc': '您的現金是否佔比過高？報酬率是否被低效資產拖累？讓專業顧問為您進行深度的資產體檢，打造抗通膨且具穩健成長力的專屬配置藍圖。',
+                'port-cta-btn': '預約免費 15 分鐘投資組合健檢',
+
+                'footer-cta-title': '對理財有疑問？留下一句話，讓我們開始對話。',
+                'footer-cta-btn': '開始諮詢',
+                'footer-disclaimer': '試算結果僅供參考，實際投資具備風險，請謹慎評估。',
+                'footer-privacy': '隱私權政策',
+                'footer-guide': '理財專欄',
+
+                'asset-cash': '現金 / 活儲',
+                'asset-stocks': '股票 / ETF',
+                'asset-bonds': '債券 / 定存',
+                'asset-alts': '另類資產 (如加密貨幣,名錶)',
+                'asset-custom': '自訂資產'
+            },
+            'en': {
+                'title-portfolio': 'Portfolio X-Ray | Asset Allocation & Weighted ROI',
+                'nav-cat-finance': 'Investment & Finance',
+                'nav-mortgage': 'Multi-Country Mortgage',
+                'nav-compound': 'Compound Interest',
+                'nav-exchange': 'Exchange Rates',
+                'nav-fire': 'FIRE Calculator',
+                'nav-portfolio': 'Portfolio X-Ray',
+                'nav-coaching': '1-on-1 Coaching',
+                'nav-contact': 'Contact Advisor',
+                'nav-guide': 'Financial Blog',
+
+                'port-h1': 'Portfolio X-Ray Analysis',
+                'port-desc': 'Instantly calculate your asset allocation and weighted average ROI. Identify "Cash Drag" and optimize your holdings.',
+                'port-input-title': 'Asset List',
+                'port-btn-add': 'Add Asset',
+                'port-btn-calc': 'Analyze Portfolio',
+
+                'port-col-name': 'Asset Class',
+                'port-col-amount': 'Amount',
+                'port-col-roi': 'Expected Annual ROI (%)',
+                'port-col-allocation': 'Allocation (%)',
+
+                'port-result-title': 'Analysis Results',
+                'port-total-assets': 'Total Assets',
+                'port-weighted-roi': 'Weighted Average ROI',
+
+                'port-alert-cash-title': 'Cash Drag',
+                'port-alert-cash-desc': 'You are holding more than 30% in cash. In an inflationary environment, this significantly dilutes your purchasing power and long-term returns.',
+                'port-alert-roi-title': 'Low Overall ROI',
+                'port-alert-roi-desc': 'Your weighted average ROI is below 5%, which may not outpace inflation or meet early retirement goals. Consider optimizing your allocation.',
+                'port-alert-ok-title': 'Good Allocation',
+                'port-alert-ok-desc': 'Your expected ROI and capital efficiency look solid! Maintain discipline and let time be your friend.',
+
+                'port-breakdown-title': 'Asset Allocation Breakdown',
+
+                'port-cta-title': 'Identify Leaks, Optimize Strategy',
+                'port-cta-desc': 'Are you holding too much cash? Are inefficient assets dragging down your returns? Let our experts conduct a deep dive into your portfolio to craft an inflation-beating blueprint.',
+                'port-cta-btn': 'Book Free 15-min Portfolio Review',
+
+                'footer-cta-title': 'Have financial questions? Leave a message.',
+                'footer-cta-btn': 'Start Consulting',
+                'footer-disclaimer': 'Results are for reference only. All investments carry risks.',
+                'footer-privacy': 'Privacy Policy',
+                'footer-guide': 'Financial Blog',
+
+                'asset-cash': 'Cash / Savings',
+                'asset-stocks': 'Stocks / ETF',
+                'asset-bonds': 'Bonds / CDs',
+                'asset-alts': 'Alternatives (Crypto, Watches)',
+                'asset-custom': 'Custom Asset'
+            }
+        };
+
+        // Utilities
+        function getLang() {
+            return document.getElementById('language-selector').value;
+        }
+
+        function t(key) {
+            return i18n[getLang()][key] !== undefined ? i18n[getLang()][key] : key;
+        }
+
+        function formatNumberWithCommas(value) {
+            const num = value.toString().replace(/\D/g, "");
+            return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function formatCurrency(value) {
+            const isEnglish = getLang() === 'en';
+            const prefix = isEnglish ? '$ ' : 'NT$ ';
+            return prefix + new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(value);
+        }
+
+        function parseNum(val) {
+            if (!val) return 0;
+            return parseFloat(val.toString().replace(/,/g, '')) || 0;
+        }
+
+        // DOM Elements
+        const assetRowsContainer = document.getElementById('assetRows');
+        const addAssetBtn = document.getElementById('addAssetBtn');
+        const calculateBtn = document.getElementById('calculateBtn');
+
+        let rowCounter = 0;
+
+        const defaultAssets = [
+            { key: 'asset-cash', amount: '300,000', roi: '1.0' },
+            { key: 'asset-stocks', amount: '1,000,000', roi: '7.0' },
+            { key: 'asset-bonds', amount: '500,000', roi: '4.0' },
+            { key: 'asset-alts', amount: '0', roi: '0.0' }
+        ];
+
+        function addRow(nameKey, amount, roi, isDeletable = true) {
+            rowCounter++;
+            const rowId = `row-${rowCounter}`;
+            const rowHtml = `
+                <div id="${rowId}" class="flex flex-col sm:grid sm:grid-cols-12 gap-2 sm:gap-4 items-center bg-gray-50 sm:bg-transparent p-3 sm:p-0 rounded-lg sm:rounded-none border sm:border-none border-gray-200">
+                    <!-- Mobile Labels inline -->
+                    <div class="w-full sm:col-span-4">
+                        <label class="sm:hidden text-xs text-gray-500 mb-1 block" data-i18n="port-col-name">資產類別</label>
+                        <input type="text" data-name-key="${nameKey}" class="asset-name w-full px-3 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary outline-none text-sm" value="${t(nameKey) || ''}" placeholder="${t('asset-custom')}">
+                    </div>
+                    <div class="w-full sm:col-span-4">
+                        <label class="sm:hidden text-xs text-gray-500 mb-1 block" data-i18n="port-col-amount">總金額</label>
+                        <input type="text" inputmode="numeric" class="asset-amount w-full px-3 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary outline-none text-right font-medium text-sm" value="${amount}">
+                    </div>
+                    <div class="w-full sm:col-span-3">
+                        <label class="sm:hidden text-xs text-gray-500 mb-1 block" data-i18n="port-col-roi">預期年化報酬率 (%)</label>
+                        <input type="text" inputmode="numeric" class="asset-roi w-full px-3 py-2 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary outline-none text-right font-medium text-sm" value="${roi}">
+                    </div>
+                    <div class="w-full sm:col-span-1 flex justify-end sm:justify-center mt-2 sm:mt-0">
+                        ${isDeletable ? `
+                        <button type="button" class="text-red-400 hover:text-red-600 focus:outline-none p-1 delete-row-btn" data-target="${rowId}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        </button>
+                        ` : '<div class="w-5"></div>'}
+                    </div>
+                </div>
+            `;
+            assetRowsContainer.insertAdjacentHTML('beforeend', rowHtml);
+
+            // Bind events
+            const newRow = document.getElementById(rowId);
+            const amountInput = newRow.querySelector('.asset-amount');
+            amountInput.addEventListener('input', (e) => {
+                let cursorPosition = e.target.selectionStart;
+                let originalLength = e.target.value.length;
+                e.target.value = formatNumberWithCommas(e.target.value);
+                let newLength = e.target.value.length;
+                cursorPosition = cursorPosition + (newLength - originalLength);
+                e.target.setSelectionRange(cursorPosition, cursorPosition);
+            });
+
+            if (isDeletable) {
+                newRow.querySelector('.delete-row-btn').addEventListener('click', function() {
+                    document.getElementById(this.getAttribute('data-target')).remove();
+                });
+            }
+        }
+
+        function initDefaultRows() {
+            assetRowsContainer.innerHTML = '';
+            // The first 3 default assets are non-deletable for UX convenience, last is deletable
+            defaultAssets.forEach((asset, index) => {
+                addRow(asset.key, asset.amount, asset.roi, index === 3);
+            });
+        }
+
+        function analyzePortfolio() {
+            const rows = document.querySelectorAll('#assetRows > div');
+            let totalAssets = 0;
+            let totalWeightedReturn = 0;
+            let cashAssets = 0;
+
+            const breakdownData = [];
+
+            // Identify "Cash" by checking if it has data-name-key="asset-cash"
+            rows.forEach(row => {
+                const nameInput = row.querySelector('.asset-name');
+                const name = nameInput.value;
+                const nameKey = nameInput.getAttribute('data-name-key');
+                const amount = parseNum(row.querySelector('.asset-amount').value);
+                const roi = parseNum(row.querySelector('.asset-roi').value);
+
+                totalAssets += amount;
+
+                // Keep track of cash
+                if (nameKey === 'asset-cash') {
+                    cashAssets += amount;
+                }
+
+                breakdownData.push({ name, amount, roi });
+            });
+
+            // Calculate metrics
+            let overallRoi = 0;
+            let cashRatio = 0;
+
+            if (totalAssets > 0) {
+                breakdownData.forEach(item => {
+                    item.allocation = item.amount / totalAssets;
+                    totalWeightedReturn += item.allocation * item.roi;
+                });
+                overallRoi = totalWeightedReturn;
+                cashRatio = cashAssets / totalAssets;
+            } else {
+                // If 0, everything is 0
+                breakdownData.forEach(item => item.allocation = 0);
+            }
+
+            // Update UI
+            document.getElementById('totalAssetsDisplay').textContent = formatCurrency(totalAssets);
+            document.getElementById('weightedRoiDisplay').textContent = totalAssets > 0 ? overallRoi.toFixed(2) + '%' : '0.00%';
+
+            // Handle Alerts
+            const cashDragAlert = document.getElementById('cashDragAlert');
+            const lowRoiAlert = document.getElementById('lowRoiAlert');
+            const successAlert = document.getElementById('successAlert');
+
+            cashDragAlert.classList.add('hidden');
+            lowRoiAlert.classList.add('hidden');
+            successAlert.classList.add('hidden');
+
+            if (totalAssets > 0) {
+                let hasAlert = false;
+                if (cashRatio > 0.3) {
+                    cashDragAlert.classList.remove('hidden');
+                    hasAlert = true;
+                }
+                if (overallRoi < 5.0) {
+                    lowRoiAlert.classList.remove('hidden');
+                    hasAlert = true;
+                }
+
+                if (!hasAlert) {
+                    successAlert.classList.remove('hidden');
+                }
+            }
+
+            // Fill Breakdown Table
+            const tbody = document.getElementById('breakdownTbody');
+            tbody.innerHTML = '';
+            breakdownData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-800 font-medium">${item.name}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-600 text-right">${formatCurrency(item.amount)}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-600 text-right">${(item.allocation * 100).toFixed(1)}%</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-600 text-right">${item.roi.toFixed(1)}%</td>
+                `;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('breakdownContainer').classList.remove('hidden');
+        }
+
+        function updateTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const lang = getLang();
+                if (i18n[lang] && i18n[lang][key] !== undefined) {
+                    if (el.tagName === 'INPUT' && el.type === 'button') {
+                        el.value = i18n[lang][key];
+                    } else if (el.tagName === 'DIV' || el.tagName === 'P' || el.tagName === 'H2' || el.tagName === 'H3' || el.tagName === 'LABEL' || el.tagName === 'SPAN' || el.tagName === 'A' || el.tagName === 'TH') {
+                        if (el.children.length === 0) {
+                             el.textContent = i18n[lang][key];
+                        } else {
+                             el.innerHTML = i18n[lang][key];
+                        }
+                    } else {
+                        el.textContent = i18n[lang][key];
+                    }
+                }
+            });
+
+            // Update inputs with data-name-key
+            document.querySelectorAll('input.asset-name').forEach(input => {
+                const key = input.getAttribute('data-name-key');
+                const lang = getLang();
+                if (key && i18n[lang] && i18n[lang][key]) {
+                    input.value = i18n[lang][key];
+                }
+                input.placeholder = t('asset-custom');
+            });
+
+            // Re-render UI calculations
+            analyzePortfolio();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup language selector
+            const langSelector = document.getElementById('language-selector');
+            if (langSelector) {
+                const savedLang = localStorage.getItem('calc-lang');
+                if (savedLang && (savedLang === 'zh-tw' || savedLang === 'en')) {
+                    langSelector.value = savedLang;
+                }
+
+                langSelector.addEventListener('change', (e) => {
+                    localStorage.setItem('calc-lang', e.target.value);
+                    updateTranslations();
+                });
+            }
+
+            initDefaultRows();
+
+            addAssetBtn.addEventListener('click', () => {
+                addRow('asset-custom', '0', '0.0', true);
+                updateTranslations(); // translate the new custom row placeholder/value if needed
+            });
+
+            calculateBtn.addEventListener('click', analyzePortfolio);
+
+            // Initial translations and calculation
+            updateTranslations();
+            analyzePortfolio();
+        });
+    </script>
+</body>
+</html>
