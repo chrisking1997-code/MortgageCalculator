@@ -6,6 +6,11 @@
     <title>2026 理財必修課：資產翻倍需要幾年？有錢人默默使用的「72 法則」 - SmartUtilBox</title>
     <meta name="description" content="學會金融圈最經典的速算公式——「72 法則」，一秒鐘看穿通膨真相與複利威力。">
 
+    <!-- Google Fonts: Playfair Display & Noto Serif TC for Serif, Inter/Noto Sans TC for Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,10 +18,19 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1e3a8a', /* Dark Blue */
-                        secondary: '#10b981', /* Emerald Green */
-                        background: '#ffffff',
-                        surface: '#f3f4f6'
+                        zinc: {
+                            900: '#18181b',
+                            950: '#09090b',
+                        },
+                        amber: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', '"Noto Serif TC"', 'serif'],
+                        sans: ['"Inter"', '"Noto Sans TC"', 'sans-serif'],
                     }
                 }
             }
@@ -24,61 +38,61 @@
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="bg-surface text-gray-800 font-sans antialiased flex h-screen overflow-hidden">
+<body class="bg-zinc-950 text-zinc-300 font-sans antialiased flex h-screen overflow-hidden">
 
     <!-- Sidebar Overlay for Mobile -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-20 hidden lg:hidden"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-zinc-950 bg-opacity-50 z-20 hidden lg:hidden"></div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-gray-200 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-full">
-        <div class="p-6 border-b border-gray-200 flex justify-between items-center">
-            <h2 class="text-2xl font-bold text-primary">SmartUtilBox</h2>
-            <button id="close-sidebar" class="lg:hidden text-gray-500 hover:text-gray-800 focus:outline-none">
+    <aside id="sidebar" class="bg-zinc-950 w-64 flex-shrink-0 border-r border-zinc-800 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-full">
+        <div class="p-6 border-b border-zinc-800 flex justify-between items-center">
+            <h2 class="text-2xl font-serif font-bold text-zinc-100">SmartUtilBox</h2>
+            <button id="close-sidebar" class="lg:hidden text-zinc-500 hover:text-zinc-300 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
         <div class="p-4 overflow-y-auto flex-grow">
             <!-- Group A: Tools -->
             <div class="mb-8">
-                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3" data-i18n="nav-group-tools">實用工具</h3>
+                <h3 class="text-xs font-semibold text-amber-700/70 uppercase tracking-wider mb-3" data-i18n="nav-group-tools">實用工具</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/exchange" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-exchange">匯率換算</a>
+                        <a href="/exchange" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-exchange">匯率換算</a>
                     </li>
                     <li>
-                        <a href="/" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-mortgage">多國房貸試算中心</a>
+                        <a href="/" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-mortgage">多國房貸試算中心</a>
                     </li>
                     <li>
-                        <a href="/compound" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-compound">複利滾存計算器</a>
+                        <a href="/compound" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-compound">複利滾存計算器</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Group B: Diagnosis -->
             <div class="mb-8">
-                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3" data-i18n="nav-group-diag">深度財務診斷</h3>
+                <h3 class="text-xs font-semibold text-amber-700/70 uppercase tracking-wider mb-3" data-i18n="nav-group-diag">深度財務診斷</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/fire" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-fire">FIRE 提早退休試算</a>
+                        <a href="/fire" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-fire">FIRE 提早退休試算</a>
                     </li>
                     <li>
-                        <a href="/portfolio-roi" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-portfolio">投資組合 X-Ray</a>
+                        <a href="/portfolio-roi" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-portfolio">投資組合 X-Ray</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Group C: Services -->
             <div class="mb-8">
-                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3" data-i18n="nav-group-services">顧問與服務</h3>
+                <h3 class="text-xs font-semibold text-amber-700/70 uppercase tracking-wider mb-3" data-i18n="nav-group-services">顧問與服務</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/blog" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors bg-green-50 text-secondary font-medium" data-i18n="nav-guide">理財專欄</a>
+                        <a href="/blog" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors border-l-4 border-amber-600 bg-zinc-800/50 text-amber-500 font-medium" data-i18n="nav-guide">理財專欄</a>
                     </li>
                     <li>
-                        <a href="/coaching" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-coaching">一對一教練服務</a>
+                        <a href="/coaching" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-coaching">一對一教練服務</a>
                     </li>
                     <li>
-                        <a href="/contact" class="block px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 hover:text-primary transition-colors " data-i18n="nav-contact">聯繫顧問</a>
+                        <a href="/contact" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors " data-i18n="nav-contact">聯繫顧問</a>
                     </li>
                 </ul>
             </div>
@@ -89,20 +103,20 @@
     <div class="flex-1 flex flex-col h-full overflow-hidden relative">
 
         <!-- Top Header -->
-        <header class="bg-primary text-white py-4 px-6 shadow-sm flex justify-between items-center z-10 flex-shrink-0">
+        <header class="bg-zinc-900 text-zinc-200 border-b border-zinc-800 py-4 px-6  flex justify-between items-center z-10 flex-shrink-0">
             <div class="flex items-center">
                 <button id="open-sidebar" class="mr-4 lg:hidden text-white focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 <div class="hidden lg:block">
-                    <h1 class="text-xl font-bold">理財專欄</h1>
+                    <h1 class="text-xl font-serif font-bold text-zinc-100">理財專欄</h1>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="/blog" class="text-white hover:text-secondary font-medium text-sm lg:text-base underline">理財專欄</a>
+                <a href="/blog" class="text-white hover:text-amber-500 transition-colors font-medium text-sm lg:text-base underline">理財專欄</a>
                 <div class="flex items-center space-x-2">
                     <span class="text-white text-sm font-medium">Language:</span>
-                    <select id="language-selector" class="bg-white text-primary text-sm rounded px-2 py-1 border-none focus:ring focus:ring-secondary">
+                    <select id="language-selector" class="bg-zinc-800 text-zinc-200 text-sm rounded px-2 py-1 border border-zinc-700 focus:ring focus:ring-amber-500 focus:outline-none">
                     <option value="zh-tw">中文</option>
                     <option value="en">English</option>
                 </select>
@@ -111,23 +125,23 @@
         </header>
 
         <!-- Scrollable Main Content -->
-        <main class="flex-1 overflow-y-auto p-4 lg:p-8 bg-surface">
-            <article class="bg-white p-8 lg:p-12 rounded-xl shadow-lg max-w-4xl mx-auto text-gray-800 border-t-4 border-secondary mt-8 lg:mt-12 mb-8">
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8 bg-zinc-950">
+            <article class="bg-zinc-900 p-8 lg:p-12 rounded-xl shadow-lg max-w-4xl mx-auto text-zinc-200 border-t-4 border-secondary mt-8 lg:mt-12 mb-8">
 
                 <a href="/blog" class="inline-block mb-6 text-secondary hover:text-green-600 font-medium transition-colors">
                     &larr; 返回專欄列表
                 </a>
 
-                <h1 class="text-3xl lg:text-4xl font-extrabold text-primary leading-tight mb-4">
+                <h1 class="text-3xl lg:text-4xl font-extrabold text-amber-500 leading-tight mb-4">
                     2026 理財必修課：資產翻倍需要幾年？有錢人默默使用的「72 法則」
                 </h1>
 
-                <div class="flex items-center text-sm text-gray-500 mb-8 border-b pb-4 border-gray-100">
+                <div class="flex items-center text-sm text-zinc-400 mb-8 border-b pb-4 border-zinc-800">
                     <span class="mr-4">發布日期：2026 年 4 月</span>
                 </div>
 
-                <div class="prose prose-lg max-w-none prose-p:leading-relaxed prose-p:mb-6 prose-headings:text-primary">
-                    <p class="text-gray-600 italic border-l-4 border-gray-300 pl-4 mb-8">
+                <div class="prose prose-lg max-w-none prose-p:leading-relaxed prose-p:mb-6 prose-headings:text-amber-500">
+                    <p class="text-zinc-400 italic border-l-4 border-zinc-700 pl-4 mb-8">
                         「我的錢到底什麼時候才能翻倍？」這是每個踏入投資市場的人最常問的問題。與其依賴感覺或盲目聽信明牌，不如學會金融圈最經典的速算公式——「72 法則」。只要掌握這個邏輯，你就能在一秒鐘內看穿通膨的殘酷，以及複利的可怕。
                     </p>
 
@@ -158,15 +172,15 @@
                     </p>
 
                     <h2 class="text-2xl font-bold mt-10 mb-4 border-l-4 border-secondary pl-3">掌握趨勢，提早佈局：</h2>
-                    <p class="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                        知道公式不難，難的是如何在震盪的市場中「挑選標的」並「抱得住」。如果您需要專家協助檢視您目前的投資組合是否能打敗通膨，或者想制定更進階的家庭理財計畫，歡迎<a href="mailto:expert@example.com" class="text-primary font-bold hover:underline">預約我們的專業理財顧問團隊進行初診諮詢</a>。
+                    <p class="bg-zinc-950 p-6 rounded-lg border border-zinc-800">
+                        知道公式不難，難的是如何在震盪的市場中「挑選標的」並「抱得住」。如果您需要專家協助檢視您目前的投資組合是否能打敗通膨，或者想制定更進階的家庭理財計畫，歡迎<a href="mailto:expert@example.com" class="text-amber-500 font-bold hover:underline">預約我們的專業理財顧問團隊進行初診諮詢</a>。
                     </p>
                 </div>
             </article>
 
 
 
-<footer class="bg-gray-800 text-white py-6 mt-12 flex-shrink-0 rounded-t-xl">
+<footer class="bg-zinc-950 text-white py-6 mt-12 flex-shrink-0 rounded-t-xl">
                 <div class="container mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm max-w-4xl">
                     <div class="text-center sm:text-left mb-4 sm:mb-0">
                         <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
