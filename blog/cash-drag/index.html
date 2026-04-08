@@ -17,17 +17,6 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        zinc: {
-                            900: '#18181b',
-                            950: '#09090b',
-                        },
-                        amber: {
-                            500: '#f59e0b',
-                            600: '#d97706',
-                            700: '#b45309',
-                        }
-                    },
                     fontFamily: {
                         serif: ['"Playfair Display"', '"Noto Serif TC"', 'serif'],
                         sans: ['"Inter"', '"Noto Sans TC"', 'sans-serif'],
@@ -38,61 +27,61 @@
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body class="bg-zinc-950 text-zinc-300 font-sans antialiased flex h-screen overflow-hidden">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex h-screen overflow-hidden">
 
     <!-- Sidebar Overlay for Mobile -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-zinc-950 bg-opacity-70 z-20 hidden lg:hidden"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-50 bg-opacity-70 z-20 hidden lg:hidden"></div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="bg-zinc-950 w-64 flex-shrink-0 border-r border-zinc-800 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-full">
-        <div class="p-6 border-b border-zinc-800 flex justify-between items-center">
-            <h2 class="text-2xl font-serif font-bold text-zinc-100">SmartUtilBox</h2>
-            <button id="close-sidebar" class="lg:hidden text-zinc-500 hover:text-zinc-300 focus:outline-none">
+    <aside id="sidebar" class="bg-slate-50 w-64 flex-shrink-0 border-r border-slate-100 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-full">
+        <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+            <h2 class="text-2xl font-serif font-bold text-slate-800">SmartUtilBox</h2>
+            <button id="close-sidebar" class="lg:hidden text-slate-400 hover:text-slate-800 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
         <div class="p-4 overflow-y-auto flex-grow">
             <!-- Group A: Tools -->
             <div class="mb-8">
-                <h3 class="text-xs font-semibold text-amber-700/70 uppercase tracking-wider mb-3">實用工具</h3>
+                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">實用工具</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/exchange" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">匯率換算</a>
+                        <a href="/exchange" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">匯率換算</a>
                     </li>
                     <li>
-                        <a href="/" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">多國房貸試算中心</a>
+                        <a href="/" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">多國房貸試算中心</a>
                     </li>
                     <li>
-                        <a href="/compound" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">複利滾存計算器</a>
+                        <a href="/compound" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">複利滾存計算器</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Group B: Diagnosis -->
             <div class="mb-8">
-                <h3 class="text-xs font-semibold text-amber-700/70 uppercase tracking-wider mb-3">深度財務診斷</h3>
+                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">深度財務診斷</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/fire" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">FIRE 提早退休試算</a>
+                        <a href="/fire" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">FIRE 提早退休試算</a>
                     </li>
                     <li>
-                        <a href="/portfolio-roi" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">投資組合 X-Ray</a>
+                        <a href="/portfolio-roi" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">投資組合 X-Ray</a>
                     </li>
                 </ul>
             </div>
 
             <!-- Group C: Services -->
             <div class="mb-8">
-                <h3 class="text-xs font-semibold text-amber-700/70 uppercase tracking-wider mb-3">顧問與服務</h3>
+                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">顧問與服務</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/blog" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors border-l-4 border-amber-600 bg-zinc-800/50 text-amber-500 font-medium">理財專欄</a>
+                        <a href="/blog" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors border-l-4 border-slate-800 bg-slate-100 text-slate-900 font-bold font-medium">理財專欄</a>
                     </li>
                     <li>
-                        <a href="/coaching" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">一對一教練服務</a>
+                        <a href="/coaching" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">一對一教練服務</a>
                     </li>
                     <li>
-                        <a href="/contact" class="block px-4 py-2 rounded-md text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors">聯繫顧問</a>
+                        <a href="/contact" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors">聯繫顧問</a>
                     </li>
                 </ul>
             </div>
@@ -103,67 +92,67 @@
     <div class="flex-1 flex flex-col h-full overflow-hidden relative">
 
         <!-- Top Header -->
-        <header class="bg-zinc-900 text-zinc-200 py-4 px-6 shadow-sm border-b border-zinc-800 flex justify-between items-center z-10 flex-shrink-0">
+        <header class="bg-white text-slate-800 py-4 px-6 shadow-sm border-b border-slate-200 flex justify-between items-center z-10 flex-shrink-0">
             <div class="flex items-center">
-                <button id="open-sidebar" class="mr-4 lg:hidden text-zinc-300 focus:outline-none">
+                <button id="open-sidebar" class="mr-4 lg:hidden text-slate-800 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
                 <div class="hidden lg:block">
-                    <h1 class="text-xl font-serif font-bold text-zinc-100">SmartUtilBox 理財專欄</h1>
+                    <h1 class="text-xl font-serif font-bold text-slate-800">SmartUtilBox 理財專欄</h1>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="/blog" class="text-zinc-300 hover:text-amber-500 font-medium text-sm lg:text-base transition-colors underline">返回專欄首頁</a>
+                <a href="/blog" class="text-slate-800 hover:text-slate-600 hover:text-slate-900 font-medium text-sm lg:text-base transition-colors underline">返回專欄首頁</a>
             </div>
         </header>
 
         <!-- Scrollable Main Content -->
-        <main class="flex-1 overflow-y-auto p-4 lg:p-8 bg-zinc-950">
-            <div class="max-w-3xl mx-auto bg-zinc-900 p-8 lg:p-12 rounded-2xl shadow-lg border border-zinc-800 relative overflow-hidden">
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8 bg-slate-50">
+            <div class="max-w-3xl mx-auto bg-white p-8 lg:p-12 rounded-2xl shadow-xl shadow-slate-200/40 border-none relative overflow-hidden">
                 <!-- Golden accent top border -->
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700"></div>
+                <div class="absolute top-0 left-0 w-full h-1 bg-slate-800"></div>
 
-                <h1 class="text-3xl lg:text-4xl font-serif font-bold text-amber-500 mb-6 leading-tight">【理財視角】你的存款正在被「現金拖累」嗎？高薪族最常忽略的隱形破口</h1>
+                <h1 class="text-3xl lg:text-4xl font-serif font-bold text-slate-800 mb-6 leading-tight">【理財視角】你的存款正在被「現金拖累」嗎？高薪族最常忽略的隱形破口</h1>
 
-                <div class="flex items-center text-sm text-zinc-500 mb-10 pb-6 border-b border-zinc-800">
+                <div class="flex items-center text-sm text-slate-400 mb-10 pb-6 border-b border-slate-200">
                     <span class="mr-4">發布日期：2026 年 5 月</span>
                     <span>作者：SmartUtilBox 財務顧問團隊</span>
                 </div>
 
-                <div class="prose prose-invert prose-zinc max-w-none text-zinc-300 leading-relaxed space-y-6">
+                <div class="prose  prose-slate max-w-none text-slate-800 leading-relaxed space-y-6">
                     <p>多數高薪專業人士在財務上都有一個共通的盲點：他們在職場上積極進取，但在資本管理上卻極度保守。</p>
 
                     <p>當你打開網銀，看著裡面躺著幾百萬的現金餘額時，或許會感到一絲安全感。但從宏觀的資本視角來看，這其實是極度危險的配置。在金融界，這被稱為<strong>「現金拖累效應 (Cash Drag)」</strong>。</p>
 
-                    <h2 class="text-2xl font-serif font-bold text-zinc-100 mt-10 mb-4 border-l-4 border-amber-600 pl-4">什麼是現金拖累？</h2>
+                    <h2 class="text-2xl font-serif font-bold text-slate-800 mt-10 mb-4  pl-4">什麼是現金拖累？</h2>
                     <p>假設你擁有 1,000 萬的總資產，其中 500 萬投資於年化報酬 8% 的優質美股，另外 500 萬放在利率僅 1% 的活定存中。你以為你的投資績效很好，但實際上，你整體資產的「加權平均報酬率」被那一半的現金嚴重稀釋，僅剩下 4.5%。</p>
 
                     <p>在長期通膨率動輒 3% 到 4% 的時代，4.5% 的報酬率幾乎只是在「原地踏步」，完全無法產生複利爆發力，更別提達到提早退休（FIRE）的目標。</p>
 
-                    <h2 class="text-2xl font-serif font-bold text-zinc-100 mt-10 mb-4 border-l-4 border-amber-600 pl-4">富人的現金管理邏輯</h2>
+                    <h2 class="text-2xl font-serif font-bold text-slate-800 mt-10 mb-4  pl-4">富人的現金管理邏輯</h2>
                     <p>頂級的財富管理，絕對不會讓大筆資金閒置。除了保留 6 到 12 個月的緊急預備金之外，剩餘的每一分錢都應該被部署到戰場上。如果你擔心股市過高、不想把所有資金投入單一市場，這時<strong>「另類實體資產（如威士忌、名錶、藝術品）」</strong>就是最佳的資金蓄水池。它們不看華爾街的臉色，卻擁有對抗通膨的絕對稀缺性。</p>
 
-                    <h2 class="text-2xl font-serif font-bold text-zinc-100 mt-10 mb-4 border-l-4 border-amber-600 pl-4">你現在的真實報酬率是多少？</h2>
+                    <h2 class="text-2xl font-serif font-bold text-slate-800 mt-10 mb-4  pl-4">你現在的真實報酬率是多少？</h2>
                     <p>不要憑感覺理財。我強烈建議你使用本站最新的「投資組合 X-Ray 視覺化儀表板」。</p>
                     <p>將你的股票、現金、房產與另類資產輸入系統（或直接一鍵匯入券商對帳單），讓數據誠實地告訴你，你的「現金拖累」到底有多嚴重。</p>
 
                     <div class="my-8 text-center">
-                        <a href="/portfolio-roi" class="inline-block bg-amber-700 hover:bg-amber-600 border border-amber-600 text-zinc-100 font-bold py-4 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg text-lg">
+                        <a href="/portfolio-roi" class="inline-block bg-slate-800 hover:bg-slate-700 border border-slate-800 text-white font-bold py-4 px-8 rounded-full transition-transform transform hover:scale-105 shadow-xl shadow-slate-200/40 border-none text-lg">
                             👉 點此進行免費投資組合 X-Ray 分析
                         </a>
                     </div>
 
-                    <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-800 mt-10">
+                    <div class="bg-slate-50 p-6 rounded-xl border-none mt-10">
                         <p class="mb-4">如果你對分析出來的數字感到焦慮，或者想了解如何安全地將低效現金轉換為抗通膨的實體資產，歡迎預約我的 15 分鐘一對一策略通話。</p>
-                        <a href="/coaching" class="text-amber-500 font-semibold hover:text-amber-400 underline transition-colors">預約財務顧問諮詢 &rarr;</a>
+                        <a href="/coaching" class="text-slate-800 font-semibold hover:text-amber-400 underline transition-colors">預約財務顧問諮詢 &rarr;</a>
                     </div>
                 </div>
             </div>
 
             <!-- Footer inside main content -->
-            <footer class="bg-zinc-950 text-zinc-500 py-6 mt-12 flex-shrink-0 text-center">
+            <footer class="bg-slate-50 text-slate-400 py-6 mt-12 flex-shrink-0 text-center">
                 <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
-                <p class="mt-2 text-zinc-600">本文章僅供教育分享，不構成任何投資建議。</p>
+                <p class="mt-2 text-slate-400">本文章僅供教育分享，不構成任何投資建議。</p>
             </footer>
         </main>
     </div>
