@@ -35,21 +35,10 @@
         }
     </script>
     <style>
-        /* Custom scrollbar for a sleeker look */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -63,64 +52,39 @@
             </button>
         </div>
 
-        <div class="p-4">
+        <div class="p-4" id="sidebar-nav-content">
             <!-- Group A: Tools -->
             <div class="mb-8">
                 <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3" data-i18n="nav-group-tools">實用工具</h3>
                 <ul class="space-y-2">
-                    <li>
-                        <a href="/" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-mortgage">多國房貸試算中心</a>
-                    </li>
-                    <li>
-                        <a href="/exchange" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-exchange">匯率換算</a>
-                    </li>
-                    <li>
-                        <a href="/compound" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-compound">複利滾存計算器</a>
-                    </li>
-                    <li>
-                        <a href="/dca-calculator" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-dca">定期定額 / 存股複利試算</a>
-                    </li>
-                    <li>
-                        <a href="/rent-vs-buy" class="block px-4 py-2 rounded-md bg-slate-50 text-slate-900 font-medium transition-colors" data-i18n="nav-rvb">買房 vs 租房決策試算</a>
-                    </li>
+                    <li><a href="/mortgage" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-mortgage">多國房貸試算中心</a></li>
+                    <li><a href="/exchange" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-exchange">匯率換算</a></li>
+                    <li><a href="/compound" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-compound">複利滾存計算器</a></li>
+                    <li><a href="/rent-vs-buy" class="block px-4 py-2 rounded-md bg-slate-50 text-slate-900 font-medium transition-colors" data-i18n="nav-rvb">買房 vs 租房決策試算</a></li>
                 </ul>
             </div>
-
             <!-- Group B: Diagnosis -->
             <div class="mb-8">
                 <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3" data-i18n="nav-group-diag">深度財務診斷</h3>
                 <ul class="space-y-2">
-                    <li>
-                        <a href="/fire" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-fire">FIRE 提早退休試算</a>
-                    </li>
-                    <li>
-                        <a href="/portfolio-roi" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-portfolio">投資組合 X-Ray</a>
-                    </li>
+                    <li><a href="/fire" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-fire">FIRE 提早退休試算</a></li>
+                    <li><a href="/portfolio-roi" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-portfolio">投資組合 X-Ray</a></li>
                 </ul>
             </div>
-
             <!-- Group C: Services -->
             <div class="mb-8">
                 <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3" data-i18n="nav-group-services">顧問與服務</h3>
                 <ul class="space-y-2">
-                    <li>
-                        <a href="/blog" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-guide">理財專欄</a>
-                    </li>
-                    <li>
-                        <a href="/coaching" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-coaching">一對一教練服務</a>
-                    </li>
-                    <li>
-                        <a href="/contact" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-contact">聯繫顧問</a>
-                    </li>
+                    <li><a href="/blog" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-guide">理財專欄</a></li>
+                    <li><a href="/coaching" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-coaching">一對一教練服務</a></li>
+                    <li><a href="/contact" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-contact">聯繫顧問</a></li>
                 </ul>
             </div>
         </div>
     </aside>
 
-    <!-- Sidebar Overlay for mobile -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/50 z-10 hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
 
-    <!-- Main Content Wrapper -->
     <div class="flex-1 flex flex-col h-full overflow-hidden relative">
         <!-- Top Header -->
         <header class="bg-slate-900 text-white py-4 px-6 shadow-md border-b border-slate-800 flex justify-between items-center z-10 flex-shrink-0">
@@ -187,7 +151,7 @@
                                             <input type="number" id="mortgage-years" step="1" min="1" max="50" class="block w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-colors text-right font-semibold" value="30">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-medium text-slate-700 mb-1" data-i18n="input-house-appreciation">房價增值率 (%)</label>
+                                            <label class="block text-sm font-medium text-slate-700 mb-1" data-i18n="input-house-appreciation">預估每年房價增值率 (%)</label>
                                             <input type="number" id="house-appreciation" step="0.1" class="block w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-colors text-right font-semibold" value="2.0">
                                         </div>
                                     </div>
@@ -209,11 +173,11 @@
                                     </div>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label class="block text-sm font-medium text-slate-700 mb-1" data-i18n="input-rent-increase">每年租金漲幅 (%)</label>
+                                            <label class="block text-sm font-medium text-slate-700 mb-1" data-i18n="input-rent-increase">預估每年租金漲幅 (%)</label>
                                             <input type="number" id="rent-increase" step="0.1" class="block w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-colors text-right font-semibold" value="1.5">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-medium text-slate-700 mb-1" data-i18n="input-investment-return">投資報酬率 (%)</label>
+                                            <label class="block text-sm font-medium text-slate-700 mb-1" data-i18n="input-investment-return">投資年化報酬率 (%)</label>
                                             <input type="number" id="investment-return" step="0.1" class="block w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-slate-400 focus:border-slate-400 transition-colors text-right font-semibold" value="6.0">
                                         </div>
                                     </div>
@@ -255,7 +219,7 @@
                         </div>
 
                         <!-- CTA Block -->
-                        <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 mt-2">
                             <div class="flex-1">
                                 <p class="text-lg font-serif" data-i18n="cta-text">無論買房或租房，您都需要強大的現金流與資產配置。預約 15 分鐘財務健檢，或先使用我們的投資組合 X-Ray。</p>
                             </div>
@@ -265,28 +229,14 @@
                 </div>
             </div>
 
-            <!-- Quick Needs Submission Block -->
-            <section class="bg-white text-slate-800 shadow-sm border-b border-slate-200 py-10 mt-12 border-b border-blue-800 flex-shrink-0">
-                <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-                    <h2 class="text-2xl font-bold mb-4" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>
-                    <form action="/contact" method="GET" class="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto">
-                        <input type="email" name="email" placeholder="您的 Email" class="px-4 py-3 rounded-lg border-2 border-slate-300 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-400 w-full sm:w-auto flex-1 shadow-sm" required>
-                        <button type="submit" class="bg-slate-800 hover:bg-slate-700 text-white shadow-md font-semibold px-8 py-3 rounded-md transition duration-300 w-full sm:w-auto shadow-md" data-i18n="footer-cta-btn">
-                            開始諮詢
-                        </button>
-                    </form>
-                </div>
-            </section>
-
-            <!-- Footer inside main content -->
-            <footer class="bg-slate-50 text-white py-6 mt-auto flex-shrink-0">
+            <footer class="bg-slate-50 text-slate-500 py-6 mt-10 flex-shrink-0 border-t border-slate-200">
                 <div class="container mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm max-w-5xl">
                     <div class="text-center sm:text-left mb-4 sm:mb-0">
-                        <p class="text-slate-500">&copy; 2026 SmartUtilBox. All rights reserved.</p>
+                        <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
                     </div>
                     <div class="space-x-4">
-                        <a href="/privacy" class="text-slate-500 hover:text-slate-800 underline transition-colors" data-i18n="footer-privacy">隱私權政策</a>
-                        <a href="/blog" class="text-slate-500 hover:text-slate-800 underline transition-colors" data-i18n="nav-guide">理財專欄</a>
+                        <a href="/privacy" class="hover:text-slate-800 underline transition-colors" data-i18n="footer-privacy">隱私權政策</a>
+                        <a href="/blog" class="hover:text-slate-800 underline transition-colors" data-i18n="nav-guide">理財專欄</a>
                     </div>
                 </div>
             </footer>
@@ -330,8 +280,6 @@ const translations = {
 
         'currency': 'TWD',
         'locale': 'zh-TW',
-        'footer-cta-title': '對理財有疑問？留下一句話，讓我們開始對話。',
-        'footer-cta-btn': '開始諮詢',
         'footer-privacy': '隱私權政策',
         'nav-guide': '理財專欄',
         'nav-group-tools': '實用工具',
@@ -382,8 +330,6 @@ const translations = {
 
         'currency': 'USD',
         'locale': 'en-US',
-        'footer-cta-title': 'Questions about wealth? Leave a message.',
-        'footer-cta-btn': 'Start Consulting',
         'footer-privacy': 'Privacy Policy',
         'nav-guide': 'Financial Blog',
         'nav-group-tools': 'Tools',
@@ -401,7 +347,6 @@ const translations = {
     }
 };
 
-// Sidebar Toggle Logic
 const sidebar = document.getElementById('sidebar');
 const openSidebarBtn = document.getElementById('open-sidebar');
 const closeSidebarBtn = document.getElementById('close-sidebar');
@@ -417,9 +362,9 @@ function closeSidebar() {
     if(sidebarOverlay) sidebarOverlay.classList.add('hidden');
 }
 
-openSidebarBtn?.addEventListener('click', openSidebar);
-closeSidebarBtn?.addEventListener('click', closeSidebar);
-sidebarOverlay?.addEventListener('click', closeSidebar);
+if(openSidebarBtn) openSidebarBtn.addEventListener('click', openSidebar);
+if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeSidebar);
+if(sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
 
 function getLang() {
     const selector = document.getElementById('language-selector');
@@ -431,7 +376,6 @@ function t(key) {
     return translations[lang][key] !== undefined ? translations[lang][key] : key;
 }
 
-// Utilities
 function formatCurrency(amount) {
     const locale = t('locale');
     const currency = t('currency');
@@ -446,7 +390,7 @@ function formatNumberWithCommas(value) {
 function getNumericValue(elementId) {
     const el = document.getElementById(elementId);
     if (!el) return 0;
-    const val = el.value.replace(/\D/g, "");
+    const val = String(el.value).replace(/\D/g, "");
     return parseFloat(val) || 0;
 }
 
@@ -471,7 +415,7 @@ function renderChart(labels, buyData, rentData) {
                 {
                     label: t('chart-label-buy'),
                     data: buyData,
-                    borderColor: '#0f172a', // Navy (slate-900)
+                    borderColor: '#0f172a',
                     backgroundColor: 'rgba(15, 23, 42, 0.1)',
                     borderWidth: 3,
                     tension: 0.4,
@@ -481,7 +425,7 @@ function renderChart(labels, buyData, rentData) {
                 {
                     label: t('chart-label-rent'),
                     data: rentData,
-                    borderColor: '#10b981', // Emerald (emerald-500)
+                    borderColor: '#10b981',
                     backgroundColor: 'rgba(16, 185, 129, 0.1)',
                     borderWidth: 3,
                     tension: 0.4,
@@ -499,15 +443,11 @@ function renderChart(labels, buyData, rentData) {
             },
             scales: {
                 x: {
-                    grid: {
-                        display: false
-                    }
+                    grid: { display: false }
                 },
                 y: {
                     border: { display: false },
-                    grid: {
-                        color: '#f1f5f9'
-                    },
+                    grid: { color: '#f1f5f9' },
                     ticks: {
                         callback: function(value) {
                             if (value >= 100000000) return (value / 100000000).toFixed(1) + '億';
@@ -521,18 +461,13 @@ function renderChart(labels, buyData, rentData) {
             plugins: {
                 legend: {
                     position: 'bottom',
-                    labels: {
-                        usePointStyle: true,
-                        padding: 20
-                    }
+                    labels: { usePointStyle: true, padding: 20 }
                 },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
                             let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
+                            if (label) label += ': ';
                             if (context.parsed.y !== null) {
                                 label += new Intl.NumberFormat(t('locale'), { style: 'currency', currency: t('currency'), maximumFractionDigits: 0 }).format(context.parsed.y);
                             }
@@ -545,47 +480,31 @@ function renderChart(labels, buyData, rentData) {
     });
 }
 
-// Logic:
-// We compare two identical financial paths over N years.
-// Total starting cash = Down Payment + initial fees (we just assume Down Payment for simplicity)
-// Monthly Cash Flow available = whatever the homeownership costs are (Mortgage + Taxes/Maint).
-// To compare apples to apples, we assume the person allocates the exact same cash out of pocket each month.
-// Let M = Monthly Homeownership Cost.
-// Let R = Monthly Rent.
-// If M > R: The renter invests the difference (M - R) every month, plus they invest the Down Payment initially.
-// If R > M: The buyer invests the difference (R - M) every month.
-// However, the prompt specifically says: "若將頭期款與每月買租差額用於投資的預期報酬" meaning it's a standard Rent vs Buy calculation.
-
 function calculateRvB() {
-    // Buy Inputs
     const housePrice = getNumericValue('house-price');
     const downPct = parseFloat(document.getElementById('down-payment-pct').value) || 0;
     const mortRate = parseFloat(document.getElementById('mortgage-rate').value) || 0;
     const mortYears = parseInt(document.getElementById('mortgage-years').value) || 0;
     const houseAppr = parseFloat(document.getElementById('house-appreciation').value) || 0;
 
-    // Rent Inputs
     const initialRent = getNumericValue('monthly-rent');
     const rentInc = parseFloat(document.getElementById('rent-increase').value) || 0;
     const invReturn = parseFloat(document.getElementById('investment-return').value) || 0;
 
     const compareYears = parseInt(document.getElementById('compare-years').value) || 0;
 
-    // Derived
     const downPayment = housePrice * (downPct / 100);
     const loanAmount = housePrice - downPayment;
     const monthlyRate = (mortRate / 100) / 12;
     const totalMortMonths = mortYears * 12;
 
-    // PMT Calculation
     let monthlyMortgage = 0;
-    if (monthlyRate > 0) {
+    if (monthlyRate > 0 && totalMortMonths > 0) {
         monthlyMortgage = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalMortMonths)) / (Math.pow(1 + monthlyRate, totalMortMonths) - 1);
-    } else {
+    } else if (totalMortMonths > 0) {
         monthlyMortgage = loanAmount / totalMortMonths;
     }
 
-    // Monthly Appr & Inv Rates
     const monthlyInvRate = (invReturn / 100) / 12;
     const annualHouseApprMultiplier = 1 + (houseAppr / 100);
 
@@ -596,41 +515,29 @@ function calculateRvB() {
     let currentHouseValue = housePrice;
     let remainingLoan = loanAmount;
 
-    // Rent state
     let currentRent = initialRent;
-    let rentPortfolio = downPayment; // Renter invests the down payment immediately
+    let rentPortfolio = downPayment;
 
     for (let year = 1; year <= compareYears; year++) {
-
-        let yearlyRentCosts = 0;
-        let yearlyMortgageCosts = 0;
-
         for (let month = 1; month <= 12; month++) {
-            // Mortgage logic
             let interestPayment = remainingLoan * monthlyRate;
             let principalPayment = monthlyMortgage - interestPayment;
 
-            // If loan is paid off
+            let actualMortgageCost = 0;
             if (remainingLoan > 0) {
                 remainingLoan -= principalPayment;
+                actualMortgageCost = monthlyMortgage;
                 if(remainingLoan < 0) remainingLoan = 0;
             }
 
-            // Portfolio investment logic
-            // Monthly difference: M - R
-            let diff = monthlyMortgage - currentRent;
-            if (remainingLoan <= 0) diff = -currentRent; // If mortgage paid off, buying is cheaper by currentRent amount
+            let diff = actualMortgageCost - currentRent;
 
-            // Renter invests the difference if positive
-            // (meaning buying is more expensive, so renter saves the diff)
-            rentPortfolio *= (1 + monthlyInvRate); // Apply growth to portfolio
+            rentPortfolio *= (1 + monthlyInvRate);
             rentPortfolio += diff;
-
         }
 
-        // End of year updates
         currentHouseValue *= annualHouseApprMultiplier;
-        currentRent *= (1 + (rentInc / 100)); // Rent increases annually
+        currentRent *= (1 + (rentInc / 100));
 
         labels.push(`Year ${year}`);
         buyData.push(currentHouseValue - remainingLoan);
@@ -640,7 +547,6 @@ function calculateRvB() {
     const finalBuyNetWorth = buyData[buyData.length - 1] || 0;
     const finalRentNetWorth = rentData[rentData.length - 1] || 0;
 
-    // Update Results Board
     document.getElementById('res-buy-val').textContent = formatCurrency(finalBuyNetWorth);
     document.getElementById('res-rent-val').textContent = formatCurrency(finalRentNetWorth);
 
@@ -651,7 +557,6 @@ function calculateRvB() {
         headlineEl.textContent = t('headline-win-rent').replace('[N]', compareYears);
     }
 
-    // Update Chart
     renderChart(labels, buyData, rentData);
 }
 
@@ -702,5 +607,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTranslations();
 });
-</script></body>
+</script>
+</body>
 </html>
