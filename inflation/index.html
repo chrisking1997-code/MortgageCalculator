@@ -57,12 +57,6 @@
                     <li>
                         <a href="/compound" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-compound">複利滾存計算器</a>
                     </li>
-                            <li>
-                                <a href="/dca-calculator" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors " data-i18n="nav-dca">定期定額 / 存股複利試算</a>
-                            </li>
-                    <li>
-                        <a href="/rent-vs-buy" class="block px-4 py-2 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors" data-i18n="nav-rvb">買房 vs 租房決策試算</a>
-                    </li>
                     <li>
                         <a href="/inflation" class="block px-4 py-2 rounded-md text-slate-900 bg-slate-100 font-bold border-l-4 border-slate-800 transition-colors " data-i18n="nav-inflation">通膨與購買力試算</a>
                     </li>
@@ -188,10 +182,10 @@
                 </div>
 
             </div>
-
+        </main>
 
         <!-- Quick Needs Submission Block -->
-        <section class="bg-white py-10 border-t border-slate-200 mt-auto flex-shrink-0">
+        <section class="bg-white py-10 border-t border-slate-200 flex-shrink-0">
             <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                 <h2 class="text-2xl font-serif font-bold mb-4 text-slate-900" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>
                 <form action="/contact" method="GET" class="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto">
@@ -215,12 +209,10 @@
                 </div>
             </div>
         </footer>
-
-        </main>
-</div>
+    </div>
 
     <script>
-        // --- Sidebar Logic ---
+        /* --- Sidebar Logic --- */
         const sidebar = document.getElementById('sidebar');
         const openSidebarBtn = document.getElementById('open-sidebar');
         const closeSidebarBtn = document.getElementById('close-sidebar');
@@ -240,7 +232,7 @@
         closeSidebarBtn.addEventListener('click', closeSidebar);
         sidebarOverlay.addEventListener('click', closeSidebar);
 
-        // --- i18n Dictionary ---
+        /* --- i18n Dictionary --- */
         const i18n = {
             'zh-tw': {
                 'nav-group-tools': '實用工具',
@@ -391,7 +383,7 @@
                 myChart.destroy();
             }
 
-            Chart.defaults.color = '#64748b'; // slate-500
+            Chart.defaults.color = '#64748b'; /* slate-50 */0
             Chart.defaults.font.family = '"Inter", "Noto Sans TC", sans-serif';
 
             myChart = new Chart(ctx, {
@@ -420,10 +412,10 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: '#1e293b', // slate-800
-                            titleColor: '#f8fafc', // slate-50
-                            bodyColor: '#cbd5e1', // slate-300
-                            borderColor: '#334155', // slate-700
+                            backgroundColor: '#1e293b', /* slate-800 */
+                            titleColor: '#f8fafc', /* slate-50 */
+                            bodyColor: '#cbd5e1', /* slate-300 */
+                            borderColor: '#334155', /* slate-700 */
                             borderWidth: 1,
                             callbacks: {
                                 label: function(context) {
