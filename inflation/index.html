@@ -29,14 +29,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6136031692984392" crossorigin="anonymous"></script>
-</head>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    </head>
 <body class="bg-slate-50 text-slate-700 font-sans antialiased flex h-screen overflow-hidden">
 
     <!-- Sidebar Overlay for Mobile -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-70 z-20 hidden lg:hidden"></div>
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-slate-100 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-full">
+    <aside id="sidebar" class="bg-white w-64 flex-shrink-0 border-r border-slate-100 flex flex-col transition-transform transform -translate-x-full lg:translate-x-0 fixed inset-y-0 left-0 z-30 lg:static lg:block h-screen overflow-y-auto hide-scrollbar">
         <div class="p-6 border-b border-slate-100 flex justify-between items-center">
             <h2 class="text-2xl font-serif font-bold text-slate-900">SmartUtilBox</h2>
             <button id="close-sidebar" class="lg:hidden text-slate-400 hover:text-slate-800 focus:outline-none">
@@ -184,7 +193,33 @@
             </div>
         </main>
 
-        <!-- Quick Needs Submission Block -->
+
+            <!-- SEO & FAQ Section -->
+            <div class="mt-12 bg-white p-8 sm:p-10 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 mb-12 max-w-5xl mx-auto">
+                <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6 border-b border-slate-100 pb-3">如何對抗通膨：保護您的實質購買力</h2>
+
+                <div class="space-y-6 text-slate-700 leading-relaxed font-sans">
+                    <p>通貨膨脹 (Inflation) 是財富的隱形殺手。即使您的銀行存款帳面數字沒有減少，但隨著物價上漲，您能買到的商品與服務卻越來越少。理解並對抗通膨，是長期財務規劃中最重要的一環。</p>
+
+                    <h3 class="text-xl font-semibold text-slate-800 mt-4">什麼是「實質購買力」？</h3>
+                    <p>名目財富 (Nominal Wealth) 只是您擁有的貨幣數量，而實質購買力 (Purchasing Power) 才是您真正擁有的生活品質。當通膨率為 3% 時，您藏在保險箱裡的 100 萬元，十年後的購買力將等同於現在的 74 萬。這意味著您的購買力「蒸發」了四分之一。</p>
+                    <ul class="list-disc pl-6 space-y-2 mt-2">
+                        <li><strong>現金是最差的長期資產：</strong> 存放現金等於確定會以每年通膨率的速度貶值。</li>
+                        <li><strong>固定收益的迷思：</strong> 若定存利率低於通膨率，您的實質報酬率其實是負的。</li>
+                        <li><strong>時間效應：</strong> 通膨和複利一樣具有指數效應，時間拉長，殺傷力驚人。</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-slate-800 mt-4">利用實體資產抗通膨的策略</h3>
+                    <p>為了維持甚至提升實質購買力，我們必須將資金配置到具有「抗通膨 (Inflation Hedge)」特性的資產上。這類資產的價格與收益通常會跟著物價指數水漲船高。</p>
+                    <ul class="list-disc pl-6 space-y-2 mt-2">
+                        <li><strong>房地產與 REITs：</strong> 實體房地產的價值與租金收入通常能與通膨同步上升，是歷史上最穩健的抗通膨工具之一。</li>
+                        <li><strong>優質股票：</strong> 具有定價權的企業，能將成本上漲轉嫁給消費者，進而維持利潤與股息成長。</li>
+                        <li><strong>原物料與黃金：</strong> 在惡性通膨時期，實體大宗商品往往具有保值甚至增值的功能。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Quick Needs Submission Block -->
         <section class="bg-white py-10 border-t border-slate-200 flex-shrink-0">
             <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                 <h2 class="text-2xl font-serif font-bold mb-4 text-slate-900" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>
@@ -204,7 +239,8 @@
                     <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
                 </div>
                 <div class="space-x-4">
-                    <a href="/privacy" class="hover:text-slate-800 transition-colors" data-i18n="footer-privacy">隱私權政策</a>
+                    <a href="/privacy-policy.html" class="hover:text-slate-800 transition-colors" data-i18n="footer-privacy">隱私權政策</a>
+                        <a href="/terms.html" class="hover:text-slate-800 transition-colors" data-i18n="footer-terms">服務條款</a>
                     <a href="/blog" class="hover:text-slate-800 transition-colors" data-i18n="footer-guide">理財專欄</a>
                 </div>
             </div>
@@ -242,7 +278,7 @@
                 'title-inflation': '通膨與實質購買力計算機 | 你的存款正在縮水嗎？',
                 'nav-cat-finance': '投資與金融',
                 'nav-mortgage': '多國房貸試算中心',
-                'nav-compound': '複利滾存計算器',
+                'nav-compound': '複利滾存計算器', 'nav-dca': '定期定額 / 存股複利試算', 'nav-rvb': '買房 vs 租房決策試算',
                 'nav-exchange': '匯率換算',
                 'nav-fire': 'FIRE 提早退休試算',
                 'nav-portfolio': '投資組合 X-Ray',
@@ -267,7 +303,7 @@
 
                 'footer-cta-title': '對理財有疑問？留下一句話，讓我們開始對話。',
                 'footer-cta-btn': '開始諮詢',
-                'footer-privacy': '隱私權政策',
+                'footer-privacy': '隱私權政策', 'footer-terms': '服務條款',
                 'footer-guide': '理財專欄',
             },
             'en': {
@@ -303,7 +339,7 @@
 
                 'footer-cta-title': 'Have financial questions? Leave a message.',
                 'footer-cta-btn': 'Start Consulting',
-                'footer-privacy': 'Privacy Policy',
+                'footer-privacy': 'Privacy Policy', 'footer-terms': 'Terms of Service',
                 'footer-guide': 'Financial Blog',
             }
         };
