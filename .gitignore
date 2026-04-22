@@ -1,6 +1,1 @@
-dist/
 node_modules/
-.astro/
-legacy_html/
-legacy_src/
-*.py
