@@ -46,5 +46,54 @@ const {
             <slot />
         </main>
     </div>
+
+<script is:inline>
+const globalI18n = {
+    'zh-tw': {
+        'lead-title': '想要專屬的財務健檢報告？',
+        'lead-desc': '留下您的 Email，我們將免費寄送一份「高淨值人士必備的 5 大稅務與配置檢查清單」給您。',
+        'lead-btn': '免費領取',
+        'lead-spam': '我們保證不會發送垃圾郵件，隨時可以取消訂閱。',
+        'tool-next-title': '覺得 6% 的成長速度太慢嗎？',
+        'tool-next-desc': '了解如何將 10% 資金佈局於實體另類資產，透過絕對稀缺性與實體擔保，打造跨越週期的避險核心。',
+        'tool-next-btn1': '📊 了解實體資產配置',
+        'tool-next-btn2': '預約 1-on-1 諮詢',
+    },
+    'en': {
+        'lead-title': 'Want a personalized financial health report?',
+        'lead-desc': 'Leave your Email, and we will send you the "Top 5 Tax & Allocation Checklists for High Net Worth Individuals" for free.',
+        'lead-btn': 'Get It Free',
+        'lead-spam': 'We guarantee no spam. Unsubscribe anytime.',
+        'tool-next-title': 'Think 6% growth is too slow?',
+        'tool-next-desc': 'Learn how to allocate 10% of your funds into physical alternative assets, building a cycle-proof hedge core through absolute scarcity and physical collateral.',
+        'tool-next-btn1': '📊 Explore Real Assets',
+        'tool-next-btn2': 'Book 1-on-1 Consultation',
+    }
+};
+
+function updateGlobalTranslations() {
+    const langSelector = document.getElementById('language-selector');
+    const lang = langSelector ? langSelector.value : 'zh-tw';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (globalI18n[lang] && globalI18n[lang][key]) {
+            if (el.tagName === 'INPUT' && el.type === 'button') {
+                el.value = globalI18n[lang][key];
+            } else {
+                el.innerHTML = globalI18n[lang][key];
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const langSelector = document.getElementById('language-selector');
+    if (langSelector) {
+        langSelector.addEventListener('change', updateGlobalTranslations);
+    }
+    updateGlobalTranslations();
+});
+</script>
+
 </body>
 </html>

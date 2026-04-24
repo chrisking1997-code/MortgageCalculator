@@ -10,17 +10,17 @@ import LeadCapture from '../components/LeadCapture.astro';
         <section class="text-center py-12 md:py-20 bg-slate-900 text-white rounded-3xl shadow-xl relative overflow-hidden">
             <div class="relative z-10 px-6">
                 <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight">
-                    掌握資本流動<br />打造跨越週期的財富護城河
+                    <span data-i18n="home-hero-title">SmartUtilBox - 您的跨維度資產配置管家</span>
                 </h1>
                 <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    運用「瑞士私人銀行」級別的財務演算法，為您精準測量通膨侵蝕、房貸套利空間與高階資產 ROI。
+                    <span data-i18n="home-hero-desc">我們秉持數據驅動與實測精神，為您打造抗通膨、高稅務效益的全球資產護城河。</span>
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
                     <a href="#tools-grid" class="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-colors shadow-lg">
-                        開始免費診斷
+                        <span data-i18n="home-btn1">開始免費診斷</span>
                     </a>
                     <a href="/consulting" class="px-8 py-4 bg-transparent border-2 border-slate-500 text-white font-bold rounded-xl hover:border-white transition-colors">
-                        預約顧問諮詢
+                        <span data-i18n="home-btn2">預約顧問諮詢</span>
                     </a>
                 </div>
             </div>
@@ -32,67 +32,44 @@ import LeadCapture from '../components/LeadCapture.astro';
             </div>
         </section>
 
+
         <!-- Tools Grid (Scenario-driven) -->
         <section id="tools-grid" class="pt-8">
-            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center">解決您目前的財務痛點</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center"><span data-i18n="home-features-title">核心服務與工具</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-                <!-- Scenario 1 -->
+                <!-- Card 1 -->
                 <a href="/mortgage" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-emerald-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
-                    </div>
                     <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full mb-4">房產套利</span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-emerald-700 transition-colors">多國房貸本息計算機</h3>
-                        <p class="text-slate-600 mb-6 flex-grow">正在猶豫是否要使用寬限期？想知道提早還款能省下多少利息？輸入您的貸款條件，秒懂未來的現金流變化。</p>
+                        <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full mb-4">🏦 <span data-i18n="home-f1-tag">房產套利</span></span>
+                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-emerald-700 transition-colors"><span data-i18n="home-f1-title">多國房貸試算</span></h3>
+                        <p class="text-slate-600 mb-6 flex-grow"><span data-i18n="home-f1-desc">精準計算各國房貸本息與寬限期，秒懂未來的現金流變化與套利空間。</span></p>
                         <div class="text-sm font-bold text-slate-900 flex items-center">
-                            開始試算 <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                            <span data-i18n="home-f1-btn">開始試算</span> <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- Scenario 2 -->
-                <a href="/portfolio-roi" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-                    </div>
+                <!-- Card 2 -->
+                <a href="/compound" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
                     <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full mb-4">資產配置</span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">投資組合 X-Ray 體檢</h3>
-                        <p class="text-slate-600 mb-6 flex-grow">您的資金過度集中於單一資產嗎？上傳您的部位明細，自動繪製視覺化圓餅圖並發出高風險集中警告。</p>
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full mb-4">📈 <span data-i18n="home-f2-tag">資產增長</span></span>
+                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors"><span data-i18n="home-f2-title">複利滾存計算</span></h3>
+                        <p class="text-slate-600 mb-6 flex-grow"><span data-i18n="home-f2-desc">掌握時間的力量，預測定期定額投資的長期指數型增長。</span></p>
                         <div class="text-sm font-bold text-slate-900 flex items-center">
-                            匯入部位 <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                            <span data-i18n="home-f2-btn">計算未來</span> <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
                         </div>
                     </div>
                 </a>
 
-                <!-- Scenario 3 -->
-                <a href="/fire" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-amber-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                    </div>
+                <!-- Card 3 -->
+                <a href="/blog" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
                     <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full mb-4">提早退休</span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-amber-700 transition-colors">FIRE 財務自由計算機</h3>
-                        <p class="text-slate-600 mb-6 flex-grow">不想工作到65歲？輸入您的月花費與儲蓄率，找出您專屬的「財富自由黃金交叉年份」。</p>
+                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full mb-4">📚 <span data-i18n="home-f3-tag">知識文章</span></span>
+                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-amber-700 transition-colors"><span data-i18n="home-f3-title">理財專欄</span></h3>
+                        <p class="text-slate-600 mb-6 flex-grow"><span data-i18n="home-f3-desc">深入探討通膨防禦、提早退休與實體另類資產的配置策略。</span></p>
                         <div class="text-sm font-bold text-slate-900 flex items-center">
-                            預測未來 <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Scenario 4 -->
-                <a href="/inflation" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <svg class="w-24 h-24 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-                    </div>
-                    <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-red-100 text-red-800 text-xs font-bold rounded-full mb-4">通膨防禦</span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-red-700 transition-colors">通膨與購買力計算機</h3>
-                        <p class="text-slate-600 mb-6 flex-grow">現金是長期最危險的資產。看看在 3% 的通膨率下，您銀行裡的 1,000 萬在 10 年後實際購買力剩下多少。</p>
-                        <div class="text-sm font-bold text-slate-900 flex items-center">
-                            面對現實 <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                            <span data-i18n="home-f3-btn">閱讀更多</span> <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
                         </div>
                     </div>
                 </a>
@@ -100,8 +77,122 @@ import LeadCapture from '../components/LeadCapture.astro';
             </div>
         </section>
 
-        <!-- Lead Capture -->
+        <!-- Featured Article Section -->
+        <section class="mt-16 bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 relative">
+            <!-- Fetch content from cash-drag -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-slate-800 rounded-t-3xl"></div>
+            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center border-b pb-6 border-slate-100"><span data-i18n="home-blog-title">深度觀點：科技高薪族的隱形陷阱</span></h2>
+            <div class="prose prose-slate max-w-none text-slate-700 space-y-6">
+                <p><span data-i18n="home-blog-p1">許多在竹科、內科工作的高薪工程師都有一個共同的財務盲點：他們在職場上積極進取，但在資金管理上卻極度保守。</span></p>
+                <p><span data-i18n="home-blog-p2">當你打開網銀，看到活存帳戶裡躺著幾百萬，你可能覺得很有安全感。但在總體經濟的資本視角下，這是極度危險的配置。在金融界，這被稱為 <strong>"Cash Drag" (現金拖累)</strong>。</span></p>
+                <h3 class="text-xl font-serif font-bold text-slate-900"><span data-i18n="home-blog-h1">什麼是 Cash Drag？</span></h3>
+                <p><span data-i18n="home-blog-p3">假設你有 1,000 萬的總資產。你將 500 萬投入年化報酬率 8% 的優質美股，剩下的 500 萬放在只給 1% 活存的銀行裡。你可能覺得自己投資做得很不錯。但實際上，你整個資產組合的「加權平均報酬率」被那些現金嚴重稀釋，拖累到只剩下 4.5%。</span></p>
+                <p><span data-i18n="home-blog-p4">在長期通膨率動輒 3% 到 4% 的時代，4.5% 的報酬率意味著你只是在「原地踏步」。這完全無法產生複利的爆發力，更別提幫你達到提早退休 (FIRE) 的目標。</span></p>
+                <h3 class="text-xl font-serif font-bold text-slate-900"><span data-i18n="home-blog-h2">富人的資金處理方式</span></h3>
+                <p><span data-i18n="home-blog-p5">頂級的財富管理，絕對不允許大筆資金閒置。除了保留 6 到 12 個月的緊急預備金之外，剩下的每一分錢都必須被推上戰場。如果你擔心股市估值過高，不敢將資金全數投入股市，<strong>實體另類資產 (如名酒、高級腕錶或藝術品)</strong> 是一個極佳的資金蓄水池。它們不隨華爾街的波動起舞，卻擁有絕對的稀缺性來對抗通膨。</span></p>
+            </div>
+            <div class="mt-8 text-center">
+                <a href="/blog/cash-drag" class="text-emerald-700 font-bold hover:text-emerald-600 transition-colors"><span data-i18n="home-blog-btn">閱讀完整文章 &rarr;</span></a>
+            </div>
+        </section>
+<!-- Lead Capture -->
         <LeadCapture />
 
     </div>
 </BaseLayout>
+
+<script is:inline>
+const i18nIndex = {
+    'zh-tw': {
+        'home-hero-title': 'SmartUtilBox - 您的跨維度資產配置管家',
+        'home-hero-desc': '我們秉持數據驅動與實測精神，為您打造抗通膨、高稅務效益的全球資產護城河。',
+        'home-btn1': '開始免費診斷',
+        'home-btn2': '預約顧問諮詢',
+        'home-features-title': '核心服務與工具',
+        'home-f1-tag': '🏦 房產套利',
+        'home-f1-title': '多國房貸試算',
+        'home-f1-desc': '精準計算各國房貸本息與寬限期，秒懂未來的現金流變化與套利空間。',
+        'home-f1-btn': '開始試算',
+        'home-f2-tag': '📈 資產增長',
+        'home-f2-title': '複利滾存計算',
+        'home-f2-desc': '掌握時間的力量，預測定期定額投資的長期指數型增長。',
+        'home-f2-btn': '計算未來',
+        'home-f3-tag': '📚 知識文章',
+        'home-f3-title': '理財專欄',
+        'home-f3-desc': '深入探討通膨防禦、提早退休與實體另類資產的配置策略。',
+        'home-f3-btn': '閱讀更多',
+        'home-blog-title': '深度觀點：科技高薪族的隱形陷阱',
+        'home-blog-p1': '許多在竹科、內科工作的高薪工程師都有一個共同的財務盲點：他們在職場上積極進取，但在資金管理上卻極度保守。',
+        'home-blog-p2': '當你打開網銀，看到活存帳戶裡躺著幾百萬，你可能覺得很有安全感。但在總體經濟的資本視角下，這是極度危險的配置。在金融界，這被稱為 <strong>"Cash Drag" (現金拖累)</strong>。',
+        'home-blog-h1': '什麼是 Cash Drag？',
+        'home-blog-p3': '假設你有 1,000 萬的總資產。你將 500 萬投入年化報酬率 8% 的優質美股，剩下的 500 萬放在只給 1% 活存的銀行裡。你可能覺得自己投資做得很不錯。但實際上，你整個資產組合的「加權平均報酬率」被那些現金嚴重稀釋，拖累到只剩下 4.5%。',
+        'home-blog-p4': '在長期通膨率動輒 3% 到 4% 的時代，4.5% 的報酬率意味著你只是在「原地踏步」。這完全無法產生複利的爆發力，更別提幫你達到提早退休 (FIRE) 的目標。',
+        'home-blog-h2': '富人的資金處理方式',
+        'home-blog-p5': '頂級的財富管理，絕對不允許大筆資金閒置。除了保留 6 到 12 個月的緊急預備金之外，剩下的每一分錢都必須被推上戰場。如果你擔心股市估值過高，不敢將資金全數投入股市，<strong>實體另類資產 (如名酒、高級腕錶或藝術品)</strong> 是一個極佳的資金蓄水池。它們不隨華爾街的波動起舞，卻擁有絕對的稀缺性來對抗通膨。',
+        'home-blog-btn': '閱讀完整文章 &rarr;',
+        'lead-title': '想要專屬的財務健檢報告？',
+        'lead-desc': '留下您的 Email，我們將免費寄送一份「高淨值人士必備的 5 大稅務與配置檢查清單」給您。',
+        'lead-btn': '免費領取',
+        'lead-spam': '我們保證不會發送垃圾郵件，隨時可以取消訂閱。',
+        'tool-next-title': '覺得 6% 的成長速度太慢嗎？',
+        'tool-next-desc': '了解如何將 10% 資金佈局於實體另類資產，透過絕對稀缺性與實體擔保，打造跨越週期的避險核心。',
+        'tool-next-btn1': '📊 了解實體資產配置',
+        'tool-next-btn2': '預約 1-on-1 諮詢',
+    },
+    'en': {
+        'home-hero-title': 'SmartUtilBox - Your Cross-Dimensional Asset Allocation Manager',
+        'home-hero-desc': 'Driven by data and empirical testing, we help you build an inflation-resistant, highly tax-efficient global asset moat.',
+        'home-btn1': 'Start Free Diagnosis',
+        'home-btn2': 'Book Advisory Session',
+        'home-features-title': 'Core Services & Tools',
+        'home-f1-tag': '🏦 Property Arbitrage',
+        'home-f1-title': 'Multi-Country Mortgage',
+        'home-f1-desc': 'Accurately calculate mortgage principal and interest across different countries to understand future cash flows and arbitrage opportunities.',
+        'home-f1-btn': 'Start Calculating',
+        'home-f2-tag': '📈 Asset Growth',
+        'home-f2-title': 'Compound Interest',
+        'home-f2-desc': 'Harness the power of time and predict the long-term exponential growth of dollar-cost averaging.',
+        'home-f2-btn': 'Predict the Future',
+        'home-f3-tag': '📚 Knowledge Base',
+        'home-f3-title': 'Financial Blog',
+        'home-f3-desc': 'Deep dive into inflation defense, early retirement (FIRE), and alternative asset allocation strategies.',
+        'home-f3-btn': 'Read More',
+        'home-blog-title': 'Deep Dive: The Invisible Trap for High-Income Tech Workers',
+        'home-blog-p1': 'Many high-income engineers working in tech hubs share a common financial blind spot: they are aggressive in their careers but extremely conservative in capital management.',
+        'home-blog-p2': 'When you open your banking app and see millions sitting in your savings account, you might feel secure. But from a macroeconomic capital perspective, this is highly dangerous. In the financial world, this is known as <strong>"Cash Drag"</strong>.',
+        'home-blog-h1': 'What is Cash Drag?',
+        'home-blog-p3': 'Imagine you have 10M in total assets. You invest 5M in US stocks with an 8% annualized return and leave the remaining 5M in a bank account yielding 1%. You might think you are investing well. In reality, the "weighted average return" of your portfolio is severely diluted by the cash, dragging it down to just 4.5%.',
+        'home-blog-p4': 'In an era where long-term inflation easily hits 3% to 4%, a 4.5% return means you are "treading water." It entirely fails to generate the explosive power of compound interest, let alone help you achieve FIRE.',
+        'home-blog-h2': 'How the Wealthy Manage Cash',
+        'home-blog-p5': 'Top-tier wealth management never allows large sums to sit idle. Aside from a 6-12 month emergency fund, every remaining cent must go to work. If you fear an overvalued stock market, <strong>Alternative Real Assets (like fine wine, luxury watches, or art)</strong> act as excellent capital reservoirs. They do not dance to Wall Street’s tune, yet offer absolute scarcity to combat inflation.',
+        'home-blog-btn': 'Read Full Article &rarr;',
+        'lead-title': 'Want a personalized financial health report?',
+        'lead-desc': 'Leave your Email, and we will send you the "Top 5 Tax & Allocation Checklists for High Net Worth Individuals" for free.',
+        'lead-btn': 'Get It Free',
+        'lead-spam': 'We guarantee no spam. Unsubscribe anytime.',
+        'tool-next-title': 'Think 6% growth is too slow?',
+        'tool-next-desc': 'Learn how to allocate 10% of your funds into physical alternative assets, building a cycle-proof hedge core through absolute scarcity and physical collateral.',
+        'tool-next-btn1': '📊 Explore Real Assets',
+        'tool-next-btn2': 'Book 1-on-1 Consultation',
+    }
+};
+
+function updateTranslationsIndex() {
+    const langSelector = document.getElementById('language-selector');
+    const lang = langSelector ? langSelector.value : 'zh-tw';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nIndex[lang] && i18nIndex[lang][key]) {
+            el.innerHTML = i18nIndex[lang][key];
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const langSelector = document.getElementById('language-selector');
+    if (langSelector) {
+        langSelector.addEventListener('change', updateTranslationsIndex);
+    }
+    updateTranslationsIndex();
+});
+</script>

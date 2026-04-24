@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="1對1高階財務顧問諮詢 | SmartUtilBox" currentPath="/consulting" headerTitle="預約顧問服務">
+    <div class="px-4 py-8 max-w-7xl mx-auto space-y-12">
+        <!-- Hero Section -->
+        <section class="bg-white rounded-2xl p-10 lg:p-16 shadow-lg shadow-slate-200/50 border border-slate-100 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-slate-800 to-slate-600"></div>
+            <h1 class="text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-6" data-i18n="consult-hero-title">您的私人專屬財務策略師</h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed" data-i18n="consult-hero-desc">
+                我們協助高淨值專業人士、企業主與海外資產持有者，量身打造抗通膨、高稅務效益的全球資產護城河。
+            </p>
+        </section>
+
+        <!-- Service Tiers -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Tier 1 -->
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-md hover:shadow-xl transition-shadow relative">
+                <h3 class="text-2xl font-serif text-slate-900 mb-4 border-b border-slate-100 pb-4"><span data-i18n="consult-tier1-title">房貸與現金流診斷</span><br><span class="text-lg text-emerald-600 font-sans">Mortgage Checkup</span></h3>
+                <p class="text-slate-600 mb-6 min-h-[80px]" data-i18n="consult-tier1-desc">針對您目前的房貸利率、寬限期與現金流狀況，進行深度套利與轉貸評估。</p>
+                <div class="text-3xl font-bold text-slate-900 mb-6">NT$ 3,000 <span class="text-sm font-normal text-slate-500" data-i18n="consult-tier1-price">/ 45分鐘</span></div>
+                <a href="/contact?service=mortgage" class="block text-center py-3 px-6 bg-slate-50 hover:bg-slate-100 border-2 border-slate-200 text-slate-900 rounded-xl font-medium transition-colors" data-i18n="consult-btn">立即預約</a>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="bg-slate-900 rounded-2xl p-8 border border-slate-800 shadow-xl transform md:-translate-y-4 relative">
+                <div class="absolute top-0 right-0 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-xl" data-i18n="consult-popular">最受歡迎</div>
+                <h3 class="text-2xl font-serif text-white mb-4 border-b border-slate-700 pb-4"><span data-i18n="consult-tier2-title">FIRE 提早退休藍圖</span><br><span class="text-lg text-amber-400 font-sans">FIRE Diagnosis</span></h3>
+                <p class="text-slate-300 mb-6 min-h-[80px]" data-i18n="consult-tier2-desc">盤點現有資產與儲蓄率，運用蒙地卡羅模擬，精準計算您的提早退休安全邊際。</p>
+                <div class="text-3xl font-bold text-white mb-6">NT$ 6,000 <span class="text-sm font-normal text-slate-400" data-i18n="consult-tier2-price">/ 90分鐘</span></div>
+                <a href="/contact?service=fire" class="block text-center py-3 px-6 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-xl font-bold transition-colors" data-i18n="consult-btn">立即預約</a>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="bg-white rounded-2xl p-8 border border-slate-100 shadow-md hover:shadow-xl transition-shadow relative">
+                <h3 class="text-2xl font-serif text-slate-900 mb-4 border-b border-slate-100 pb-4"><span data-i18n="consult-tier3-title">高階資產 X-Ray 體檢</span><br><span class="text-lg text-blue-600 font-sans">Portfolio X-Ray</span></h3>
+                <p class="text-slate-600 mb-6 min-h-[80px]" data-i18n="consult-tier3-desc">跨國資產、另類實體投資與傳統股債的相關性壓力測試，打造抗脆弱核心。</p>
+                <div class="text-3xl font-bold text-slate-900 mb-6">NT$ 12,000 <span class="text-sm font-normal text-slate-500" data-i18n="consult-tier3-price">/ 120分鐘</span></div>
+                <a href="/contact?service=portfolio" class="block text-center py-3 px-6 bg-slate-50 hover:bg-slate-100 border-2 border-slate-200 text-slate-900 rounded-xl font-medium transition-colors" data-i18n="consult-btn">立即預約</a>
+            </div>
+        </section>
+
+        <!-- Trust & Flow -->
+        <section class="bg-slate-50 rounded-2xl p-10 border border-slate-200">
+            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center" data-i18n="consult-flow-title">我們的服務流程</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                <div>
+                    <div class="w-16 h-16 mx-auto bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
+                    <h4 class="font-bold text-slate-900 mb-2" data-i18n="consult-flow1-title">線上預約</h4>
+                    <p class="text-sm text-slate-600" data-i18n="consult-flow1-desc">選擇適合您的方案並填寫初步問卷</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 mx-auto bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
+                    <h4 class="font-bold text-slate-900 mb-2" data-i18n="consult-flow2-title">資料彙整</h4>
+                    <p class="text-sm text-slate-600" data-i18n="consult-flow2-desc">提供現有資產明細以供顧問提前分析</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 mx-auto bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
+                    <h4 class="font-bold text-slate-900 mb-2" data-i18n="consult-flow3-title">深度對談</h4>
+                    <p class="text-sm text-slate-600" data-i18n="consult-flow3-desc">1對1線上視訊，直擊財務盲點</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 mx-auto bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">4</div>
+                    <h4 class="font-bold text-slate-900 mb-2" data-i18n="consult-flow4-title">執行報告</h4>
+                    <p class="text-sm text-slate-600" data-i18n="consult-flow4-desc">會後提供專屬的策略執行清單 (Action Plan)</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+<script is:inline>
+const i18nConsulting = {
+    'zh-tw': {
+        'consult-hero-title': '您的私人專屬財務策略師',
+        'consult-hero-desc': '我們協助高淨值專業人士、企業主與海外資產持有者，量身打造抗通膨、高稅務效益的全球資產護城河。',
+        'consult-tier1-title': '房貸與現金流診斷',
+        'consult-tier1-desc': '針對您目前的房貸利率、寬限期與現金流狀況，進行深度套利與轉貸評估。',
+        'consult-tier1-price': '/ 45分鐘',
+        'consult-tier2-title': 'FIRE 提早退休藍圖',
+        'consult-tier2-desc': '盤點現有資產與儲蓄率，運用蒙地卡羅模擬，精準計算您的提早退休安全邊際。',
+        'consult-tier2-price': '/ 90分鐘',
+        'consult-tier3-title': '高階資產 X-Ray 體檢',
+        'consult-tier3-desc': '跨國資產、另類實體投資與傳統股債的相關性壓力測試，打造抗脆弱核心。',
+        'consult-tier3-price': '/ 120分鐘',
+        'consult-btn': '立即預約',
+        'consult-popular': '最受歡迎',
+        'consult-flow-title': '我們的服務流程',
+        'consult-flow1-title': '線上預約',
+        'consult-flow1-desc': '選擇適合您的方案並填寫初步問卷',
+        'consult-flow2-title': '資料彙整',
+        'consult-flow2-desc': '提供現有資產明細以供顧問提前分析',
+        'consult-flow3-title': '深度對談',
+        'consult-flow3-desc': '1對1線上視訊，直擊財務盲點',
+        'consult-flow4-title': '執行報告',
+        'consult-flow4-desc': '會後提供專屬的策略執行清單 (Action Plan)',
+    },
+    'en': {
+        'consult-hero-title': 'Your Private Financial Strategist',
+        'consult-hero-desc': 'We help high-net-worth professionals, business owners, and overseas asset holders build inflation-resistant, tax-efficient global asset moats.',
+        'consult-tier1-title': 'Mortgage & Cash Flow Checkup',
+        'consult-tier1-desc': 'Deep arbitrage and refinancing evaluation based on your current mortgage rates, grace periods, and cash flow.',
+        'consult-tier1-price': '/ 45 mins',
+        'consult-tier2-title': 'FIRE Retirement Blueprint',
+        'consult-tier2-desc': 'Audit current assets and savings rate, using Monte Carlo simulations to precisely calculate your early retirement margin of safety.',
+        'consult-tier2-price': '/ 90 mins',
+        'consult-tier3-title': 'Premium Portfolio X-Ray',
+        'consult-tier3-desc': 'Stress testing the correlation between cross-border assets, alternative investments, and traditional stocks/bonds to build an antifragile core.',
+        'consult-tier3-price': '/ 120 mins',
+        'consult-btn': 'Book Now',
+        'consult-popular': 'Most Popular',
+        'consult-flow-title': 'Our Service Flow',
+        'consult-flow1-title': 'Online Booking',
+        'consult-flow1-desc': 'Select your plan and complete the initial questionnaire',
+        'consult-flow2-title': 'Data Collection',
+        'consult-flow2-desc': 'Provide asset details for early advisor analysis',
+        'consult-flow3-title': 'Deep Dive',
+        'consult-flow3-desc': '1-on-1 video call targeting financial blind spots',
+        'consult-flow4-title': 'Action Plan',
+        'consult-flow4-desc': 'Receive an exclusive strategic execution checklist after the meeting',
+    }
+};
+
+function updateTranslations() {
+    const langSelector = document.getElementById('language-selector');
+    const lang = langSelector ? langSelector.value : 'zh-tw';
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nConsulting[lang] && i18nConsulting[lang][key]) {
+            el.innerHTML = i18nConsulting[lang][key];
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const langSelector = document.getElementById('language-selector');
+    if (langSelector) {
+        langSelector.addEventListener('change', updateTranslations);
+    }
+    updateTranslations();
+});
+</script>
