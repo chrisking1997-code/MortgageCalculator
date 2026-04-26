@@ -177,20 +177,6 @@ const translations = {
 
         'currency': 'TWD',
         'locale': 'zh-TW',
-        'footer-privacy': '隱私權政策', 'footer-terms': '服務條款',
-        'nav-guide': '理財專欄',
-        'nav-group-tools': '實用工具',
-        'nav-group-diag': '深度財務診斷',
-        'nav-group-services': '顧問與服務',
-        'nav-exchange': '匯率換算',
-        'nav-mortgage': '多國房貸試算中心',
-        'nav-compound': '複利滾存計算器',
-        'nav-dca': '定期定額 / 存股複利試算',
-        'nav-rvb': '買房 vs 租房決策試算',
-        'nav-fire': 'FIRE 提早退休試算',
-        'nav-portfolio': '投資組合 X-Ray',
-        'nav-coaching': '一對一教練服務',
-        'nav-contact': '聯繫顧問'
     },
     'en': {
         'doc-title': 'Rent vs Buy Calculator | SmartUtilBox',
@@ -227,20 +213,6 @@ const translations = {
 
         'currency': 'USD',
         'locale': 'en-US',
-        'footer-privacy': 'Privacy Policy', 'footer-terms': 'Terms of Service',
-        'nav-guide': 'Financial Blog',
-        'nav-group-tools': 'Tools',
-        'nav-group-diag': 'Financial Diagnosis',
-        'nav-group-services': 'Advisory & Services',
-        'nav-exchange': 'Exchange Rates',
-        'nav-mortgage': 'Mortgage Calculator',
-        'nav-compound': 'Compound Calculator',
-        'nav-dca': 'DCA Calculator',
-        'nav-rvb': 'Rent vs Buy Calculator',
-        'nav-fire': 'FIRE Calculator',
-        'nav-portfolio': 'Portfolio X-Ray',
-        'nav-coaching': '1-on-1 Coaching',
-        'nav-contact': 'Contact Advisor'
     }
 };
 
@@ -460,7 +432,7 @@ function calculateRvB() {
 function updateTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[getLang()][key] !== undefined) {
+        if (translations[getLang()] && translations[getLang()][key] !== undefined) {
             el.textContent = translations[getLang()][key];
         }
     });
