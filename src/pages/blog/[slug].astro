@@ -53,17 +53,15 @@ const { Content } = await render(entry);
             const currentPath = window.location.pathname;
             let newPath = currentPath;
 
-
             // It's a blog post path like /blog/cash-drag/ or /blog/en-cash-drag/
-            const parts = currentPath.split('/').filter(Boolean);
-            const slug = parts[parts.length - 1]; // The last part is the slug
+            const parts = currentPath.split('/');
+            const slug = parts[parts.length - 2] || parts[parts.length - 1]; // handle trailing slash
 
             if (newLang === 'en' && !slug.startsWith('en-')) {
                 newPath = currentPath.replace(slug, 'en-' + slug);
             } else if (newLang === 'zh-tw' && slug.startsWith('en-')) {
                 newPath = currentPath.replace(slug, slug.replace('en-', ''));
             }
-
 
             window.location.href = newPath;
         });
