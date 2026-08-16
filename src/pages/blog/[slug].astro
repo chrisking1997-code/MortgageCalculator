@@ -13,7 +13,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<BaseLayout title={`${entry.data.title} | SmartUtilBox`} description={entry.data.description} currentPath="/blog" headerTitle="理財專欄">
+<BaseLayout title={`${entry.data.title} | SmartUtilBox`} description={entry.data.description} currentPath="/blog" headerTitle="理財專欄" noindex={entry.data.draft}>
   <article class="bg-white p-8 lg:p-12 rounded-xl shadow-lg shadow-slate-200/50 border border-slate-100 max-w-4xl mx-auto text-slate-800 border-t-4 border-emerald-600 mt-8 lg:mt-12 mb-8">
 
       <a href="/blog" class="inline-flex items-center mb-8 px-4 py-2 bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-slate-900 rounded-full text-sm font-medium transition-all group border border-slate-200">
@@ -25,7 +25,7 @@ const { Content } = await render(entry);
           {entry.data.title}
       </h1>
       <div class="flex items-center text-sm text-slate-500 mb-8 border-b pb-4 border-slate-100">
-          <span class="mr-4"><span data-i18n="blog-date">發布日期：</span>{entry.data.pubDate.toISOString().slice(0, 10)}</span>
+          <span class="mr-4">作者：<a href="/about" class="text-emerald-700 hover:underline">老K</a> ｜ <span data-i18n="blog-date">發布日期：</span>{entry.data.pubDate.toISOString().slice(0, 10)}</span>
       </div>
       <div class="prose prose-slate prose-lg max-w-prose mx-auto leading-relaxed prose-p:mb-6 prose-headings:text-slate-900 prose-a:text-emerald-700 prose-a:font-semibold hover:prose-a:underline prose-h2:mt-12 prose-h2:mb-4 prose-h3:mt-8 prose-h3:mb-3 prose-blockquote:border-l-4 prose-blockquote:border-emerald-600 prose-blockquote:bg-slate-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:italic prose-blockquote:text-slate-700">
           <Content />
@@ -40,7 +40,7 @@ const { Content } = await render(entry);
           </div>
           <div class="space-x-4">
               <a href="/privacy-policy" class="text-slate-500 hover:text-slate-800 underline">隱私權政策</a>
-              <a href="/terms" class="text-slate-500 hover:text-slate-800 underline">服務條款</a>
+              <a href="/about" class="text-slate-500 hover:text-slate-800 underline" data-i18n="footer-about">關於</a> <a href="/disclaimer" class="text-slate-500 hover:text-slate-800 underline" data-i18n="footer-disclaimer">免責聲明</a> <a href="/terms" class="text-slate-500 hover:text-slate-800 underline" class="text-slate-500 hover:text-slate-800 underline">服務條款</a>
           </div>
       </div>
   </footer>

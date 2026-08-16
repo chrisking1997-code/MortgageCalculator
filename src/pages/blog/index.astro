@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const allPosts = await getCollection('blog');
-allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const filteredPosts = allPosts.filter(post => !post.data.draft);
+filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout title="財富實驗室專欄 (Insights & Research) | SmartUtilBox" currentPath="/blog" headerTitle="SmartUtilBox 理財專欄">
@@ -14,7 +15,7 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
       </div>
 
       <div class="grid gap-8">
-        {allPosts.map((post) => (
+        {filteredPosts.map((post) => (
           <article class="bg-white p-8 rounded-lg shadow-md max-w-none text-slate-800 space-y-4 flex flex-col transition-shadow hover:shadow-lg">
             <a href={`/blog/${post.id}`} class="hover:text-emerald-700 transition-colors">
               <h2 class="text-2xl font-serif font-bold text-slate-900 mb-2">{post.data.title}</h2>
@@ -51,7 +52,7 @@ allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
               </div>
               <div class="space-x-4">
                   <a href="/privacy-policy" class="text-slate-500 hover:text-slate-800 underline">隱私權政策</a>
-                  <a href="/terms" class="text-slate-500 hover:text-slate-800 underline">服務條款</a>
+                  <a href="/about" class="text-slate-500 hover:text-slate-800 underline" data-i18n="footer-about">關於</a> <a href="/disclaimer" class="text-slate-500 hover:text-slate-800 underline" data-i18n="footer-disclaimer">免責聲明</a> <a href="/terms" class="text-slate-500 hover:text-slate-800 underline" class="text-slate-500 hover:text-slate-800 underline">服務條款</a>
               </div>
           </div>
       </footer>
