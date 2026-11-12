@@ -1,0 +1,51 @@
+---
+/**
+ * Explanatory content shown under each calculator: how it works, a worked example
+ * and an FAQ. Also emits FAQPage structured data.
+ */
+interface Faq { q: string; a: string }
+interface Props {
+  title: string;
+  faqs?: Faq[];
+}
+const { title, faqs = [] } = Astro.props;
+const faqLd = faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+---
+<section class="max-w-4xl mx-auto mt-12 bg-white rounded-2xl border border-slate-100 shadow-md p-6 sm:p-10" lang="zh-TW">
+    <div class="prose prose-slate max-w-none prose-headings:font-serif prose-h2:text-2xl prose-h3:text-lg prose-a:text-emerald-700">
+        <h2>{title}</h2>
+        <slot />
+    </div>
+
+    {faqs.length > 0 && (
+        <div class="mt-10">
+            <h2 class="text-2xl font-serif font-bold text-slate-900 mb-4">常見問題</h2>
+            <div class="divide-y divide-slate-100 border-y border-slate-100">
+                {faqs.map((f) => (
+                    <details class="group py-4">
+                        <summary class="cursor-pointer list-none flex justify-between items-start gap-4 font-semibold text-slate-900">
+                            <span>{f.q}</span>
+                            <span class="text-slate-400 group-open:rotate-45 transition-transform text-xl leading-none" aria-hidden="true">+</span>
+                        </summary>
+                        <p class="mt-3 text-slate-600 leading-relaxed">{f.a}</p>
+                    </details>
+                ))}
+            </div>
+        </div>
+    )}
+
+    <p class="mt-8 text-xs text-slate-500 leading-relaxed">
+        試算結果僅供參考，依你輸入的假設計算，不代表實際貸款條件或未來投資報酬，也不構成任何投資建議。
+    </p>
+    {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
+</section>

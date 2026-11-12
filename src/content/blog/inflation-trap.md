@@ -15,6 +15,6 @@ pubDate: 2026-06-15
 
 要打破這個迴圈，你必須強迫自己把部份現金轉換成「能跟著通膨膨脹的實體資產」或「能產生現金流的金融資產」。
 
-<div class="mt-10 text-center">
+<div class="not-prose mt-10 text-center">
     <a href="/inflation" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md border border-slate-800">計算你的實質購買力</a>
 </div>

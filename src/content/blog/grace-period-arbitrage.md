@@ -11,6 +11,6 @@ pubDate: 2026-04-10
 
 然而，這一切的前提在於「絕對的紀律」。如果你將寬限期省下的錢拿去買車、出國旅遊，那麼五年後暴增的房貸本息，將會成為壓垮家庭財務的毒藥。
 
-<div class="mt-10 text-center">
-    <a href="/" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md border border-slate-800">前往多國房貸試算</a>
+<div class="not-prose mt-10 text-center">
+    <a href="/mortgage" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md border border-slate-800">前往多國房貸試算</a>
 </div>

@@ -1,107 +1,90 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LeadCapture from '../components/LeadCapture.astro';
+
+const tools = [
+  { href: '/mortgage', icon: '🏦', key: 'mortgage', title: '多國房貸試算', desc: '台灣寬限期、美國提前還款、英國蜜月期轉 SVR，算出月付金、總利息與還款明細。' },
+  { href: '/rent-vs-buy', icon: '🏠', key: 'rvb', title: '買房 vs 租房', desc: '比較買房與「租房＋投資頭期款」在數年後的淨資產差距。' },
+  { href: '/compound', icon: '📈', key: 'compound', title: '複利滾存計算', desc: '本金加每月投入，逐年看見複利如何放大資產。' },
+  { href: '/dca-calculator', icon: '🗓️', key: 'dca', title: '定期定額 / 存股', desc: '試算長期定期定額投入 ETF 或存股的本金與收益變化。' },
+  { href: '/inflation', icon: '🛡️', key: 'inflation', title: '通膨購買力', desc: '你的存款在 10 年、20 年後還剩多少實質購買力？' },
+  { href: '/fire', icon: '🔥', key: 'fire', title: 'FIRE 提早退休', desc: '用 4% 法則估算財務自由目標，比較不同報酬率下的退休年齡。' },
+  { href: '/portfolio-roi', icon: '🧮', key: 'portfolio', title: '投資組合加權報酬', desc: '計算資產佔比與加權報酬率，看出閒置現金的拖累。' },
+  { href: '/exchange', icon: '💱', key: 'exchange', title: '匯率換算', desc: '主要貨幣即時匯率換算，出國與跨國匯款前先算一下。' },
+];
+
+const posts = (await getCollection('blog'))
+  .filter((p) => !p.id.startsWith('en-'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
 ---
 
 <BaseLayout
     title="SmartUtilBox｜免費理財試算工具：房貸、複利、通膨、FIRE"
     description="免費線上理財試算工具箱：多國房貸、複利滾存、定期定額、買房 vs 租房、通膨購買力、FIRE 提早退休與投資組合分析。所有計算在瀏覽器本地完成。"
     currentPath="/"
-    headerTitle="SmartUtilBox"
+    jsonLd={{ "@context": "https://schema.org", "@type": "WebSite", "name": "SmartUtilBox", "inLanguage": "zh-TW" }}
 >
-    <div class="px-4 py-8 max-w-7xl mx-auto space-y-12">
+    <div class="px-2 sm:px-4 py-6 max-w-6xl mx-auto space-y-14">
 
-        <!-- Hero Section -->
-        <section class="text-center py-12 md:py-20 bg-slate-900 text-white rounded-3xl shadow-xl relative overflow-hidden">
-            <div class="relative z-10 px-6">
-                <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 leading-tight">
-                    <span data-i18n="home-hero-title">SmartUtilBox - 您的跨維度資產配置管家</span>
-                </h1>
-                <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-                    <span data-i18n="home-hero-desc">我們秉持數據驅動與實測精神，為您打造抗通膨、高稅務效益的全球資產護城河。</span>
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#tools-grid" class="px-8 py-4 bg-white text-slate-900 font-bold rounded-xl hover:bg-slate-100 transition-colors shadow-lg">
-                        <span data-i18n="home-btn1">開始免費診斷</span>
+        <section class="text-center py-12 md:py-16 bg-slate-900 text-white rounded-3xl shadow-xl px-6">
+            <h1 class="text-3xl md:text-5xl font-serif font-bold mb-5 leading-tight">
+                <span data-i18n="home-hero-title">買房、存錢、退休，先把數字算清楚</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                <span data-i18n="home-hero-desc">免費、免註冊的理財試算工具。你輸入的數字只在自己的瀏覽器裡計算，不會上傳。</span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/mortgage" class="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-colors"><span data-i18n="home-btn1">開始房貸試算</span></a>
+                <a href="/blog" class="px-8 py-4 bg-transparent border-2 border-slate-600 text-white rounded-xl font-bold hover:bg-slate-800 transition-colors"><span data-i18n="home-btn2">閱讀理財專欄</span></a>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-6 text-center"><span data-i18n="home-tools-title">所有試算工具</span></h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {tools.map((t) => (
+                    <a href={t.href} class="group bg-white rounded-2xl p-6 border border-slate-100 shadow-md hover:shadow-lg hover:border-slate-300 transition-all flex flex-col">
+                        <span class="text-3xl mb-3" aria-hidden="true">{t.icon}</span>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-emerald-700"><span data-i18n={`home-tool-${t.key}-title`}>{t.title}</span></h3>
+                        <p class="text-sm text-slate-600 flex-grow"><span data-i18n={`home-tool-${t.key}-desc`}>{t.desc}</span></p>
                     </a>
-                    <a href="/consulting" class="px-8 py-4 bg-transparent border-2 border-slate-500 text-white font-bold rounded-xl hover:border-white transition-colors">
-                        <span data-i18n="home-btn2">預約顧問諮詢</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Abstract background shapes -->
-            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                <div class="absolute -top-24 -left-24 w-96 h-96 bg-slate-800 rounded-full opacity-50 blur-3xl"></div>
-                <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-emerald-900/20 rounded-tl-full blur-3xl"></div>
+                ))}
             </div>
         </section>
 
+        <section class="bg-white rounded-3xl p-6 md:p-10 shadow-md border border-slate-100">
+            <h2 class="text-2xl font-serif font-bold text-slate-900 mb-6"><span data-i18n="home-posts-title">最新文章</span></h2>
+            <ul class="divide-y divide-slate-100">
+                {posts.map((p) => (
+                    <li class="py-4">
+                        <a href={`/blog/${p.id}/`} class="block group">
+                            <p class="text-xs text-slate-400 mb-1">{p.data.pubDate.toISOString().slice(0, 10)}</p>
+                            <h3 class="font-bold text-slate-900 group-hover:text-emerald-700">{p.data.title}</h3>
+                            <p class="text-sm text-slate-600 mt-1 line-clamp-2">{p.data.description}</p>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+            <a href="/blog" class="inline-block mt-4 text-emerald-700 font-bold hover:text-emerald-600"><span data-i18n="home-posts-more">看全部文章 →</span></a>
+        </section>
 
-        <!-- Tools Grid (Scenario-driven) -->
-        <section id="tools-grid" class="pt-8">
-            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center"><span data-i18n="home-features-title">核心服務與工具</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Card 1 -->
-                <a href="/mortgage" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full mb-4">🏦 <span data-i18n="home-f1-tag">房產套利</span></span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-emerald-700 transition-colors"><span data-i18n="home-f1-title">多國房貸試算</span></h3>
-                        <p class="text-slate-600 mb-6 flex-grow"><span data-i18n="home-f1-desc">精準計算各國房貸本息與寬限期，秒懂未來的現金流變化與套利空間。</span></p>
-                        <div class="text-sm font-bold text-slate-900 flex items-center">
-                            <span data-i18n="home-f1-btn">開始試算</span> <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 2 -->
-                <a href="/compound" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full mb-4">📈 <span data-i18n="home-f2-tag">資產增長</span></span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors"><span data-i18n="home-f2-title">複利滾存計算</span></h3>
-                        <p class="text-slate-600 mb-6 flex-grow"><span data-i18n="home-f2-desc">掌握時間的力量，預測定期定額投資的長期指數型增長。</span></p>
-                        <div class="text-sm font-bold text-slate-900 flex items-center">
-                            <span data-i18n="home-f2-btn">計算未來</span> <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Card 3 -->
-                <a href="/blog" class="group bg-white rounded-2xl p-8 border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col h-full relative overflow-hidden">
-                    <div class="relative z-10">
-                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full mb-4">📚 <span data-i18n="home-f3-tag">知識文章</span></span>
-                        <h3 class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-amber-700 transition-colors"><span data-i18n="home-f3-title">理財專欄</span></h3>
-                        <p class="text-slate-600 mb-6 flex-grow"><span data-i18n="home-f3-desc">深入探討通膨防禦、提早退休與實體另類資產的配置策略。</span></p>
-                        <div class="text-sm font-bold text-slate-900 flex items-center">
-                            <span data-i18n="home-f3-btn">閱讀更多</span> <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                        </div>
-                    </div>
-                </a>
-
+        <section class="grid md:grid-cols-3 gap-6 text-sm text-slate-600">
+            <div class="bg-white rounded-2xl p-6 border border-slate-100">
+                <h2 class="font-bold text-slate-900 mb-2 text-base"><span data-i18n="home-why1-title">計算在你的裝置上完成</span></h2>
+                <p><span data-i18n="home-why1-desc">試算工具不需要登入，輸入的金額不會傳到我們的伺服器。</span></p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100">
+                <h2 class="font-bold text-slate-900 mb-2 text-base"><span data-i18n="home-why2-title">公式公開透明</span></h2>
+                <p><span data-i18n="home-why2-desc">每個工具頁都說明計算方式與假設，方便你自行驗算。</span></p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 border border-slate-100">
+                <h2 class="font-bold text-slate-900 mb-2 text-base"><span data-i18n="home-why3-title">工具，而不是推銷</span></h2>
+                <p><span data-i18n="home-why3-desc">本站內容僅供教育參考，不推薦特定金融商品。<a href="/about" class="underline">了解本站</a></span></p>
             </div>
         </section>
 
-        <!-- Featured Article Section -->
-        <section class="mt-16 bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 relative">
-            <!-- Fetch content from cash-drag -->
-            <div class="absolute top-0 left-0 w-full h-1 bg-slate-800 rounded-t-3xl"></div>
-            <h2 class="text-3xl font-serif font-bold text-slate-900 mb-8 text-center border-b pb-6 border-slate-100"><span data-i18n="home-blog-title">深度觀點：科技高薪族的隱形陷阱</span></h2>
-            <div class="prose prose-slate max-w-none text-slate-700 space-y-6">
-                <p><span data-i18n="home-blog-p1">許多在竹科、內科工作的高薪工程師都有一個共同的財務盲點：他們在職場上積極進取，但在資金管理上卻極度保守。</span></p>
-                <p><span data-i18n="home-blog-p2">當你打開網銀，看到活存帳戶裡躺著幾百萬，你可能覺得很有安全感。但在總體經濟的資本視角下，這是極度危險的配置。在金融界，這被稱為 <strong>"Cash Drag" (現金拖累)</strong>。</span></p>
-                <h3 class="text-xl font-serif font-bold text-slate-900"><span data-i18n="home-blog-h1">什麼是 Cash Drag？</span></h3>
-                <p><span data-i18n="home-blog-p3">假設你有 1,000 萬的總資產。你將 500 萬投入年化報酬率 8% 的優質美股，剩下的 500 萬放在只給 1% 活存的銀行裡。你可能覺得自己投資做得很不錯。但實際上，你整個資產組合的「加權平均報酬率」被那些現金嚴重稀釋，拖累到只剩下 4.5%。</span></p>
-                <p><span data-i18n="home-blog-p4">在長期通膨率動輒 3% 到 4% 的時代，4.5% 的報酬率意味著你只是在「原地踏步」。這完全無法產生複利的爆發力，更別提幫你達到提早退休 (FIRE) 的目標。</span></p>
-                <h3 class="text-xl font-serif font-bold text-slate-900"><span data-i18n="home-blog-h2">富人的資金處理方式</span></h3>
-                <p><span data-i18n="home-blog-p5">頂級的財富管理，絕對不允許大筆資金閒置。除了保留 6 到 12 個月的緊急預備金之外，剩下的每一分錢都必須被推上戰場。如果你擔心股市估值過高，不敢將資金全數投入股市，<strong>實體另類資產 (如名酒、高級腕錶或藝術品)</strong> 是一個極佳的資金蓄水池。它們不隨華爾街的波動起舞，卻擁有絕對的稀缺性來對抗通膨。</span></p>
-            </div>
-            <div class="mt-8 text-center">
-                <a href="/blog/cash-drag" class="text-emerald-700 font-bold hover:text-emerald-600 transition-colors"><span data-i18n="home-blog-btn">閱讀完整文章 &rarr;</span></a>
-            </div>
-        </section>
-<!-- Lead Capture -->
         <LeadCapture />
-
     </div>
 </BaseLayout>

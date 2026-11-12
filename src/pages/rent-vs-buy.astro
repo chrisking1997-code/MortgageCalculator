@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import RentVsBuyGuide from '../components/guides/RentVsBuyGuide.astro';
 import ChartLib from '../components/ChartLib.astro';
 ---
 <BaseLayout
@@ -125,13 +126,14 @@ import ChartLib from '../components/ChartLib.astro';
                             <div class="flex-1">
                                 <p class="text-lg font-serif" data-i18n="cta-text">無論買房或租房，您都需要強大的現金流與資產配置。預約 15 分鐘財務健檢，或先使用我們的投資組合 X-Ray。</p>
                             </div>
-                            <a href="/portfolio-visualizer.html" class="whitespace-nowrap px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-colors shadow-lg shadow-emerald-600/30" data-i18n="cta-btn">前往投資組合 X-Ray</a>
+                            <a href="/portfolio-roi" class="whitespace-nowrap px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-colors shadow-lg shadow-emerald-600/30" data-i18n="cta-btn">前往投資組合 X-Ray</a>
                         </div>
                     </section>
                 </div>
             </div>
 
 
+    <RentVsBuyGuide />
     </div>
 </BaseLayout>
 

@@ -18,6 +18,6 @@ pubDate: 2026-06-01
 
 **結論：**另類投資很好玩，也可以抗通膨，但它不該是你資產配置的主力。投資玩具，最大的價值還是它帶給你的快樂。
 
-<div class="mt-10 text-center">
+<div class="not-prose mt-10 text-center">
     <a href="/dca-calculator" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md border border-slate-800">試試定期定額與投資比較</a>
 </div>

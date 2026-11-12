@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import DcaGuide from '../components/guides/DcaGuide.astro';
 import ChartLib from '../components/ChartLib.astro';
 ---
 <BaseLayout
@@ -68,9 +69,9 @@ import ChartLib from '../components/ChartLib.astro';
 
                         <div class="bg-slate-900 text-white p-8 rounded-2xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
                             <div class="flex-1">
-                                <p class="text-lg font-serif" data-i18n="cta-text">覺得 6% 的成長速度太慢嗎？了解如何將 10% 資金佈局於實體另類資產。</p>
+                                <p class="text-lg font-serif" data-i18n="cta-text">想知道通膨會吃掉多少成果？用通膨計算機換算成今天的購買力。</p>
                             </div>
-                            <a href="/portfolio-visualizer.html" class="whitespace-nowrap px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-colors shadow-lg shadow-emerald-600/30" data-i18n="cta-btn">了解進階配置</a>
+                            <a href="/inflation" class="whitespace-nowrap px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-medium transition-colors shadow-lg shadow-emerald-600/30" data-i18n="cta-btn">了解進階配置</a>
                         </div>
                     </section>
                 </div>
@@ -102,7 +103,8 @@ import ChartLib from '../components/ChartLib.astro';
                 </div>
             </div>
 
-            <!-- Quick Needs Submission Block -->
+            <DcaGuide />
+<!-- Quick Needs Submission Block -->
             <section class="bg-white text-slate-800 shadow-sm border-b border-slate-200 py-10 mt-12 border-b border-blue-800 flex-shrink-0">
                 <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                     <h2 class="text-2xl font-bold mb-4" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>
@@ -135,7 +137,7 @@ const translations = {
         'input-rate': '預期年化報酬率 (%)',
         'input-years': '投資年限 (年)',
         'chart-title': '資產成長軌跡',
-        'cta-text': '覺得 6% 的成長速度太慢嗎？了解如何將 10% 資金佈局於實體另類資產。',
+        'cta-text': '想知道通膨會吃掉多少成果？用通膨計算機換算成今天的購買力。',
         'cta-btn': '了解進階配置',
         'res-principal': '總投入本金',
         'res-profit': '複利總獲利',
@@ -153,7 +155,7 @@ const translations = {
         'input-rate': 'Expected Annual Rate (%)',
         'input-years': 'Investment Term (Years)',
         'chart-title': 'Wealth Growth Trajectory',
-        'cta-text': 'Think 6% growth is too slow? Learn how to allocate 10% of your funds into physical alternative assets.',
+        'cta-text': 'Wondering how much inflation will eat into the result? Convert it to today\'s purchasing power with the inflation calculator.',
         'cta-btn': 'Explore Advanced Allocation',
         'res-principal': 'Total Principal',
         'res-profit': 'Compound Profit',

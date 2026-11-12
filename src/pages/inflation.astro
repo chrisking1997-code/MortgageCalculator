@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InflationGuide from '../components/guides/InflationGuide.astro';
 import ChartLib from '../components/ChartLib.astro';
 ---
 <BaseLayout
@@ -16,7 +17,7 @@ import ChartLib from '../components/ChartLib.astro';
             <div class="max-w-5xl mx-auto">
 
                 <div class="mb-8 text-center">
-                    <h2 class="text-3xl font-serif font-bold text-slate-900 mb-4" data-i18n="inf-h1">你的存款正在縮水嗎？</h2>
+                    <h1 class="text-3xl font-serif font-bold text-slate-900 mb-4" data-i18n="inf-h1">你的存款正在縮水嗎？</h1>
                     <p class="text-slate-500 max-w-2xl mx-auto leading-relaxed" data-i18n="inf-desc">計算通貨膨脹如何無聲無息地吃掉你的財富。了解未來的實質購買力，儘早為您的資產配置建立抗通膨護城河。</p>
                 </div>
 
@@ -96,17 +97,18 @@ import ChartLib from '../components/ChartLib.astro';
                         <li><strong>時間效應：</strong> 通膨和複利一樣具有指數效應，時間拉長，殺傷力驚人。</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-slate-800 mt-4">利用實體資產抗通膨的策略</h3>
-                    <p>為了維持甚至提升實質購買力，我們必須將資金配置到具有「抗通膨 (Inflation Hedge)」特性的資產上。這類資產的價格與收益通常會跟著物價指數水漲船高。</p>
+                    <h3 class="text-xl font-semibold text-slate-800 mt-4">常見的抗通膨資產類型</h3>
+                    <p>以下是常被討論、具有「抗通膨 (Inflation Hedge)」特性的資產類型。每一種都有各自的風險、波動與流動性限制，是否適合你取決於目標與風險承受度。這類資產的價格與收益通常會跟著物價指數水漲船高。</p>
                     <ul class="list-disc pl-6 space-y-2 mt-2">
-                        <li><strong>房地產與 REITs：</strong> 實體房地產的價值與租金收入通常能與通膨同步上升，是歷史上最穩健的抗通膨工具之一。</li>
+                        <li><strong>房地產與 REITs：</strong> 實體房地產的價值與租金收入通常能與通膨同步上升，長期而言常被視為抗通膨工具之一，但流動性低且買賣成本高。</li>
                         <li><strong>優質股票：</strong> 具有定價權的企業，能將成本上漲轉嫁給消費者，進而維持利潤與股息成長。</li>
                         <li><strong>原物料與黃金：</strong> 在惡性通膨時期，實體大宗商品往往具有保值甚至增值的功能。</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Quick Needs Submission Block -->
+            <InflationGuide />
+<!-- Quick Needs Submission Block -->
         <section class="bg-white py-10 border-t border-slate-200 flex-shrink-0">
             <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                 <h2 class="text-2xl font-serif font-bold mb-4 text-slate-900" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>

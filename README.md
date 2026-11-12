@@ -1,43 +1,26 @@
-# Astro Starter Kit: Minimal
+# SmartUtilBox
+
+免費的個人理財試算工具網站（房貸、複利、定期定額、買房 vs 租房、通膨、FIRE、投資組合、匯率），以 Astro + Tailwind CSS 建置，部署於 Vercel。
+
+## 開發
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # 輸出到 ./dist
+npx astro check  # 型別檢查
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 結構
 
-## 🚀 Project Structure
+- `src/pages/` — 各頁面；每個工具頁的計算邏輯在頁面底部的 `<script is:inline>`
+- `src/components/guides/` — 各工具頁下方的說明文字與常見問題（含 FAQ 結構化資料）
+- `src/content/blog/` — 理財專欄文章（Markdown）；英文版以 `en-` 開頭，會自動與中文版互相連結
+- `src/layouts/BaseLayout.astro` — 共用版型、SEO meta、AdSense、全站中英文字串
+- `public/ads.txt`、`public/robots.txt` — AdSense 與搜尋引擎設定
+- `vercel.json` — 舊網址的 301 轉址
 
-Inside of your Astro project, you'll see the following folders and files:
+## 網域
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+canonical、Open Graph 與 sitemap 使用 `astro.config.mjs` 的 `SITE_URL`（預設 `https://smartutilbox.com`）。
+如果正式網域不同，請修改該值或在 Vercel 設定環境變數 `SITE_URL`，並同步更新 `public/robots.txt` 的 Sitemap 網址。
