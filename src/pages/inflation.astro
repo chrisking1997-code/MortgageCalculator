@@ -1,7 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ChartLib from '../components/ChartLib.astro';
 ---
-<BaseLayout title="SmartUtilBox | inflation">
+<BaseLayout
+    title="通膨計算機｜存款實質購買力會縮水多少？ | SmartUtilBox"
+    description="輸入目前存款、預估通膨率與年數，計算未來的實質購買力與被通膨侵蝕的金額，並附上計算公式說明。"
+    currentPath="/inflation"
+    headerTitle="通膨購買力計算"
+    jsonLd={{"@context": "https://schema.org", "@type": "WebApplication", "name": "通膨購買力計算機", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "inLanguage": "zh-TW", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TWD"}, "description": "輸入目前存款、預估通膨率與年數，計算未來的實質購買力與被通膨侵蝕的金額，並附上計算公式說明。"}}
+>
+<ChartLib />
+
     <div class="px-4 py-8 max-w-7xl mx-auto space-y-8">
 
             <div class="max-w-5xl mx-auto">
@@ -110,24 +119,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
         </section>
 
-        <!-- Footer inside main content -->
-        <footer class="bg-slate-50 text-slate-500 py-6 flex-shrink-0 border-t border-slate-200">
-            <div class="container mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm max-w-5xl">
-                <div class="text-center sm:text-left mb-4 sm:mb-0">
-                    <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
-                </div>
-                <div class="space-x-4">
-                    <a href="/privacy-policy.html" class="hover:text-slate-800 transition-colors" data-i18n="footer-privacy">隱私權政策</a>
-                        <a href="/terms.html" class="hover:text-slate-800 transition-colors" data-i18n="footer-terms">服務條款</a>
-                    <a href="/blog" class="hover:text-slate-800 transition-colors" data-i18n="footer-guide">理財專欄</a>
-                </div>
-            </div>
-        </footer>
 
     </div>
 </BaseLayout>
 
 <script is:inline>
+window.__origTitle = document.title;
+
 
         /* --- Sidebar Logic --- */
         const sidebar = document.getElementById('sidebar');
@@ -266,7 +264,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 myChart.destroy();
             }
 
-            Chart.defaults.color = '#64748b'; /* slate-50 */0
+            Chart.defaults.color = '#64748b';
             Chart.defaults.font.family = '"Inter", "Noto Sans TC", sans-serif';
 
             myChart = new Chart(ctx, {
@@ -355,7 +353,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 }
             });
 
-            document.title = t('title-inflation');
+            document.title = getLang() === 'en' ? t('title-inflation') : window.__origTitle;
             document.getElementById('header-title').textContent = t('title-inflation').split(' | ')[0];
 
             calculateInflation();

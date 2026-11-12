@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/privacy-policy.html", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/terms.html", "destination": "/terms", "permanent": true },
+    { "source": "/inflation.html", "destination": "/inflation", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ]
+}

@@ -1,0 +1,7 @@
+---
+// Bundles PapaParse and exposes it as window.Papa for the portfolio CSV import.
+---
+<script>
+  import Papa from 'papaparse';
+  (window as any).Papa = Papa;
+</script>
