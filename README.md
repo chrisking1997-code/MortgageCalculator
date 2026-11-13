@@ -22,5 +22,5 @@ npx astro check  # 型別檢查
 
 ## 網域
 
-canonical、Open Graph 與 sitemap 使用 `astro.config.mjs` 的 `SITE_URL`（預設 `https://smartutilbox.com`）。
+canonical、Open Graph 與 sitemap 使用 `astro.config.mjs` 的 `SITE_URL`（預設 `https://www.smartutilbox.com`）。
 如果正式網域不同，請修改該值或在 Vercel 設定環境變數 `SITE_URL`，並同步更新 `public/robots.txt` 的 Sitemap 網址。

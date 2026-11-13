@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
 const { entry, isEn, counterpart } = Astro.props;
 const { Content } = await render(entry);
-const site = Astro.site ?? new URL('https://smartutilbox.com');
+const site = Astro.site ?? new URL('https://www.smartutilbox.com');
 const url = new URL(`/blog/${entry.id}/`, site).href;
 const published = entry.data.pubDate.toISOString().slice(0, 10);
 const jsonLd = {
