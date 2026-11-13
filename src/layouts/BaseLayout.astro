@@ -28,7 +28,7 @@ const {
   jsonLd,
 } = Astro.props;
 
-const site = Astro.site ?? new URL('https://smartutilbox.com');
+const site = Astro.site ?? new URL('https://www.smartutilbox.com');
 // Canonical URLs always end with a trailing slash to match the static build output.
 const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const canonical = new URL(path, site).href;
