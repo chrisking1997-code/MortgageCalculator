@@ -1,13 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InflationGuide from '../components/guides/InflationGuide.astro';
+import ChartLib from '../components/ChartLib.astro';
 ---
-<BaseLayout title="SmartUtilBox | inflation">
+<BaseLayout
+    title="通膨計算機｜存款實質購買力會縮水多少？ | SmartUtilBox"
+    description="輸入目前存款、預估通膨率與年數，計算未來的實質購買力與被通膨侵蝕的金額，並附上計算公式說明。"
+    currentPath="/inflation"
+    headerTitle="通膨購買力計算"
+    jsonLd={{"@context": "https://schema.org", "@type": "WebApplication", "name": "通膨購買力計算機", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "inLanguage": "zh-TW", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TWD"}, "description": "輸入目前存款、預估通膨率與年數，計算未來的實質購買力與被通膨侵蝕的金額，並附上計算公式說明。"}}
+>
+<ChartLib />
+
     <div class="px-4 py-8 max-w-7xl mx-auto space-y-8">
 
             <div class="max-w-5xl mx-auto">
 
                 <div class="mb-8 text-center">
-                    <h2 class="text-3xl font-serif font-bold text-slate-900 mb-4" data-i18n="inf-h1">你的存款正在縮水嗎？</h2>
+                    <h1 class="text-3xl font-serif font-bold text-slate-900 mb-4" data-i18n="inf-h1">你的存款正在縮水嗎？</h1>
                     <p class="text-slate-500 max-w-2xl mx-auto leading-relaxed" data-i18n="inf-desc">計算通貨膨脹如何無聲無息地吃掉你的財富。了解未來的實質購買力，儘早為您的資產配置建立抗通膨護城河。</p>
                 </div>
 
@@ -87,17 +97,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                         <li><strong>時間效應：</strong> 通膨和複利一樣具有指數效應，時間拉長，殺傷力驚人。</li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-slate-800 mt-4">利用實體資產抗通膨的策略</h3>
-                    <p>為了維持甚至提升實質購買力，我們必須將資金配置到具有「抗通膨 (Inflation Hedge)」特性的資產上。這類資產的價格與收益通常會跟著物價指數水漲船高。</p>
+                    <h3 class="text-xl font-semibold text-slate-800 mt-4">常見的抗通膨資產類型</h3>
+                    <p>以下是常被討論、具有「抗通膨 (Inflation Hedge)」特性的資產類型。每一種都有各自的風險、波動與流動性限制，是否適合你取決於目標與風險承受度。這類資產的價格與收益通常會跟著物價指數水漲船高。</p>
                     <ul class="list-disc pl-6 space-y-2 mt-2">
-                        <li><strong>房地產與 REITs：</strong> 實體房地產的價值與租金收入通常能與通膨同步上升，是歷史上最穩健的抗通膨工具之一。</li>
+                        <li><strong>房地產與 REITs：</strong> 實體房地產的價值與租金收入通常能與通膨同步上升，長期而言常被視為抗通膨工具之一，但流動性低且買賣成本高。</li>
                         <li><strong>優質股票：</strong> 具有定價權的企業，能將成本上漲轉嫁給消費者，進而維持利潤與股息成長。</li>
                         <li><strong>原物料與黃金：</strong> 在惡性通膨時期，實體大宗商品往往具有保值甚至增值的功能。</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Quick Needs Submission Block -->
+            <InflationGuide />
+<!-- Quick Needs Submission Block -->
         <section class="bg-white py-10 border-t border-slate-200 flex-shrink-0">
             <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                 <h2 class="text-2xl font-serif font-bold mb-4 text-slate-900" data-i18n="footer-cta-title">對理財有疑問？留下一句話，讓我們開始對話。</h2>
@@ -110,24 +121,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
         </section>
 
-        <!-- Footer inside main content -->
-        <footer class="bg-slate-50 text-slate-500 py-6 flex-shrink-0 border-t border-slate-200">
-            <div class="container mx-auto px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-sm max-w-5xl">
-                <div class="text-center sm:text-left mb-4 sm:mb-0">
-                    <p>&copy; 2026 SmartUtilBox. All rights reserved.</p>
-                </div>
-                <div class="space-x-4">
-                    <a href="/privacy-policy.html" class="hover:text-slate-800 transition-colors" data-i18n="footer-privacy">隱私權政策</a>
-                        <a href="/terms.html" class="hover:text-slate-800 transition-colors" data-i18n="footer-terms">服務條款</a>
-                    <a href="/blog" class="hover:text-slate-800 transition-colors" data-i18n="footer-guide">理財專欄</a>
-                </div>
-            </div>
-        </footer>
 
     </div>
 </BaseLayout>
 
 <script is:inline>
+window.__origTitle = document.title;
+
 
         /* --- Sidebar Logic --- */
         const sidebar = document.getElementById('sidebar');
@@ -266,7 +266,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 myChart.destroy();
             }
 
-            Chart.defaults.color = '#64748b'; /* slate-50 */0
+            Chart.defaults.color = '#64748b';
             Chart.defaults.font.family = '"Inter", "Noto Sans TC", sans-serif';
 
             myChart = new Chart(ctx, {
@@ -355,7 +355,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 }
             });
 
-            document.title = t('title-inflation');
+            document.title = getLang() === 'en' ? t('title-inflation') : window.__origTitle;
             document.getElementById('header-title').textContent = t('title-inflation').split(' | ')[0];
 
             calculateInflation();

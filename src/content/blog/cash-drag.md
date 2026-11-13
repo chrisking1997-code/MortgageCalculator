@@ -11,6 +11,6 @@ pubDate: 2026-05-01
 
 要解決這個問題，第一步就是進行徹底的「資產體檢」。透過釐清各類資產的佔比與各自的預期報酬率，揪出那些正在拖累你財富成長的閒置資金，並將其重新配置到能夠對抗通膨的實體或金融資產中。
 
-<div class="mt-10 text-center">
+<div class="not-prose mt-10 text-center">
     <a href="/portfolio-roi" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md border border-slate-800">立即分析投資組合</a>
 </div>

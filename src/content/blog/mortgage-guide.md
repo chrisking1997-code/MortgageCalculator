@@ -15,10 +15,10 @@ pubDate: 2026-04-15
 在美國等地區，多數人選擇固定利率，此時「提前還款（Extra Payments）」成為節省龐大總利息的最有效方法。然而，在通膨時代，真正的雙贏策略並非只是趕快把債務還清。而是將多餘的資金投入年化報酬率高於房貸利率的穩健資產中（如市值型 ETF）。這不僅能抗通膨，還能讓資金產生複利效應，最終創造出的資產往往遠大於省下的利息支出。
 
 ## 行動呼籲：您的財務壓力測試
-無論身在何處，購屋前使用我們的多國房貸利息試算中心進行壓力測試，是不可或缺的一步。輸入您的預期貸款條件，模擬不同利率下的財務風險。如果您對於如何根據自己的薪資結構規劃最理想的房貸與投資策略感到迷惘，歡迎諮詢我們的專業理財顧問團隊，讓我們為您量身打造專屬的財務自由藍圖。
+無論身在何處，購屋前使用我們的多國房貸利息試算中心進行壓力測試，是不可或缺的一步。輸入您的預期貸款條件，模擬不同利率下的財務風險。實際申貸前，也建議多比較幾家銀行的條件；涉及個人化的投資或稅務決定時，請諮詢具合法執照的專業人士。
 
-<div class="mt-8 text-center">
-    <a href="mailto:advisors@smartutilbox.com" class="inline-block bg-emerald-600 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors text-lg">
-        ✉️ 聯絡專業理財顧問團隊
+<div class="not-prose mt-8 text-center">
+    <a href="/contact" class="inline-block bg-emerald-600 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors text-lg">
+        ✉️ 與我們聯繫
     </a>
 </div>

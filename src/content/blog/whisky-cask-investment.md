@@ -25,6 +25,6 @@ pubDate: 2026-07-01
 
 投資最怕的就是憑感覺瞎買。如果你也對這類長年期的另類投資有興趣，或者想算算手上的資金到底該放股市還是其他資產，可以用我寫的試算工具推演看看參數。
 
-<div class="mt-10 text-center">
+<div class="not-prose mt-10 text-center">
     <a href="/portfolio-roi" class="inline-block bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-lg transition-colors shadow-md border border-slate-800">前往推演資產配置模型</a>
 </div>

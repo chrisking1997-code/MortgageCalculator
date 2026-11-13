@@ -12,12 +12,17 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.1.8",
+    "chart.js": "^4.6.1",
+    "papaparse": "^5.7.1",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
+    "@types/papaparse": "^5.5.2",
     "typescript": "^5.9.3"
   }
 }
