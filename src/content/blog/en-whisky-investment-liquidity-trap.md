@@ -6,11 +6,11 @@ author: "K"
 language: "en"
 ---
 
-During recent consultations with high-net-worth clients, an increasing number have asked me: "K, the stock market is at an all-time high, and inflation is eating up my cash. Should I buy a few casks of Scotch whisky, or collect some Karuizawa and Macallan bottles to preserve value?"
+People often ask me: "K, the stock market is at an all-time high, and inflation is eating up my cash. Should I buy a few casks of Scotch whisky, or collect some Karuizawa and Macallan bottles to preserve value?"
 
 Wine merchants and auction houses love to crown whisky with the title of "liquid gold," dangling a 10-year chart showing a 5x return for a specific bottle to bait you.
 
-As an investor who has navigated the alternative investment market for years and personally allocated into several single malt casks, I have to tell you the harsh truth: **Whisky is indeed an excellent inflation-resistant asset, but if you approach it with a 'stock-flipping' mentality, you will be absolutely crushed by its 'liquidity'.**
+Having researched and allocated into whisky casks myself, I want to be candid: **whisky can be a small part of an allocation, but if you approach it with a stock-trading mindset, liquidity and transaction costs can eat most of your gains.**
 
 ### The Hidden Taxes You Didn't Calculate: Liquidity Discount and Friction Costs
 
@@ -26,7 +26,7 @@ Many retail investors see a bottle sell for 100K TWD at an auction and assume th
 
 So, should we avoid investing in whisky? No, **you should invest, but your positioning must be correct.**
 
-In professional, cross-border asset allocation, the greatest value of physical Alternative Assets like whisky lies in their **"low correlation."** It tracks physical inflation, not the earnings reports of the Nasdaq or TSMC. When systemic risk hits financial markets (like the 2008 financial crisis or the dual stock-bond crash of 2022), these aged casks sitting in Scottish bonded warehouses serve as the most solid moat in your portfolio.
+The main appeal of physical alternative assets like whisky is their relatively **low correlation** with stocks and bonds, which can add some diversification. But low correlation is not the same as "cannot fall": alternative asset markets have their own cycles, and prices can stagnate for years with few buyers.
 
 **K's Hardcore Allocation Advice:**
 
@@ -35,4 +35,4 @@ In professional, cross-border asset allocation, the greatest value of physical A
 
 Don't buy into the overnight wealth myths spun by merchants; return to the data first. Go use my **[Inflation & Purchasing Power Calculator](/inflation)** to see exactly how much your cash will shrink in the future. If you find your current stock and bond allocation is already sufficient to cover inflation, you don't need to blindly follow the trend and buy whisky.
 
-If you happen to have a sum of idle cash and are hesitating between adding to ETFs, buying a house, or entering the whisky market, don't buy based on feelings. Book a **[Portfolio X-Ray Checkup](/consulting)** directly. Let me use data to examine your current liquidity risks and build a truly inflation-resistant, cross-border asset moat for you.
+If you have idle cash and are weighing ETFs, property and whisky, don't decide on feelings. Check your current allocation with the [portfolio tool](/portfolio-roi) first. And treat any whisky or cask scheme that promises guaranteed returns as a red flag.
