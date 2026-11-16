@@ -1,10 +1,86 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
   "redirects": [
-    { "source": "/privacy", "destination": "/privacy-policy", "permanent": true },
-    { "source": "/privacy-policy.html", "destination": "/privacy-policy", "permanent": true },
-    { "source": "/terms.html", "destination": "/terms", "permanent": true },
-    { "source": "/inflation.html", "destination": "/inflation", "permanent": true },
-    { "source": "/index.html", "destination": "/", "permanent": true }
+    {
+      "source": "/privacy",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy/",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy/index.html",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy.html",
+      "destination": "/privacy-policy/",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/inflation.html",
+      "destination": "/inflation/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog.html",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/compound.html",
+      "destination": "/compound/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio-visualizer.html",
+      "destination": "/portfolio-roi/",
+      "permanent": true
+    },
+    {
+      "source": "/article-grace-period-arbitrage.html",
+      "destination": "/blog/grace-period-arbitrage/",
+      "permanent": true
+    },
+    {
+      "source": "/article-mortgage-guide.html",
+      "destination": "/blog/mortgage-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/article-rule-of-72.html",
+      "destination": "/blog/rule-of-72/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug.html",
+      "destination": "/blog/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/en/article-:slug.html",
+      "destination": "/blog/en-:slug/",
+      "permanent": true
+    }
   ]
 }
