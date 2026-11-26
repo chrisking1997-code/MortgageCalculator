@@ -20,6 +20,16 @@ const { Content } = await render(entry);
 const site = Astro.site ?? new URL('https://www.smartutilbox.com');
 const url = new URL(`/blog/${entry.id}/`, site).href;
 const published = entry.data.pubDate.toISOString().slice(0, 10);
+// hreflang pairs: each language version lists itself and its counterpart; Chinese is the default.
+const zhSlug = isEn ? counterpart : entry.id;
+const enSlug = isEn ? entry.id : counterpart;
+const alternates = counterpart
+  ? {
+      'zh-TW': `/blog/${zhSlug}/`,
+      en: `/blog/${enSlug}/`,
+      'x-default': `/blog/${zhSlug}/`,
+    }
+  : undefined;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -41,6 +51,7 @@ const jsonLd = {
   lang={isEn ? 'en' : 'zh-TW'}
   ogType="article"
   jsonLd={jsonLd}
+  alternates={alternates}
 >
   <article class="bg-white p-6 sm:p-8 lg:p-12 rounded-xl shadow-lg shadow-slate-200/50 border border-slate-100 max-w-4xl mx-auto text-slate-800 border-t-4 border-emerald-600 mt-4 lg:mt-8 mb-8">
 
